@@ -12,7 +12,7 @@ import BlogDetails from "./Public_Page/blogs/BlogDetails.jsx";
 /* =====Services====*/
 import AiChatbotService from "./Public_Page/Services_page/AiChatbotService.jsx";
 import SoftwareDevelopmentService from "./Public_Page/Services_page/SoftwareDevelopmentService";
-import Automation from "./Public_Page/Services_page/automation";
+import Automation from "./Public_Page/Services_page/Automation";
 import EcommerceSolution from "./Public_Page/Services_page/EcommerceSolution";
 import SeoSmo from "./Public_Page/Services_page/SeoSmo";
 import PaidAds from "./Public_Page/Services_page/PaidAds";
