@@ -44,6 +44,7 @@ import Spam from "./admin/Comments/Spam";
 
 /* ===== UI ===== */
 import CustomCursor from "./Public_Page/components/CustomCursor.jsx";
+import VerifyEmail from "./Public_Page/Pages/VerifyEmail.jsx";
 
 function App() {
   return (
@@ -64,6 +65,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blogs/:slug" element={<BlogDetails />} />
+          <Route path="/verify-email/:token" element={<VerifyEmail />} />
+
 
            {/* SERVICES */}
         <Route path="/ai-chatbot-development" element={<AiChatbotService />} />
