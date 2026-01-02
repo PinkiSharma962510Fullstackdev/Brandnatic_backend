@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api", // backend url
+  baseURL: "https://brandnatic-backend-bac.vercel.app/api", // backend url
 });
 
 // 🔐 TOKEN AUTO ATTACH

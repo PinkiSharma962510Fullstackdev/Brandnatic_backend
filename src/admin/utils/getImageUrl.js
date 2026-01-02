@@ -5,7 +5,7 @@ export const getImageUrl = (path) => {
   if (path.startsWith("http")) return path;
 
   const baseUrl =
-    import.meta.env.VITE_API_URL || "http://localhost:5000";
+    import.meta.env.VITE_API_URL || "https://brandnatic-backend-bac.vercel.app";
 
   return `${baseUrl}${path}`;
 };
