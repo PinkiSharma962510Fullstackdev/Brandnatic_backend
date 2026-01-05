@@ -192,10 +192,10 @@ export default function Hero() {
           playsInline
         />
 
-        {/* 🌑 OVERLAY */}
+        {/*  OVERLAY */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80 z-[1]" />
 
-        {/* 🧠 CONTENT */}
+        {/*  CONTENT */}
         <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
 
           {/* FLOATING LABEL */}
@@ -204,7 +204,7 @@ export default function Hero() {
             transition={floatingLabel.transition}
             className="text-white text-sm tracking-widest uppercase font-semibold mb-6"
           >
-            AI DIGITAL MARKETING AGENCY
+            `<h1>Brandnatic | AI Digital Marketing Agency in Noida</h1>`
           </motion.p>
 
           {/* HEADING */}

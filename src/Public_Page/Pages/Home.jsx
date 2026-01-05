@@ -18,22 +18,36 @@ import SectionWrapper from '../components/SectionWrapper'
 const Home = () => {
     return (
       <>
-      {/* 🔥 SEO FOR HOME PAGE */}
+ 
+      
+
+      {/*  HOME PAGE SEO */}
       <Helmet>
-        <title>Brandnatic | AI Digital Marketing Agency in Noida</title>
+        {/* TITLE (Primary Ranking Factor) */}
+        <title>
+          Brandnatic | AI Digital Marketing Agency in Noida (Delhi NCR)
+        </title>
+
+        {/*  META DESCRIPTION (CTR Booster) */}
         <meta
           name="description"
-          content="Brandnatic is an AI-powered digital marketing agency in Noida delivering SEO, PPC, social media & performance marketing with measurable ROI."
+          content="Brandnatic is an AI-powered digital marketing agency in Noida offering SEO, PPC, social media marketing, lead generation, automation, and web development to drive measurable ROI and business growth."
         />
+
+        {/*  CANONICAL (Avoid Duplicate Issues) */}
         <link rel="canonical" href="https://brandnatic.com/" />
 
-        {/* OPTIONAL BUT STRONG */}
-        <meta property="og:title" content="Brandnatic | AI Digital Marketing Agency" />
+        {/*  OPEN GRAPH (Social Sharing) */}
+        <meta property="og:title" content="Brandnatic | AI Digital Marketing Agency in Noida" />
         <meta
           property="og:description"
-          content="AI-driven SEO & performance marketing solutions to scale your brand visibility and revenue."
+          content="ROI-driven AI-powered SEO, performance marketing, automation and web development solutions for startups and brands in Noida."
         />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://brandnatic.com/" />
+
+        {/*  OPTIONAL BUT STRONG */}
+        <meta name="robots" content="index, follow" />
       </Helmet>
         <div>           
            <Hero id="hero"></Hero> 
