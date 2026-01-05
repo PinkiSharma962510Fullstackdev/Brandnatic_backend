@@ -45,6 +45,8 @@ import Spam from "./admin/Comments/Spam";
 /* ===== UI ===== */
 import CustomCursor from "./Public_Page/components/CustomCursor.jsx";
 import VerifyEmail from "./Public_Page/Pages/VerifyEmail.jsx";
+import Portfolio from "./Public_Page/Pages/Portfolio.jsx";
+
 
 function App() {
   return (
@@ -54,6 +56,7 @@ function App() {
       <CustomCursor />
 
       <Routes>
+        
         {/* ================= PUBLIC WEBSITE ================= */}
         <Route
           element={
@@ -64,6 +67,7 @@ function App() {
         >
           <Route path="/" element={<Home />} />
           <Route path="/blogs" element={<Blogs />} />
+         
           <Route path="/blogs/:slug" element={<BlogDetails />} />
           <Route path="/verify-email/:token" element={<VerifyEmail />} />
 
@@ -79,6 +83,9 @@ function App() {
         <Route path="/lead-generation" element={<LeadGeneration />} />
         <Route path="/website-design-development" element={<WebsiteDesignDevelopment />} />
         <Route path="/mobile-app-development" element={<MobileAppDevelopment />} />
+         <Route path="/portfolio" element={<Portfolio />} />
+       
+        
 
         {/* COMPANY */}
         <Route path="/who-we-are" element={<WhoWeAre />} />
@@ -117,6 +124,7 @@ function App() {
           <Route path="comments/approved" element={<Approved />} />
           <Route path="comments/spam" element={<Spam />} />
         </Route>
+        
       </Routes>
     </BrowserRouter>
   );

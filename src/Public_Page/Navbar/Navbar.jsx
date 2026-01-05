@@ -179,6 +179,11 @@ function Navbar() {
                 <Link to="/blogs" className="hover:text-blue-400">Blog</Link>
               </li>
 
+                {/* Portfolio */}
+              <li>
+                <Link to="/portfolio" className="hover:text-blue-400">Portfolio</Link>
+              </li>
+
               {/* CONTACT */}
               <li
                 onClick={() => setContactOpen(true)}
