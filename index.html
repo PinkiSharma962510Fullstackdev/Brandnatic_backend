@@ -1,12 +1,116 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- =========================
+         BASIC META
+    ========================== -->
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>admin_panel</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>
+      Brandnatic | AI-Powered Digital Marketing Agency – SEO, PPC & Growth
+    </title>
+
+    <meta
+      name="description"
+      content="Scale faster with Brandnatic — an AI-powered digital marketing agency specializing in SEO, PPC, social media automation & performance-driven growth."
+    />
+
+    <meta name="author" content="Brandnatic" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Single viewport (ONLY ONE) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Canonical (CRITICAL) -->
+    <link rel="canonical" href="https://brandnatic.com/" />
+
+    <!-- =========================
+         FAVICONS (REPLACE VITE DEFAULT)
+    ========================== -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- =========================
+         OPEN GRAPH (SOCIAL SEO)
+    ========================== -->
+    <meta property="og:site_name" content="Brandnatic" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://brandnatic.com/" />
+    <meta
+      property="og:title"
+      content="Brandnatic | AI-Powered Digital Marketing Agency"
+    />
+    <meta
+      property="og:description"
+      content="AI-powered SEO, PPC, social media & growth marketing for brands that want measurable scale."
+    />
+    <meta
+      property="og:image"
+      content="https://brandnatic.com/og-image.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- =========================
+         TWITTER CARDS
+    ========================== -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@brandnatic" />
+    <meta
+      name="twitter:title"
+      content="Brandnatic | AI-Powered Digital Marketing Agency"
+    />
+    <meta
+      name="twitter:description"
+      content="Scale smarter with AI-driven SEO, PPC & performance marketing."
+    />
+    <meta
+      name="twitter:image"
+      content="https://brandnatic.com/og-image.jpg"
+    />
+
+    <!-- =========================
+         STRUCTURED DATA (JSON-LD)
+         HIGH PRIORITY
+    ========================== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Brandnatic",
+        "url": "https://brandnatic.com",
+        "logo": "https://brandnatic.com/logo.png",
+        "image": "https://brandnatic.com/og-image.jpg",
+        "description": "Brandnatic is an AI-powered digital marketing agency delivering SEO, PPC, social media automation and performance growth solutions.",
+        "sameAs": [
+          "https://www.linkedin.com/company/brandnatic",
+          "https://www.instagram.com/brandnatic",
+          "https://twitter.com/brandnatic"
+        ],
+        "areaServed": {
+          "@type": "Country",
+          "name": "India"
+        },
+        "serviceType": [
+          "SEO Services",
+          "PPC Advertising",
+          "Social Media Marketing",
+          "Performance Marketing",
+          "Marketing Automation"
+        ]
+      }
+    </script>
+
+    <!-- =========================
+         PRECONNECT (PERFORMANCE)
+    ========================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
-  <body class="bg-black text-white">
+
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

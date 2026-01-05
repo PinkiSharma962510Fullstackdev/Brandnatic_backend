@@ -214,84 +214,110 @@ function Navbar() {
 
         {/* ================= MOBILE MENU ================= */}
         {mobileOpen && (
-          <div className="lg:hidden bg-black text-white px-6 py-6 space-y-6">
-            <Link to="/" onClick={() => setMobileOpen(false)}>Home</Link>
+  <div className="lg:hidden fixed inset-0 z-50 bg-black text-white overflow-y-auto">
 
-            {/* SERVICES */}
-            <div>
-              <button
-                className="flex justify-between w-full"
-                onClick={() =>
-                  setActiveMobileSubmenu(
-                    activeMobileSubmenu === "services" ? null : "services"
-                  )
-                }
+    {/* HEADER */}
+    <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-800">
+      <span className="text-xl font-bold">Brandnatic</span>
+      <button onClick={() => setMobileOpen(false)}>✕</button>
+    </div>
+
+    {/* MENU */}
+    <div className="flex flex-col px-6 py-8 space-y-6 text-lg">
+
+      <Link to="/" onClick={() => setMobileOpen(false)}>
+        Home
+      </Link>
+
+      {/* SERVICES */}
+      <div>
+        <button
+          className="flex justify-between w-full items-center"
+          onClick={() =>
+            setActiveMobileSubmenu(
+              activeMobileSubmenu === "services" ? null : "services"
+            )
+          }
+        >
+          <span>Services</span>
+          <span>{activeMobileSubmenu === "services" ? "−" : "+"}</span>
+        </button>
+
+        {activeMobileSubmenu === "services" && (
+          <div className="ml-4 mt-4 space-y-3 text-sm text-zinc-300">
+            {servicesMenu.map((item) => (
+              <div
+                key={item.id}
+                onClick={() => {
+                  navigate(item.route);
+                  setMobileOpen(false);
+                }}
+                className="cursor-pointer hover:text-blue-400"
               >
-                Services <span>{activeMobileSubmenu === "services" ? "−" : "+"}</span>
-              </button>
-
-              {activeMobileSubmenu === "services" && (
-                <div className="ml-4 mt-3 space-y-2 text-sm">
-                  {servicesMenu.map((item) => (
-                    <div
-                      key={item.id}
-                      onClick={() => {
-                        navigate(item.route);
-                        setMobileOpen(false);
-                      }}
-                      className="cursor-pointer hover:text-blue-400"
-                    >
-                      {item.title}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* COMPANY */}
-            <div>
-              <button
-                className="flex justify-between w-full"
-                onClick={() =>
-                  setActiveMobileSubmenu(
-                    activeMobileSubmenu === "company" ? null : "company"
-                  )
-                }
-              >
-                Company <span>{activeMobileSubmenu === "company" ? "−" : "+"}</span>
-              </button>
-
-              {activeMobileSubmenu === "company" && (
-                <div className="ml-4 mt-3 space-y-2 text-sm">
-                  {companyMenu.map((item) => (
-                    <div
-                      key={item.id}
-                      onClick={() => {
-                        navigate(item.route);
-                        setMobileOpen(false);
-                      }}
-                      className="cursor-pointer hover:text-blue-400"
-                    >
-                      {item.title}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <Link to="/blogs" onClick={() => setMobileOpen(false)}>Blog</Link>
-
-            <button
-              onClick={() => {
-                setContactOpen(true);
-                setMobileOpen(false);
-              }}
-              className="border px-4 py-2 rounded"
-            >
-              Contact
-            </button>
+                {item.title}
+              </div>
+            ))}
           </div>
         )}
+      </div>
+
+      {/* COMPANY */}
+      <div>
+        <button
+          className="flex justify-between w-full items-center"
+          onClick={() =>
+            setActiveMobileSubmenu(
+              activeMobileSubmenu === "company" ? null : "company"
+            )
+          }
+        >
+          <span>Company</span>
+          <span>{activeMobileSubmenu === "company" ? "−" : "+"}</span>
+        </button>
+
+        {activeMobileSubmenu === "company" && (
+          <div className="ml-4 mt-4 space-y-3 text-sm text-zinc-300">
+            {companyMenu.map((item) => (
+              <div
+                key={item.id}
+                onClick={() => {
+                  navigate(item.route);
+                  setMobileOpen(false);
+                }}
+                className="cursor-pointer hover:text-blue-400"
+              >
+                {item.title}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* ✅ PORTFOLIO (ADDED) */}
+      <Link to="/portfolio" onClick={() => setMobileOpen(false)}>
+        Portfolio
+      </Link>
+
+      {/* BLOG */}
+      <Link to="/blogs" onClick={() => setMobileOpen(false)}>
+        Blog
+      </Link>
+
+      {/* CONTACT CTA */}
+      <button
+        onClick={() => {
+          setContactOpen(true);
+          setMobileOpen(false);
+        }}
+        className="mt-4 w-full border border-white rounded-md py-3 text-center"
+      >
+        Contact
+      </button>
+
+    </div>
+  </div>
+)}
+
       </header>
 
       {/* ================= MODALS ================= */}
