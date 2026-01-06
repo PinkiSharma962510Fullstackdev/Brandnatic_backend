@@ -21,141 +21,118 @@ const Home = () => {
  
       
 
-      {/*  HOME PAGE SEO */}
       <Helmet>
-        {/* TITLE (Primary Ranking Factor) */}
-        <title>
-          Brandnatic | AI Digital Marketing Agency in Noida (Delhi NCR)
-        </title>
+  {/* ✅ HOME PAGE TITLE */}
+  <title>
+    AI Digital Marketing Agency in Noida (Delhi NCR) | Brandnatic
+  </title>
 
-        {/*  META DESCRIPTION (CTR Booster) */}
-        <meta
-          name="description"
-          content="Brandnatic is an AI-powered digital marketing agency in Noida offering SEO, PPC, social media marketing, lead generation, automation, and web development to drive measurable ROI and business growth."
-        />
+  {/* ✅ META DESCRIPTION */}
+  <meta
+    name="description"
+    content="Brandnatic is an AI-powered digital marketing agency in Noida delivering SEO, PPC, social media marketing, automation, and web development focused on measurable ROI and long-term business growth."
+  />
 
-        {/*  CANONICAL (Avoid Duplicate Issues) */}
-        <link rel="canonical" href="https://brandnatic.com/" />
+  {/* ✅ CANONICAL */}
+  <link rel="canonical" href="https://brandnatic.com/" />
 
-        {/*  OPEN GRAPH (Social Sharing) */}
-        <meta property="og:title" content="Brandnatic | AI Digital Marketing Agency in Noida" />
-        <meta
-          property="og:description"
-          content="ROI-driven AI-powered SEO, performance marketing, automation and web development solutions for startups and brands in Noida."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://brandnatic.com/" />
-
-        {/*  OPTIONAL BUT STRONG */}
-        <meta name="robots" content="index, follow" />
-
-        {/* Social Share Image */}
-<meta property="og:image" content="https://brandnatic.com/og/og-image.jpeg" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-
-{/* Brand Logo */}
-<meta property="og:logo" content="https://brandnatic.com/og-image.jpeg" />
+  {/* ✅ ROBOTS */}
+  <meta name="robots" content="index, follow" />
 
 
-        {/* FAQ SCHEMA */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "What makes Brandnatic different from other digital marketing agencies?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Brandnatic stands out by combining AI-powered marketing, automation, and performance-driven strategies focused on measurable ROI rather than vanity metrics."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Do you work with startups or only established brands?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Brandnatic works with both startups and established brands, offering scalable digital marketing and development solutions tailored to different growth stages."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What is an AI-powered digital marketing agency?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "An AI-powered digital marketing agency uses artificial intelligence, data analytics, and automation to improve targeting, personalization, performance optimization, and decision-making."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "How does Brandnatic use AI in digital marketing?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Brandnatic uses AI for keyword research, audience targeting, campaign optimization, marketing automation, predictive analytics, and conversion optimization."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Can you handle both marketing and development?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes, Brandnatic offers both digital marketing and development services, including SEO, paid ads, automation, web development, and app development under one roof."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Is Brandnatic suitable for startups or only established businesses?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Brandnatic is suitable for startups as well as established businesses, providing customized strategies that align with business goals, budgets, and growth plans."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Do you offer customized digital marketing strategies?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes, Brandnatic creates fully customized digital marketing strategies based on business objectives, target audience, industry, and competitive analysis."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What industries do you serve from your Noida office?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Brandnatic serves multiple industries including e-commerce, real estate, startups, SaaS, healthcare, FMCG, local businesses, and enterprises from its Noida office."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What services does Brandnatic provide?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Brandnatic provides SEO, paid advertising, social media marketing, lead generation, marketing automation, CRM integration, web development, app development, and AI-powered growth solutions."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "How is Brandnatic different from other digital marketing agencies in Noida?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Brandnatic focuses on AI-driven strategies, data-backed decisions, and ROI-centric growth, making it different from traditional digital marketing agencies in Noida."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Is AI marketing expensive for small businesses?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "AI marketing is scalable and can be cost-effective for small businesses when implemented strategically to improve efficiency, targeting, and conversions."
-                }
-              }
-            ]
-          })}
-        </script>
-      </Helmet>
+
+  {/* ✅ FAQ SCHEMA (PERFECT HERE) */}
+  <script type="application/ld+json">
+    {JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does an AI-based lead and sales system mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An AI-based lead and sales system goes beyond running ads. It evaluates buyer intent, budget range, location, and purchase timeline to ensure that only serious, sales-ready prospects remain in the funnel."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is this different from a traditional digital marketing agency?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Traditional digital marketing agencies focus primarily on lead generation. This AI-driven system focuses on real site visits, bookings, and revenue by filtering out low-intent leads and prioritizing genuine buyers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this system generate only leads or actual bookings?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The goal is not limited to lead generation. The system is designed to move prospects from the first click to qualified site visits and real bookings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are these real buyers or just form submissions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Leads are intent-qualified. AI analyzes user behavior, engagement, and buying signals so sales teams interact only with genuine property buyers, not casual inquiries."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who is this AI lead generation system best suited for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This system is ideal for real estate developers, builders, channel partners, and brokers who are launching new projects or selling ready-to-move inventory."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What role does AI play in real estate marketing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI improves real estate marketing by targeting the right buyers, filtering unqualified leads, automating follow-ups, and optimizing ads based on real conversions, resulting in better ROI and predictable growth."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you handle only ads or the entire sales pipeline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ads are only the starting point. The complete system includes landing pages, WhatsApp automation, CRM integration, lead nurturing, and conversion-focused performance tracking."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can this reduce ad spend wastage and sales workload?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. By eliminating low-quality leads and automating follow-ups, sales teams focus only on high-intent buyers, saving time and improving cost efficiency per booking."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How soon can results be expected?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most real estate businesses begin noticing improvements in lead quality and buyer intent within two to four weeks of system launch."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the same strategy used for every real estate project?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Each project has unique pricing, location advantages, and buyer psychology. Every strategy is fully customized rather than pre-built."
+      }
+    }
+  ]
+})}
+
+  </script>
+</Helmet>
+
         <div>           
            <Hero id="hero"></Hero> 
        

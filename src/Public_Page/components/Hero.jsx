@@ -211,15 +211,16 @@ export default function Hero() {
           <motion.h1
             className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white"
           >
-            Enabling Growth Through <br />
+            Real-Estate <br />
             <span className="text-[#28B8DF]">
-              Intelligent SEO
+            Growth 
             </span>
+            Partner
           </motion.h1>
 
           {/* DESCRIPTION */}
           <p className="mt-8 max-w-3xl mx-auto text-lg text-gray-300">
-            AI-powered SEO & growth strategies to scale your brand visibility.
+            We help real-estate developers and brokers generate consistent, high-quality property leads using AI-powered ads and automation..
           </p>
 
           {/* ✅ CTA BUTTON */}

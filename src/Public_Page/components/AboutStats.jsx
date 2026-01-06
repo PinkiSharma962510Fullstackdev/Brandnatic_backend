@@ -77,16 +77,12 @@ function AboutStats() {
               </h2>
 
               <p className="mt-6 text-gray-600">
-                We are a <strong>ROI-driven</strong> digital marketing agency
-                delivering measurable growth through data-backed strategies.
+                Brandnatic is one of the <strong><h3 className="display: inline">top digital marketing company in noida  (Delhi NCR) </h3></strong> which caters to AI based lead and sales system for real estate developer and broker. We approach traditional digital marketing in a way that goes far beyond what is commonly practiced by integrating smart ads, automation, and targeting buyer intent to provide consistent, high quality property leads. Our focus is simple- help real-estate businesses scale-up faster at predictable growth, not just online visibilit
               </p>
 
-              <p className="mt-4 text-gray-600">
-                From SEO to AI-powered performance marketing, we focus on
-                long-term business impact.
-              </p>
+             
 
-              {/* ✅ CTA BUTTON */}
+              {/*  CTA BUTTON */}
               <motion.button
                 onClick={() => setOpenContact(true)}
                 whileHover={{ scale: 1.05 }}

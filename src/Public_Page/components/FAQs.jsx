@@ -3,55 +3,47 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const faqs = [
   {
-    q: "What makes Brandnatic different from other digital marketing agencies?",
-    a:`Brandnatic is designed with the future of digital expansion in mind. With a strategic partnership with Meta, Brandnatic is an AI-powered digital marketing agency that delivers intelligent, performance-driven results that go well beyond traditional marketing execution. While many agencies rely on antiquated strategies and manual optimization, Brandnatic uses cutting-edge AI to analyze data, comprehend audience behavior, and optimize campaigns in real time, guaranteeing that every choice is accurate, scalable, and significant.`,
+    q: "1. So what does an AI-based lead and sales system mean?",
+    a:`It does not only involve the placement of ads. The system evaluates the intent of the buyer, the budget bracket, the location of the buyer, and the purchase schedule to ensure that only buyers who are serious and sales-capable remain in the funnel.`,
   },
   {
-    q: "Do you work with startups or only established brands?",
-    a: `Our AI-powered strategy at Brandnatic is made to adjust to various phases of company expansion. We assist startups in creating solid digital foundations, including demand creation, brand positioning, economical campaigns, and scalable growth systems that provide early traction without squandering money. Using cutting-edge AI insights and data-driven tactics, we concentrate on optimization, automation, performance scaling, and market expansion for well-known brands.`,
+    q: "2.  What is the difference between that and a digital marketing agency?",
+    a: `Digital marketing agencies are dedicated to generating leads. This system focuses on visiting the location, reservations, and income by eliminating leads that are not serious and focusing on actual purchasers.`,
   },
   {
-    q: "What is an AI-powered digital marketing agency?",
-    a: `Marketing campaigns are planned, carried out, and optimized by an AI-powered digital marketing agency using data analytics and artificial intelligence. Compared to conventional marketing strategies, this enables more intelligent targeting, real-time optimization, improved audience insights, and a higher return on investment.`,
+    q: "3, Will this bring about bookings or leads only?",
+    a: `The goal is not merely restricted to lead. The system will be constructed in a way that it transfers the prospects through the first click to the qualified site visits and real bookings.`,
   },
   {
-    q: "How does Brandnatic use AI in digital marketing?",
-    a: `AI is used by Brandnatic to analyze user behavior, forecast performance trends, automate lead nurturing, optimize ad campaigns, personalize content, and enhance conversion funnels—all of which guarantee data-driven choices at every marketing stage.`,
+    q: "4. Are the leads real, or are they form submissions?",
+    a: `Leads are intent‑qualified. AI will sort out users in terms of behaviour, engagement, and purchasing cues; that is, sales teams will only communicate with actual buyers of property, but not those who have simple enquiries.`,
   },
   {
-    q: "Can you handle both marketing and development?",
-    a: "Absolutely. We provide end-to-end solutions including marketing, automation, web development, and AI-powered systems.",
+    q: "5. What is the most appropriate person to use this system?",
+    a: "It fits well into the real-estate developers, builders, channel partners and brokers, either introducing a new project or selling the ready-to-move inventory.",
   },
     {
-    q: "Is Brandnatic suitable for startups or only established businesses?",
-    a:`Both new and well-known brands are served by Brandnatic. While established companies use AI and automation to scale more quickly and maximize performance, startups profit from cost-effective growth strategies.`,
+    q: "6. What is the benefit of AI in the marketing of real estate?",
+    a:`AI adds to real estate marketing through targeting the right buyers, filtering off poorly qualified leads, automated follow-ups, and optimized ads through real conversions- resulting in better ROI and a predictable growth.`,
   },
     {
-    q: "Do you offer customized digital marketing strategies?",
-    a: `Sure. Since every company is different, Brandnatic develops unique AI-driven strategies based on your objectives, target market, industry, and financial constraints—no one-size-fits-all solutions.`,
+    q: "7. Do you handle only advertisements or all the sales pipeline?",
+    a: `Advertisements are only the beginning. The entire system will consist of landing pages, WhatsApp automation, CRM, lead nurturing, and conversion-based performance tracking.`,
   },
     {
-    q: "What industries do you serve from your Noida office?",
-    a: `Real estate, e-commerce, healthcare, education, SaaS, local companies, and service-based brands are just a few of the many industries we serve in India and around the world.`,
+    q: "8. Is this able to lower the wastage of ad money and the workload of sales personnel?",
+    a: `Yes. Removing the junk leads and automating the follow-ups, sales teams concentrate on the high-intent buyers only, which saves time and also increases the cost per booking.`,
   },
     {
-    q: "Can you handle both marketing and development?",
-    a: "Absolutely. We provide end-to-end solutions including marketing, automation, web development, and AI-powered systems.",
+    q: "9. What is the rate at which results can be anticipated?",
+    a: "The real estate businesses see significant changes in the quality of leads and customer intention within two to four weeks of the launch.",
   },
     {
-    q: " What services does Brandnatic provide?",
-    a: `SEO, AI-powered performance marketing, lead generation, social media marketing, automation, AI chatbots, CRM integration, website development, and conversion optimization are some of the services we offer.`,
+    q: "10. Is all the projects the same in terms of strategy?",
+    a: `No. Prices, location advantages, and buyer psychology of each project are unique. Each approach is not pre-made but is entirely tailor-made.`,
   },
 
-      {
-    q: " How is Brandnatic different from other digital marketing agencies in Noida?",
-    a: `AI intelligence, automation, human creativity, and a performance-first mentality are all combined in Brandnatic. We operate as a long-term growth partner and concentrate on actual business growth rather than vanity metrics.`,
-  },
-
-      {
-    q: "Is AI marketing expensive for small businesses?",
-    a: `No. By enhancing targeting and optimizing campaigns, AI actually helps cut down on wasteful spending, making it extremely affordable even for small and medium-sized businesses.`,
-  },
+    
 ];
 
 export default function FAQs() {

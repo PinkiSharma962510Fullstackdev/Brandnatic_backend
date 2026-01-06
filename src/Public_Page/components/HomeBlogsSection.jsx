@@ -3,7 +3,15 @@ import { Link } from "react-router-dom";
 import api from "../../admin/utils/api";
 
 
+const getFirstImage = (html) => {
+  if (!html) return null;
+
+  const match = html.match(/<img[^>]+src="([^">]+)"/);
+  return match ? match[1] : null;
+};
+
 function HomeBlogsSection() {
+  
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -49,35 +57,56 @@ function HomeBlogsSection() {
 
         {/* BLOG GRID */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {blogs.map((blog) => (
-            <Link
-              key={blog._id}
-              to={`/blogs/${blog.slug}`}
-              className="
-                group bg-zinc-900 rounded-2xl p-6
-                border border-zinc-800
-                hover:border-blue-500
-                transition-all duration-300
-                hover:-translate-y-2
-                hover:shadow-[0_0_30px_rgba(59,130,246,0.25)]
-              "
-            >
-              {/* TITLE */}
-              <h3 className="text-xl font-semibold mb-3 group-hover:text-blue-400 transition">
-                {blog.title}
-              </h3>
+        {blogs.map((blog) => {
+  const image = getFirstImage(blog.contentHTML);
 
-              {/* EXCERPT */}
-              <p className="text-zinc-400 text-sm leading-relaxed line-clamp-4">
-                {blog.contentHTML.replace(/<[^>]*>/g, "")}
-              </p>
+  return (
+    <Link
+      key={blog._id}
+      to={`/blogs/${blog.slug}`}
+      className="
+        group bg-zinc-900 rounded-2xl overflow-hidden
+        border border-zinc-800
+        hover:border-blue-500
+        transition-all duration-300
+        hover:-translate-y-2
+        hover:shadow-[0_0_30px_rgba(59,130,246,0.25)]
+      "
+    >
+      {/* IMAGE */}
+      {image && (
+        <div className="h-48 overflow-hidden">
+          <img
+            src={image}
+            alt={blog.title}
+            className="
+              w-full h-full object-cover
+              group-hover:scale-105 transition duration-500
+            "
+            loading="lazy"
+          />
+        </div>
+      )}
 
-              {/* READ MORE */}
-              <div className="mt-6 text-blue-400 text-sm font-medium">
-                Read More →
-              </div>
-            </Link>
-          ))}
+      {/* CONTENT */}
+      <div className="p-6">
+        <h3 className="text-xl font-semibold mb-3 group-hover:text-blue-400 transition">
+          {blog.title}
+        </h3>
+
+        <p className="text-zinc-400 text-sm leading-relaxed line-clamp-4">
+          {blog.contentHTML.replace(/<[^>]*>/g, "")}
+        </p>
+
+        <div className="mt-6 text-blue-400 text-sm font-medium">
+          Read More →
+        </div>
+      </div>
+    </Link>
+  );
+})}
+
+          
         </div>
 
         {/* VIEW ALL */}

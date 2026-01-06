@@ -95,6 +95,58 @@ import { motion } from "framer-motion";
         </motion.div>
 
       </div>
+      {/* SOCIAL MEDIA COMMUNI */}
+<motion.div
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+  viewport={{ once: true }}
+  className="mt-24"
+>
+  <div className="text-center mb-14">
+    <h2 className="text-3xl md:text-4xl font-bold mb-4">
+      SOCIAL MEDIA <span className="text-cyan-400">COMMUNI</span>
+    </h2>
+    <p className="text-gray-400 max-w-3xl mx-auto text-lg">
+      Great user experience design lets users focus on the task they have to
+      complete & evokes emotion without distracting them. Bonus points for when
+      it also looks & feels aesthetically pleasing!
+    </p>
+  </div>
+
+  <div className="grid md:grid-cols-3 gap-8">
+    <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 hover:border-cyan-400 transition">
+      <h3 className="text-xl font-semibold mb-3">
+        Content That Connects
+      </h3>
+      <p className="text-gray-400 text-sm leading-relaxed">
+        Platform-specific content designed to stop scrolling, spark engagement,
+        and communicate your brand message clearly across all channels.
+      </p>
+    </div>
+
+    <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 hover:border-cyan-400 transition">
+      <h3 className="text-xl font-semibold mb-3">
+        Community Engagement
+      </h3>
+      <p className="text-gray-400 text-sm leading-relaxed">
+        Proactive replies, comment moderation, and audience interaction that
+        build trust, loyalty, and long-term brand relationships.
+      </p>
+    </div>
+
+    <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 hover:border-cyan-400 transition">
+      <h3 className="text-xl font-semibold mb-3">
+        Performance Tracking
+      </h3>
+      <p className="text-gray-400 text-sm leading-relaxed">
+        Clear insights on reach, engagement, and conversions so you always know
+        what’s working—and what to scale next.
+      </p>
+    </div>
+  </div>
+</motion.div>
+
     </section>
   );
 }

@@ -138,73 +138,67 @@ import { motion } from "framer-motion";
 const services = [
   {
     title: "Social Media Optimization",
-    desc:  `Our social media optimization services at Brandnatic are made to boost your brand's visibility, increase interaction, and promote steady organic growth on all social media channels. To make sure your brand reaches the right audience, we use data insights and AI-driven analysis to optimize your profiles, content strategy, hashtags, and posting schedules. Our SMO tactics foster long-term brand awareness and trust by increasing visibility, credibility, and interaction.`,
+    desc:  `Our team will focus on the optimization process of social media to reach advanced buyers of the property and obtain the strong brand confidence. All profiles, posts as well as messages are strategically positioned to promote visibility, interest and attract qualified inquiries. The social media will be turned into a trusted source of generating leads to real-estate developers and brokers through the development of AI-based analysis and usage of data-driven insights`,
     video: "/services_cart_videos/cart8.mp4",
     poster: "/images/poster.jpg",
     
   },
   {
     title: "Lead Generation",
-    desc: `At Brandnatic, we believe in qualified, high-intent prospects driven by AI 
-    and data rather than haphazard leads. Our AI-powered lead generation techniques are
-     made to draw in the appropriate audience, identify their intent, and turn them into
-      leads that are ready for sale for your company To create dependable lead pipelines
-       that grow with your business, we integrate automation, conversion optimization,
-        performance marketing, and advanced AI targeting.`
+    desc: `"Our group generates lead generating systems with a focus on quality but not quantity. It uses AI-based advertising, much more careful audience selection, and automated follow-ups to do so and reach serious buyers of the offered property and investors. This is a logical method of converting interest into webpages access, bookings, and sales- which means that real-estate developers and brokers have a steady stream of customers.`
         ,
     video: "/services_cart_videos/cart3.mp4",
     poster: "/images/poster.jpg",
   },
   {
     title: "Automation",
-    desc: `Our AI-powered automation solutions at Brandnatic are designed to do away with manual labor, cut expenses, and spur company expansion. We create intelligent automation systems that link your operations, sales, and marketing so that your company can function smoothly, effectively, and reliably without continual human intervention.
-
-          We develop intelligent, automated workflows that react to user behavior in real time and smoothly move prospects from interest to conversion in place of dispersed tools and manual follow-ups.`,
+    desc: `Our team comes up with smart automation systems which make sure that no property query is ignored or postponed. Whether it is instant lead response and follow-ups or routine reminders and CRM connection, every procedure is designed with the goal of funnelling the prospects through site visits and reservation. Automation transforms raw inquiries into sales-ready opportunities through AI-based workflows and optimal timing to offer unstructured close-ends of raw inquiries to real-estate developers and brokers.`,
     video: "/services_cart_videos/cart6.mp4",
     poster: "/images/poster.jpg",
   },
   {
     title: "SEO",
-    desc: `We at Brandnatic use AI-driven SEO tactics that go beyond rankings. We concentrate on search visibility, user intent, and conversions to help the right people find your brand at the right time. We transform organic traffic into reliable, high-quality leads by fusing artificial intelligence, data insights, and tried-and-true SEO techniques.
+    desc: `Our company offers real estate developer and broker SEO tactics to guarantee organic sustainable visibility and well-motivated realies exploration. Based on the keyword research, on-page optimization and technical and local search can be listed among other factors, all of them are dedicated to bringing out the buyers who actively search the properties. Having a long time, data forward method, SEO is a dependable source of qualified leads, not only rankings.
 `,
     video: "/services_cart_videos/cart5.mp4",
     poster: "/images/poster.jpg",
   },
   {
     title: "E-Commerce Solutions",
-    desc: `Our AI-powered e-commerce solutions at Brandnatic are made to help brands scale more quickly, sell more intelligently, and provide seamless shopping experiences. We develop conversion-focused, data-driven e-commerce ecosystems that maximize lifetime value and convert visitors into devoted customers. We do more than just build online stores.
-
-          We manage the complete e-commerce growth journey, from strategy and development to marketing and automation.`,
+    desc: `Our team offers AI-based solutions in the field of e-commerce which are meant to raise the rate of conversions, enhance customer experiences as well as boost online purchases. Optimized product pages, performance based advertisements, automated follow-ups and smart remarketing are just but a few ways of each system being designed to turn visitors into paid customers. Through machine learning and knowledgeable automation, e-commerce brands can grow predictably instead of sales that are hard to forecast.`,
     video: "/services_cart_videos/cart2.mp4",
     poster: "/images/poster.jpg",
   },
   {
     title: "Paid Ads & Growth Campaigns",
-    desc: `Our growth campaigns and paid advertisements at Brandnatic are designed to produce quantifiable outcomes, not just traffic. To reach high-intent audiences on Google, Meta, LinkedIn, and other platforms, we employ AI-driven targeting, data-backed creatives, and performance-focused strategies. We maximize ROI, lower cost per acquisition, and scale campaigns that generate steady leads, sales, and long-term business growth by continuously optimizing bids, audiences, and funnels.`,
+    desc: ` Our team carefully schedules and administers high-performance advertisement programs to directly target real-estate developers and brokers. All campaigns incorporate the use of AI-driven targeting, intent analysis of the audience, and constant optimization to reach out to those with serious consideration of owning a property instead of casual shoppers.
+Paying an extreme attention to the quality of leads, visits to the site and booking, paid advertising becomes a scalable promotion system that brings the same quality results all the time.`,
     video: "/services_cart_videos/Seo_cart.mp4",
     poster: "/images/poster.jpg",
   },
   {
     title: "Marketing Automation",
-    desc: `Our marketing automation solutions at Brandnatic are made to simplify your marketing procedures, get rid of manual labor, and promote steady growth. We create clever, AI-driven workflows that nurture prospects through various channels, automatically collect leads, and customize communications. We guarantee quicker responses, increased engagement, and higher conversions by integrating automation with your CRM, ads, and analytics. This enables your company to grow effectively while providing a flawless customer experience.`,
+    desc: `We are commissioned to create marketing automation systems through which real-estate developers and brokers will be able to act more rapidly, make a follow-up in a more intelligent way, and ensure the lead conversion rates. Starting with the immediate capture of leads, launching messenger automatic WhatsApp or email templates, and overseeing CRM data and implementing reminder processes, every action is planned to reduce the potential amount of manual labour and increase the number of conversions. Our AI experience-based marketing automation platform develops the prospects until they are ready to visit the site and make a booking.`,
     video: "/services_cart_videos/cart7.mp4",
     poster: "/images/poster.jpg",
   },
   {
     title: "Custom Web development",
-    desc: `Our custom web development services at Brandnatic are designed to precisely match your company's objectives, target audience, and expansion strategies. We create secure, scalable, and high-performing websites that are customized to your specific needs by fusing cutting-edge technologies, a smooth user interface, and seamless user experience. Our specially designed solutions, which range from complex web platforms to conversion-focused landing pages, are optimized for speed, SEO, and integrations, guaranteeing that your website not only looks fantastic but also functions as a potent growth engine.`,
+    desc: `Our team collaborates to create custom web sites designed to convert visitors to the property into viable leads. All layouts, page flow, and call-to-actions are well thought out and created to present projects, build buyer trust, and create inquiries. These websites can be a great base of continuous lead and sales increases of real-estate developers and brokers with its fast work, mobile-first design, and the additional benefits of seamlessly working with advertising and automation systems.`,
     video: "/services_cart_videos/cart8.mp4",
     poster: "/images/poster.jpg",
   },
   {
     title: "App development",
-    desc: `The goal of Brandnatic's app development services is to create robust, scalable, and user-friendly mobile apps that add significant business value. We create high-performing Android, iOS, and cross-platform applications with a user-friendly interface, smooth user experience, and reliable functionality. We develop apps that engage users, promote business growth, and seamlessly integrate with your digital ecosystem by fusing cutting-edge technologies, secure architecture, and data-driven insights.`,
+    desc: `Our group creates custom mobile applications that are supposed to assist in the sale of real-estate, lead management, and customer relationship.
+In every application it is designed in such a way that it eases search of property, piquing of interest among buyers and making worry free communication between the brokers and potential buyers.
+These applications are supporting the entire lead and sales system by providing a user friendly experience though smart integrations and performance focused design.`,
     video: "/services_cart_videos/cart2.mp4",
     poster: "/images/poster.jpg",
   },
   {
     title: " CRM-Integrated Web Development",
-    desc: `In order to help you manage leads, customers, and data more efficiently, we at Brandnatic create intelligent websites that are powered by smooth CRM integration. Our CRM-integrated web development solutions ensure that every interaction is monitored, automated, and optimized by connecting your website with sales, marketing, and support systems. We develop data-driven web platforms that boost productivity, improve user experience, and facilitate scalable business growth. These platforms range from lead capture and automated follow-ups to real-time analytics and customer insights.`,
+    desc: `We are also the team of developing high-performing real-estate websites which are installed and consistently linked with CRM systems to enable the management of leads efficiently. All of the enquiry, forms and calls activities are captured, trailed and automatically assigned so that the response is prompt and no leads are lost. These websites act as proactive sales tools, powered by AI, based on conversion-oriented design and architecture, which facilitates site visits, follow-ups and booking process by the developers and brokers.`,
     video: "/services_cart_videos/Seo_cart.mp4",
     poster: "/images/poster.jpg",
   },
@@ -230,8 +224,7 @@ function Service_Section() {
             Our <span className="text-[#1AA9F2]">AI-Powered Services</span>
           </h2>
           <p className="mt-4 text-gray-600 max-w-2xl">
-            At Brandnatic, we build intelligent growth systems using AI, automation,
-            and performance marketing — focused on measurable ROI, not vanity metrics.
+            Brandnatic's AI-powered services are created just for real estate developers and brokers who want a consistent supply of high-quality property leads. We use AI-driven ads, smart targeting, and automated follow-ups to get serious buyers, not people who just want to waste our time. Our systems are made to turn interest into visits to your site, bookings, and sales. In this manner, your marketing works like a reliable lead and sales engine instead of an experiment.
           </p>
         </motion.div>
 

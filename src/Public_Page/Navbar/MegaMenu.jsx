@@ -36,10 +36,10 @@ function MegaMenu({ items, page, closeMenu }) {
       transition={{ duration: 0.35, ease: "easeOut" }}
       className="
         absolute top-full left-1/2 -translate-x-1/2
-        w-full lg:w-[900px] bg-white text-black
+        w-full lg:w-[1200px] bg-white text-black
         shadow-2xl rounded-2xl
         p-6 lg:p-8
-        grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6
+        grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6
         z-50
       "
     >
