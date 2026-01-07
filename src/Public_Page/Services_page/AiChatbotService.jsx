@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Bot, MessageSquare, Zap, BarChart } from "lucide-react";
 
@@ -27,6 +28,32 @@ const features = [
 export default function AiChatbotService() {
   return (
     <>
+    <Helmet>
+  <title>AI Chatbot Development Services | Brandnatic</title>
+
+  <meta
+    name="description"
+    content="Brandnatic provides AI chatbot development services to automate customer support, capture leads, and boost conversions. WhatsApp, CRM & website integrated AI chatbots."
+  />
+
+  <meta
+    name="keywords"
+    content="AI chatbot development, chatbot development company, WhatsApp chatbot, AI chatbot for business, conversational AI, lead generation chatbot"
+  />
+
+  <meta name="author" content="Brandnatic" />
+  <meta name="robots" content="index, follow" />
+
+  {/* Open Graph (for sharing) */}
+  <meta property="og:title" content="AI Chatbot Development Services | Brandnatic" />
+  <meta
+    property="og:description"
+    content="Build intelligent AI chatbots that automate conversations, qualify leads, and improve customer experience."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/public/og-image.jpeg" />
+</Helmet>
+
     <section className="bg-black text-white pt-24 px-6">
       <div className="max-w-7xl mx-auto">
 

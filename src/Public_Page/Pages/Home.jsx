@@ -11,6 +11,8 @@ import RecentAwards from '../components/RecentAwards'
 // import SectionWrapper from "../../components/SectionWrapper"
 import FAQs from '../components/FAQs'
 import SectionWrapper from '../components/SectionWrapper'
+import FAQEnquiryForm from "../components/FAQEnquiryForm.jsx";
+
 
 
           
@@ -162,6 +164,7 @@ const Home = () => {
              <SectionWrapper>
            <FAQs></FAQs>
            </SectionWrapper>
+           <FAQEnquiryForm></FAQEnquiryForm>
           
           
         </div>

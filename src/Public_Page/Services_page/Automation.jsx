@@ -1,8 +1,36 @@
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 
  function Automation() {
   return (
     <>
+    <Helmet>
+  {/* Primary SEO */}
+  <title>Business Automation Services | AI Workflow Automation – Brandnatic</title>
+
+  <meta
+    name="description"
+    content="Brandnatic provides business automation services to automate leads, sales, CRM, WhatsApp, email, and workflows. Reduce manual work and scale operations with AI-powered automation."
+  />
+
+  <meta
+    name="keywords"
+    content="business automation services, workflow automation, AI automation, CRM automation, WhatsApp automation, marketing automation, sales automation"
+  />
+
+  <meta name="author" content="Brandnatic" />
+  <meta name="robots" content="index, follow" />
+
+  {/* Open Graph */}
+  <meta property="og:title" content="Business Automation Services | Brandnatic" />
+  <meta
+    property="og:description"
+    content="Automate leads, follow-ups, CRM, and marketing with Brandnatic’s AI-powered business automation solutions."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://brandnatic.com/og-automation.jpg" />
+</Helmet>
+
     <section className="min-h-screen bg-black text-white px-6 pt-20">
       <div className="max-w-7xl mx-auto">
 
@@ -14,8 +42,8 @@ import { motion } from "framer-motion";
           className="text-center mb-16"
         >
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Business <span className="text-cyan-400">Automation</span>
-          </h1>
+  Business <span className="text-cyan-400">Automation Services</span>
+</h1>
 
           <p className="text-gray-400 max-w-3xl mx-auto text-lg">
             We build smart automation systems that eliminate manual work,
@@ -205,9 +233,7 @@ import { motion } from "framer-motion";
       <p className="text-gray-400 text-sm mt-2">Revenue Growth in 1 Quarter</p>
     </li>
   </ul>
-</motion.div>
-
-{/* ===============================
+  {/* ===============================
    TESTIMONIAL – AUTOMATION
 ================================ */}
 <motion.div
@@ -257,6 +283,14 @@ import { motion } from "framer-motion";
     </div>
   </div>
 </motion.div>
+</motion.div>
+<p className="sr-only">
+  Brandnatic is a business automation company helping Indian businesses
+  automate lead capture, CRM workflows, WhatsApp messaging, email nurturing,
+  and sales pipelines using AI-driven automation systems.
+</p>
+
+
 
 {/* ===============================
    FINAL CTA – AUTOMATION

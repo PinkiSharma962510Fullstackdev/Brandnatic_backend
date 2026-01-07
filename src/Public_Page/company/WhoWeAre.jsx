@@ -314,13 +314,13 @@ function WhoWeAre() {
               {[
                 {
                   title: "Meta Ads",
-                  desc: "Full-funnel campaigns with creative iteration, audience refinement, and event tracking to compress CAC.",
-                  img: "https://images.unsplash.com/photo-1611162617210-7a9e3d9c4d8f?w=800"
+                  desc: "Full-funnel campaigns with creative iteration,ttps://images. audience refinement, and event tracking to compress CAC.",
+                  img: "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=900&q=80"
                 },
                 {
                   title: "Google Ads",
                   desc: "High-intent capture via SKAG-informed structures, extensions, and landing page alignment.",
-                  img: "https://images.unsplash.com/photo-1556155099-490a1ba16284?w=800"
+                  img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80"
                 },
                 {
                   title: "SEO and Content",

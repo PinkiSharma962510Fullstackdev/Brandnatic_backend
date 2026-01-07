@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 
 import ContactModal from "../Navbar/ContactModal";
+import { Link } from "react-router-dom";
 
 
 const CTASection = () => {
@@ -70,17 +71,15 @@ const CTASection = () => {
         </motion.div> */}
 
  {/*  CTA BUTTON */}
-          <motion.button
-            onClick={() => setOpenEnquiry(true)}
-            whileHover={{ scale: 1.06 }}
-            transition={{ type: "spring", stiffness: 260, damping: 18 }}
-            className="
-              inline-block mt-12 px-10 py-4 rounded-full border-2
-              border-[#737272] text-white font-semibold text-lg shadow-xl cursor-pointer bg-transparent
-            "
-          >
-            GET IN TOUCH 
-          </motion.button>
+         <Link to="/contact">
+  <motion.button
+    whileHover={{ scale: 1.06 }}
+    className="mt-12 px-10 py-4 rounded-full border-2 border-[#737272] text-white font-semibold"
+  >
+    Contact Brandnatic
+  </motion.button>
+</Link>
+
 
       </div>
      <ContactModal

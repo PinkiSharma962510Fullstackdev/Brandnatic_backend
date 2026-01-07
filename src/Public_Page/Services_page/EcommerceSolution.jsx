@@ -1,7 +1,34 @@
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 
  function EcommerceSolution() {
   return (
+    <>
+    <Helmet>
+  <title>E-Commerce Solutions | High-Converting Online Stores</title>
+
+  <meta
+    name="description"
+    content="Custom e-commerce solutions including Shopify, WooCommerce, payment gateway integration, CRO, and automation to scale online sales."
+  />
+
+  <meta
+    name="keywords"
+    content="ecommerce solutions, shopify development, woocommerce store, ecommerce website design, online store development"
+  />
+
+  {/* Open Graph (for social sharing) */}
+  <meta property="og:title" content="E-Commerce Solutions for Scalable Online Stores" />
+  <meta
+    property="og:description"
+    content="We build fast, secure, and conversion-focused e-commerce platforms that turn visitors into loyal customers."
+  />
+  <meta property="og:type" content="website" />
+
+  {/* SEO Best Practice */}
+  <link rel="canonical" href="https://yourdomain.com/ecommerce-solutions" />
+</Helmet>
+
     <section className="min-h-screen bg-black text-white px-6 py-20">
       <div className="max-w-7xl mx-auto">
 
@@ -113,8 +140,9 @@ import { motion } from "framer-motion";
       it also looks & feels aesthetically pleasing!
     </p>
   </div>
+  
 
-  <div className="grid md:grid-cols-3 gap-8">
+  <div className="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto">
     <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 hover:border-cyan-400 transition">
       <h3 className="text-xl font-semibold mb-3">
         Content That Connects
@@ -146,8 +174,104 @@ import { motion } from "framer-motion";
     </div>
   </div>
 </motion.div>
+{/* ===============================
+   SUCCESS STORY + TESTIMONIAL
+================================ */}
+
+<div className="flex justify-center px-6  ">
+  <motion.div
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8 }}
+    viewport={{ once: true }}
+    className="bg-[#0b0f19] border border-white/10 rounded-3xl p-10 max-w-6xl w-full"
+  >
+    <h2 className="text-3xl font-semibold mb-6 text-center">
+      Success Story:{" "}
+      <span className="text-cyan-400"> LuxeCart (D2C Fashion Brand)</span>
+    </h2>
+
+    <p className="text-gray-400 text-lg leading-relaxed mb-8 text-center">
+      LuxeCart was struggling with low conversion rates, abandoned carts, and
+inefficient order tracking. Despite strong traffic, sales were inconsistent.
+Brandnatic rebuilt their Shopify store with conversion-focused UI, optimized
+checkout flow, integrated automated abandoned cart recovery, and implemented
+performance tracking across Meta and Google Ads.
+    </p>
+
+    <ul className="grid sm:grid-cols-3 gap-6 text-center mb-12">
+      <li className="border border-white/10 rounded-xl p-6">
+        <p className="text-3xl font-bold text-cyan-400">62%</p>
+        <p className="text-gray-400 text-sm mt-2">
+           Increase in Conversion Rate
+        </p>
+      </li>
+      <li className="border border-white/10 rounded-xl p-6">
+        <p className="text-3xl font-bold text-cyan-400">41%</p>
+        <p className="text-gray-400 text-sm mt-2">
+          Reduction in Cart Abandonment
+        </p>
+      </li>
+      <li className="border border-white/10 rounded-xl p-6">
+        <p className="text-3xl font-bold text-cyan-400">₹2.1</p>
+        <p className="text-gray-400 text-sm mt-2">
+          Revenue Growth in 90 Days
+        </p>
+      </li>
+    </ul>
+
+    {/* ===============================
+       TESTIMONIAL
+    ================================ */}
+
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="relative max-w-5xl mx-auto"
+    >
+      <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-cyan-500/30 via-blue-500/20 to-purple-500/20 blur-xl" />
+
+      <div className="relative bg-[#0b0f19] border border-white/10 rounded-3xl p-10 md:p-12 flex flex-col md:flex-row gap-10 items-center">
+        <div className="w-36 h-36 rounded-full overflow-hidden border border-white/10 shrink-0">
+          <img
+            src="/testimonial_img/Automation.jpg"
+            alt="Client testimonial"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        <div className="flex-1 text-center md:text-left">
+          <div className="flex justify-center md:justify-start gap-1 mb-4">
+            {[...Array(5)].map((_, i) => (
+              <span key={i} className="text-cyan-400 text-lg">★</span>
+            ))}
+          </div>
+
+          <p className="text-xl md:text-2xl text-white font-medium leading-relaxed mb-6">
+            “Brandnatic completely transformed our e-commerce business.
+From store design to automation and performance marketing,
+everything now works seamlessly. Our checkout is faster,
+conversions are higher, and revenue growth is finally predictable.”
+          </p>
+
+          <div className="text-gray-400">
+            <p className="font-semibold text-white">
+              Founder & CEO, LuxeCart
+            </p>
+            <p className="text-sm">Amit Verma</p>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  </motion.div>
+</div>
+
+
 
     </section>
+    </>
   );
 }
 
