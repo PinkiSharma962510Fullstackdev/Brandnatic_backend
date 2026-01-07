@@ -1,57 +1,84 @@
-// import { motion } from "framer-motion";
-// // import seo_img from "..//../public/services_cart_videos/Seo_cart.mp4"
 
+
+// import { motion } from "framer-motion";
 // const services = [
 //   {
-//     title: "AI Media Interactive Dashboard",
-//      video: "/services_cart_videos/cart8.mp4",
+//     title: "Social Media Optimization",
+//     desc:  `Our team will focus on the optimization process of social media to reach advanced buyers of the property and obtain the strong brand confidence. All profiles, posts as well as messages are strategically positioned to promote visibility, interest and attract qualified inquiries. The social media will be turned into a trusted source of generating leads to real-estate developers and brokers through the development of AI-based analysis and usage of data-driven insights`,
+//     video: "/services_cart_videos/cart8.mp4",
+//     poster: "/images/poster.jpg",
+    
 //   },
 //   {
-//     title: "Lead generation",
+//     title: "Lead Generation",
+//     desc: `"Our group generates lead generating systems with a focus on quality but not quantity. It uses AI-based advertising, much more careful audience selection, and automated follow-ups to do so and reach serious buyers of the offered property and investors. This is a logical method of converting interest into webpages access, bookings, and sales- which means that real-estate developers and brokers have a steady stream of customers.`
+//         ,
 //     video: "/services_cart_videos/cart3.mp4",
+//     poster: "/images/poster.jpg",
 //   },
 //   {
 //     title: "Automation",
+//     desc: `Our team comes up with smart automation systems which make sure that no property query is ignored or postponed. Whether it is instant lead response and follow-ups or routine reminders and CRM connection, every procedure is designed with the goal of funnelling the prospects through site visits and reservation. Automation transforms raw inquiries into sales-ready opportunities through AI-based workflows and optimal timing to offer unstructured close-ends of raw inquiries to real-estate developers and brokers.`,
 //     video: "/services_cart_videos/cart6.mp4",
-//     coming: true,
+//     poster: "/images/poster.jpg",
 //   },
 //   {
 //     title: "SEO",
+//     desc: `Our company offers real estate developer and broker SEO tactics to guarantee organic sustainable visibility and well-motivated realies exploration. Based on the keyword research, on-page optimization and technical and local search can be listed among other factors, all of them are dedicated to bringing out the buyers who actively search the properties. Having a long time, data forward method, SEO is a dependable source of qualified leads, not only rankings.
+// `,
 //     video: "/services_cart_videos/cart5.mp4",
+//     poster: "/images/poster.jpg",
 //   },
 //   {
 //     title: "E-Commerce Solutions",
+//     desc: `Our team offers AI-based solutions in the field of e-commerce which are meant to raise the rate of conversions, enhance customer experiences as well as boost online purchases. Optimized product pages, performance based advertisements, automated follow-ups and smart remarketing are just but a few ways of each system being designed to turn visitors into paid customers. Through machine learning and knowledgeable automation, e-commerce brands can grow predictably instead of sales that are hard to forecast.`,
 //     video: "/services_cart_videos/cart2.mp4",
+//     poster: "/images/poster.jpg",
 //   },
 //   {
 //     title: "Paid Ads & Growth Campaigns",
+//     desc: ` Our team carefully schedules and administers high-performance advertisement programs to directly target real-estate developers and brokers. All campaigns incorporate the use of AI-driven targeting, intent analysis of the audience, and constant optimization to reach out to those with serious consideration of owning a property instead of casual shoppers.
+// Paying an extreme attention to the quality of leads, visits to the site and booking, paid advertising becomes a scalable promotion system that brings the same quality results all the time.`,
 //     video: "/services_cart_videos/Seo_cart.mp4",
+//     poster: "/images/poster.jpg",
 //   },
 //   {
 //     title: "Marketing Automation",
+//     desc: `We are commissioned to create marketing automation systems through which real-estate developers and brokers will be able to act more rapidly, make a follow-up in a more intelligent way, and ensure the lead conversion rates. Starting with the immediate capture of leads, launching messenger automatic WhatsApp or email templates, and overseeing CRM data and implementing reminder processes, every action is planned to reduce the potential amount of manual labour and increase the number of conversions. Our AI experience-based marketing automation platform develops the prospects until they are ready to visit the site and make a booking.`,
 //     video: "/services_cart_videos/cart7.mp4",
+//     poster: "/images/poster.jpg",
 //   },
 //   {
-//     title: "AI Chatbots & CRM",
+//     title: "Custom Web development",
+//     desc: `Our team collaborates to create custom web sites designed to convert visitors to the property into viable leads. All layouts, page flow, and call-to-actions are well thought out and created to present projects, build buyer trust, and create inquiries. These websites can be a great base of continuous lead and sales increases of real-estate developers and brokers with its fast work, mobile-first design, and the additional benefits of seamlessly working with advertising and automation systems.`,
 //     video: "/services_cart_videos/cart8.mp4",
+//     poster: "/images/poster.jpg",
 //   },
 //   {
-//     title: "Brand Strategy & Design",
+//     title: "App development",
+//     desc: `Our group creates custom mobile applications that are supposed to assist in the sale of real-estate, lead management, and customer relationship.
+// In every application it is designed in such a way that it eases search of property, piquing of interest among buyers and making worry free communication between the brokers and potential buyers.
+// These applications are supporting the entire lead and sales system by providing a user friendly experience though smart integrations and performance focused design.`,
 //     video: "/services_cart_videos/cart2.mp4",
+//     poster: "/images/poster.jpg",
 //   },
 //   {
-//     title: "Analytics & Conversion Optimization",
+//     title: " CRM-Integrated Web Development",
+//     desc: `We are also the team of developing high-performing real-estate websites which are installed and consistently linked with CRM systems to enable the management of leads efficiently. All of the enquiry, forms and calls activities are captured, trailed and automatically assigned so that the response is prompt and no leads are lost. These websites act as proactive sales tools, powered by AI, based on conversion-oriented design and architecture, which facilitates site visits, follow-ups and booking process by the developers and brokers.`,
 //     video: "/services_cart_videos/Seo_cart.mp4",
+//     poster: "/images/poster.jpg",
 //   },
 // ];
 
 
-//  function Service_Section() {
+
+
+// function Service_Section() {
 //   return (
-//     <section className="py-24 bg-white overflow-hidden">
+//     <section className="md:py-24 bg-white overflow-hidden">
 //       <div className="max-w-7xl mx-auto px-6">
 
-//         {/* 🔹 SECTION HEADER */}
+//         {/* SECTION HEADER */}
 //         <motion.div
 //           initial={{ opacity: 0, y: 40 }}
 //           whileInView={{ opacity: 1, y: 0 }}
@@ -63,68 +90,86 @@
 //             Our <span className="text-[#1AA9F2]">AI-Powered Services</span>
 //           </h2>
 //           <p className="mt-4 text-gray-600 max-w-2xl">
-//            At Brandnatic, we create smart growth systems in addition to marketing brands.
-// Our AI-powered services help businesses attract the right audience, convert more quickly, and scale sustainably by combining data, automation, and creativity.
-
-// Every solution, from strategy to execution, is intended to produce quantifiable ROI rather than vanity metrics.
+//             Brandnatic's AI-powered services are created just for real estate developers and brokers who want a consistent supply of high-quality property leads. We use AI-driven ads, smart targeting, and automated follow-ups to get serious buyers, not people who just want to waste our time. Our systems are made to turn interest into visits to your site, bookings, and sales. In this manner, your marketing works like a reliable lead and sales engine instead of an experiment.
 //           </p>
 //         </motion.div>
 
-//         {/* 🔹 HORIZONTAL SCROLL */}
+//         {/* HORIZONTAL SCROLL */}
 //         <div className="relative">
 //           <div className="flex gap-8 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide">
 
 //             {services.map((service, i) => (
 //               <motion.div
 //                 key={i}
-//                 initial={{ opacity: 0, y: 40 }}
+//                 initial={{ opacity: 0, y: 60 }}
 //                 whileInView={{ opacity: 1, y: 0 }}
 //                 viewport={{ once: true }}
 //                 transition={{ duration: 0.6, delay: i * 0.05 }}
-//                 whileHover={{ y: -10 }}
+//                 whileHover={{ y: -12 }}
 //                 className="
+//                   group
 //                   relative
 //                   min-w-[300px] md:min-w-[340px] lg:min-w-[380px]
-//                   h-[480px]
+//                   h-[500px]
 //                   rounded-3xl
 //                   overflow-hidden
-//                   shadow-xl
+//                   shadow-2xl
 //                   snap-start
-//                   bg-gray-200
+//                   bg-black
 //                   cursor-pointer
 //                 "
 //               >
-//               {service.video && (
-//   <motion.video
-//     src={service.video}
-//     autoPlay
-//     muted
-//     loop
-//     playsInline
-//     className="absolute inset-0 w-full h-full object-cover"
-//     whileHover={{ scale: 1.08 }}
-//     transition={{ duration: 0.6 }}
-//   />
-// )}
+//                 {/* VIDEO */}
+//                 <motion.video
+//                   src={service.video}
+//                   autoPlay
+//                   muted
+//                   loop
+//                   playsInline
+//                   className="absolute inset-0 w-full h-full object-cover"
+//                   whileHover={{ scale: 1.12 }}
+//                   transition={{ duration: 0.8, ease: "easeOut" }}
+//                 />
 
-
-//                 {/* DARK OVERLAY */}
-//                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+//                 {/* OVERLAY */}
+//                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
 
 //                 {/* CONTENT */}
-//                 <div className="absolute bottom-0 p-6 z-10">
+//                 <div className="absolute bottom-0 p-6 z-10 w-full">
+
+//                   {/* BADGE */}
 //                   {service.coming && (
-//                     <span className="inline-block mb-2 text-sm italic text-white/80">
-//                       Coming soon
+//                     <span className="inline-block mb-2 text-xs uppercase tracking-wider text-white/70">
+//                       Coming Soon
 //                     </span>
 //                   )}
 
-//                   <h3 className="text-2xl font-bold text-white leading-tight">
+//                   {/* TITLE — ALWAYS VISIBLE */}
+//                   <h3 className="text-2xl font-bold text-white">
 //                     {service.title}
 //                   </h3>
+
+//                   {/* DESCRIPTION — ONLY ON HOVER */}
+//                   <p
+//                     className="
+//                       mt-3 text-sm text-white/80 leading-relaxed
+//                       opacity-0 translate-y-4 max-h-0
+//                       group-hover:opacity-100
+//                       group-hover:translate-y-0
+//                       group-hover:max-h-[200px]
+//                       transition-all duration-500 ease-out
+//                     "
+//                   >
+//                     {service.desc}
+//                   </p>
+
 //                 </div>
+
+//                 {/* GLOW BORDER */}
+//                 <div className="absolute inset-0 rounded-3xl ring-1 ring-white/10 group-hover:ring-[#1AA9F2]/40 transition-all duration-500" />
 //               </motion.div>
 //             ))}
+
 //           </div>
 //         </div>
 //       </div>
@@ -134,7 +179,10 @@
 
 // export default Service_Section;
 
+
+
 import { motion } from "framer-motion";
+
 const services = [
   {
     title: "Social Media Optimization",
@@ -204,26 +252,23 @@ These applications are supporting the entire lead and sales system by providing 
   },
 ];
 
-
-
-
 function Service_Section() {
   return (
-    <section className="md:py-24 bg-white overflow-hidden">
+    <section className="md:py-24 bg-gradient-to-b from-[#0a0e17] via-[#05080f] to-[#0a0e17] overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
 
-        {/* SECTION HEADER */}
+        {/* SECTION HEADER - Larger heading + white text */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-14"
+          className="mb-14 text-center"
         >
-          <h2 className="text-4xl font-extrabold text-gray-900">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight">
             Our <span className="text-[#1AA9F2]">AI-Powered Services</span>
           </h2>
-          <p className="mt-4 text-gray-600 max-w-2xl">
+          <p className="mt-6 text-gray-300 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
             Brandnatic's AI-powered services are created just for real estate developers and brokers who want a consistent supply of high-quality property leads. We use AI-driven ads, smart targeting, and automated follow-ups to get serious buyers, not people who just want to waste our time. Our systems are made to turn interest into visits to your site, bookings, and sales. In this manner, your marketing works like a reliable lead and sales engine instead of an experiment.
           </p>
         </motion.div>
@@ -268,42 +313,39 @@ function Service_Section() {
                 {/* OVERLAY */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
 
-                {/* CONTENT */}
+                {/* CONTENT - All text white */}
                 <div className="absolute bottom-0 p-6 z-10 w-full">
-
                   {/* BADGE */}
                   {service.coming && (
-                    <span className="inline-block mb-2 text-xs uppercase tracking-wider text-white/70">
+                    <span className="inline-block mb-2 text-xs uppercase tracking-wider text-white/80">
                       Coming Soon
                     </span>
                   )}
 
-                  {/* TITLE — ALWAYS VISIBLE */}
-                  <h3 className="text-2xl font-bold text-white">
+                  {/* TITLE — White & larger */}
+                  <h3 className="text-3xl md:text-4xl font-bold text-white leading-tight">
                     {service.title}
                   </h3>
 
-                  {/* DESCRIPTION — ONLY ON HOVER */}
+                  {/* DESCRIPTION — White */}
                   <p
                     className="
-                      mt-3 text-sm text-white/80 leading-relaxed
+                      mt-3 text-base md:text-lg text-white/90 leading-relaxed
                       opacity-0 translate-y-4 max-h-0
                       group-hover:opacity-100
                       group-hover:translate-y-0
-                      group-hover:max-h-[200px]
+                      group-hover:max-h-[220px]
                       transition-all duration-500 ease-out
                     "
                   >
                     {service.desc}
                   </p>
-
                 </div>
 
                 {/* GLOW BORDER */}
                 <div className="absolute inset-0 rounded-3xl ring-1 ring-white/10 group-hover:ring-[#1AA9F2]/40 transition-all duration-500" />
               </motion.div>
             ))}
-
           </div>
         </div>
       </div>
@@ -312,4 +354,3 @@ function Service_Section() {
 }
 
 export default Service_Section;
-
