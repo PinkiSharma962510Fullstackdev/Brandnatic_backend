@@ -1,6 +1,9 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Bot, MessageSquare, Zap, BarChart } from "lucide-react";
+import { useState } from "react";
+import ContactModal from "../Navbar/ContactModal";
+
 
 const features = [
   {
@@ -26,6 +29,7 @@ const features = [
 ];
 
 export default function AiChatbotService() {
+  const [contactOpen, setContactOpen] = useState(false);
   return (
     <>
     <Helmet>
@@ -97,9 +101,30 @@ export default function AiChatbotService() {
               Our AI chatbot solutions are custom-built for your business, integrated with CRM, WhatsApp, websites, and marketing tools to deliver measurable growth
             </p>
 
-            <button className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-cyan-500 text-black font-semibold rounded-full hover:bg-cyan-400 transition cursor-pointer">
-              Build My AI Chatbot →
-            </button>
+            
+   <button
+  onClick={() => setContactOpen(true)}
+  className="
+    group relative inline-flex items-center gap-3
+    px-8 py-3 rounded-full
+    bg-cyan-500 text-black
+    font-semibold text-lg
+    shadow-2xl shadow-cyan-500/40
+    hover:bg-cyan-400
+    hover:shadow-cyan-500/60
+    hover:brightness-110
+    ring-1 ring-cyan-300/60
+    transition-all duration-500
+    overflow-hidden
+    cursor-pointer
+  "
+>
+  Build My AI Chatbot
+  <span className="transition-transform duration-300 group-hover:translate-x-1">
+    →
+  </span>
+</button>
+
           </motion.div>
 
           {/* Feature Cards */}
@@ -349,6 +374,11 @@ export default function AiChatbotService() {
 </div>
 
   </div>
+  {/* CONTACT MODAL */}
+<ContactModal
+  open={contactOpen}
+  onClose={() => setContactOpen(false)}
+/>
 </section>
 
     </>

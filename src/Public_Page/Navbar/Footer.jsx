@@ -1,149 +1,149 @@
-import { motion } from "framer-motion";
-import { Facebook, Instagram, Linkedin, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { MapPin, Mail, Phone } from "lucide-react";
+import ContactModal from "../Navbar/ContactModal";
+import { useState } from "react";
 
 function Footer() {
+  const [contactOpen, setContactOpen] = useState(false);
   return (
-  <footer
-  className="relative text-gray-400 pt-20 pb-10 px-6 bg-cover bg-center"
-  style={{
-    backgroundImage: "url('/images/footer_bg.jpg')",
-  }}
->
-      {/* OVERLAY (extra depth) */}
-      {/* <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none" /> */}
+    <footer 
+      className="relative bg-black text-gray-300 border-t border-white/5 overflow-hidden"
+     style={{
+  backgroundImage: "url('/images/footer_bg.jpg')",
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+}}
 
-      <div className="relative max-w-7xl mx-auto grid gap-12 md:grid-cols-4">
+    >
+      {/* Dark Overlay for Readability + Premium Depth */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/30 to-black/30" />
+      <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]" />
 
-        {/* BRAND INFO */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <img
-            src="/images/brandnatic_logo.png"
-            alt="Brandnatic"
-            className="h-10 mb-4"
-          />
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
 
-          <p className="text-sm leading-relaxed">
-            At Brandnatic Pvt. Ltd., we create impactful brand experiences through
-            creativity, strategy, and innovation. We help businesses amplify
-            their presence and drive measurable growth.
-          </p>
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
 
-          {/* SOCIAL */}
-          <div className="flex gap-4 mt-6">
-            {[Facebook, Instagram, Linkedin].map((Icon, i) => (
-              <a
-                key={i}
-                href="#"
-                className="p-2 rounded-full bg-white/5 hover:bg-blue-500/20 text-white transition"
-                aria-label="social link"
-              >
-                <Icon size={18} />
-              </a>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* SERVICES */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-        >
-          <h4 className="text-white font-semibold mb-5">Services</h4>
-          <ul className="space-y-3 text-sm">
-            {[
-              "E-Commerce Solutions",
-              "Lead Generation",
-              "Paid Ads",
-              "Social Media Marketing",
-              "AI-Powered SEO",
-            ].map((item, i) => (
-              <li key={i}>
-                <Link
-                  to="/services"
-                  className="flex items-center gap-1 hover:text-white transition"
-                >
-                  {item} <ArrowUpRight size={14} />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-
-        {/* QUICK LINKS */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-        >
-          <h4 className="text-white font-semibold mb-5">Quick Links</h4>
-          <ul className="space-y-3 text-sm">
-            {[
-              { label: "Home", path: "/" },
-              { label: "About Us", path: "/about" },
-              { label: "Services", path: "/services" },
-              { label: "Contact Us", path: "/contact" },
-              { label: "Blogs", path: "/blogs" },
-            ].map((link, i) => (
-              <li key={i}>
-                <Link
-                  to={link.path}
-                  className="hover:text-white transition"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-
-        {/* CONTACT */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-        >
-          <h4 className="text-white font-semibold mb-5">Get In Touch</h4>
-
-          <p className="text-sm leading-relaxed mb-3">
-            Gaur City Center, Sector-4, Greater Noida West, UP – 201306
-          </p>
-
-          <p className="text-sm mb-2">
-            Email:
-            <a
-              href="mailto:support@brandnatic.com"
-              className="text-white ml-1 hover:text-blue-400 transition"
-            >
-              support@brandnatic.com
-            </a>
-          </p>
-
-          <p className="text-sm mb-6">
-            Hours: Mon–Sat · 10:00AM – 6:00PM
-          </p>
-
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 transition text-white px-5 py-2 rounded-lg text-sm"
+          {/* Brand Column */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="space-y-6"
           >
-            Contact Us <ArrowUpRight size={16} />
-          </Link>
+            <img
+              src="/logo/brandnatic_logo.png"
+              alt="Brandnatic Logo"
+              className="h-12"
+            />
+            <p className="text-sm leading-relaxed text-gray-400 max-w-xs">
+              Brandnatic is an AI-powered digital marketing agency helping
+              businesses grow with data-driven strategies, automation, and
+              high-conversion digital experiences.
+            </p>
+          </motion.div>
+
+          {/* Services */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="space-y-6"
+          >
+            <h4 className="text-xl font-bold text-white">Services</h4>
+            <ul className="space-y-3">
+              <li><Link to="/ai-chatbot-development" className="text-sm text-gray-400 hover:text-[#1AA9F2] transition duration-300">AI Chatbot Development</Link></li>
+              <li><Link to="/software-development" className="text-sm text-gray-400 hover:text-[#1AA9F2] transition duration-300">Software Development</Link></li>
+              <li><Link to="/automation" className="text-sm text-gray-400 hover:text-[#1AA9F2] transition duration-300">Automation</Link></li>
+              <li><Link to="/ecommerce-solutions" className="text-sm text-gray-400 hover:text-[#1AA9F2] transition duration-300">E-Commerce Solutions</Link></li>
+              <li><Link to="/seo-smo" className="text-sm text-gray-400 hover:text-[#1AA9F2] transition duration-300">SEO & SMO</Link></li>
+              <li><Link to="/paid-ads" className="text-sm text-gray-400 hover:text-[#1AA9F2] transition duration-300">Paid Ads</Link></li>
+              <li><Link to="/social-media-marketing" className="text-sm text-gray-400 hover:text-[#1AA9F2] transition duration-300">Social Media Marketing</Link></li>
+              <li><Link to="/lead-generation" className="text-sm text-gray-400 hover:text-[#1AA9F2] transition duration-300">Lead Generation</Link></li>
+              <li><Link to="/website-design-development" className="text-sm text-gray-400 hover:text-[#1AA9F2] transition duration-300">Website Design & Development</Link></li>
+              <li><Link to="/mobile-app-development" className="text-sm text-gray-400 hover:text-[#1AA9F2] transition duration-300">Mobile App Development</Link></li>
+            </ul>
+          </motion.div>
+
+          {/* Quick Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="space-y-6"
+          >
+            <h4 className="text-xl font-bold text-white">Quick Links</h4>
+            <ul className="space-y-3">
+              <li><Link to="/" className="text-sm text-gray-400 hover:text-[#1AA9F2] transition duration-300">Home</Link></li>
+              <li><Link to="/portfolio" className="text-sm text-gray-400 hover:text-[#1AA9F2] transition duration-300">Portfolio</Link></li>
+              <li><Link to="/blogs" className="text-sm text-gray-400 hover:text-[#1AA9F2] transition duration-300">Blog</Link></li>
+              <li><Link to="/who-we-are" className="text-sm text-gray-400 hover:text-[#1AA9F2] transition duration-300">Who We Are</Link></li>
+              <li><Link to="/testimonials" className="text-sm text-gray-400 hover:text-[#1AA9F2] transition duration-300">Testimonials</Link></li>
+              <li><button
+  onClick={() => setContactOpen(true)}
+  className="text-sm text-gray-400 hover:text-[#1AA9F2] transition duration-300 text-left"
+>
+  Contact
+</button></li>
+            </ul>
+          </motion.div>
+
+          {/* Contact */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="space-y-6"
+          >
+            <h4 className="text-xl font-bold text-white">Contact</h4>
+            
+            <div className="space-y-4 text-sm">
+              <div className="flex items-center gap-3">
+                <MapPin size={18} className="text-[#1AA9F2]" />
+                <span className="text-gray-400">Noida, Delhi NCR</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Mail size={18} className="text-[#1AA9F2]" />
+                <a href="mailto:info@brandnatic.com" className="text-gray-400 hover:text-[#1AA9F2] transition">
+                  info@brandnatic.com
+                </a>
+              </div>
+              
+            </div>
+
+            <p className="mt-6 text-xs uppercase tracking-wider text-gray-500 font-medium">
+              BRANDNATIC | AI DIGITAL MARKETING AGENCY IN NOIDA & DELHI NCR
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Bottom Bar */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500"
+        >
+          <span>© {new Date().getFullYear()} Brandnatic. All rights reserved.</span>
+          <span>Designed & Developed by Brandnatic</span>
         </motion.div>
       </div>
 
-      {/* BOTTOM BAR */}
-      <div className="relative border-t border-white/10 mt-16 pt-6 text-center text-xs">
-        © {new Date().getFullYear()} Brandnatic Pvt. Ltd. All rights reserved.
-      </div>
+      {/* Subtle Premium Accents */}
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-48 bg-[#1AA9F2]/5 rounded-full blur-3xl" />
+
+      {/* CONTACT MODAL */}
+<ContactModal
+  open={contactOpen}
+  onClose={() => setContactOpen(false)}
+/>
+
     </footer>
   );
 }

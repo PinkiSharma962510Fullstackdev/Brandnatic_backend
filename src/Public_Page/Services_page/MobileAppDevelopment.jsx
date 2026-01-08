@@ -3,8 +3,15 @@
 
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
+import { useState } from "react";
+
+import ContactModal from "../Navbar/ContactModal";
+
+
+
 
 function MobileAppDevelopment() {
+  const [contactOpen, setContactOpen] = useState(false);
   return (
     <>
       <Helmet>
@@ -233,14 +240,20 @@ function MobileAppDevelopment() {
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
               Let Brandnatic turn your idea into a powerful, AI-enhanced mobile experience that users love and your business scales with.
             </p>
-            <a
-              href="/contact"
+            <button
+              onClick={() => setContactOpen(true)}
               className="inline-block px-10 py-5 bg-cyan-500 text-black font-bold text-lg rounded-full hover:bg-cyan-400 transition shadow-lg shadow-cyan-500/30"
             >
               Start Your App Project Today →
-            </a>
+            </button>
           </motion.div>
         </div>
+        {/* CONTACT MODAL */}
+<ContactModal
+  open={contactOpen}
+  onClose={() => setContactOpen(false)}
+/>
+
       </section>
     </>
   );

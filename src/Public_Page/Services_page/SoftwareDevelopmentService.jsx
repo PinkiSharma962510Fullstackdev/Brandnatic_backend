@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { Code2, Cpu, Layers, ShieldCheck } from "lucide-react";
+import { useState } from "react";
+import ContactModal from "../Navbar/ContactModal";
 
 const features = [
   {
@@ -25,6 +27,7 @@ const features = [
 ];
 
  function SoftwareDevelopmentService() {
+  const [contactOpen, setContactOpen] = useState(false);
   return (
     <>
     <section className="bg-black text-white pt-24 px-6">
@@ -74,7 +77,8 @@ const features = [
               future-ready architectures to ensure long-term success.
             </p>
 
-            <button className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-cyan-500 text-black font-semibold rounded-full hover:bg-cyan-400 transition cursor-pointer">
+            <button  onClick={() => setContactOpen(true)}
+ className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-cyan-500 text-black font-semibold rounded-full hover:bg-cyan-400 transition cursor-pointer">
               Start Your Software Project →
             </button>
           </motion.div>
@@ -366,12 +370,18 @@ const features = [
             that actually boosts revenue.
           </p>
 
-          <button className="inline-flex items-center gap-2 px-8 py-4 bg-cyan-500 text-black font-semibold rounded-full hover:bg-cyan-400 transition">
+          <button onClick={() => setContactOpen(true)}
+ className="inline-flex items-center gap-2 px-8 py-4 bg-cyan-500 text-black font-semibold rounded-full hover:bg-cyan-400 transition">
             Contact Us →
           </button>
         </motion.div>
 
       </div>
+      {/* CONTACT MODAL */}
+<ContactModal
+  open={contactOpen}
+  onClose={() => setContactOpen(false)}
+/>
     </section>
 
     </>

@@ -2,12 +2,16 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 
 import ContactModal from "../Navbar/ContactModal";
-import { Link } from "react-router-dom";
+
+
+
+
 
 
 const CTASection = () => {
 
-  const [OpenEnquiry, setOpenEnquiry] = useState(false);
+
+  const [contactOpen, setContactOpen] = useState(false);
   return (
     <section className="relative  py-28 overflow-hidden">
 
@@ -71,22 +75,26 @@ const CTASection = () => {
         </motion.div> */}
 
  {/*  CTA BUTTON */}
-         <Link to="/contact">
+         
   <motion.button
+  onClick={() => setContactOpen(true)}
     whileHover={{ scale: 1.06 }}
     className="mt-12 px-10 py-4 rounded-full border-2 border-[#737272] text-white font-semibold"
   >
     Contact Brandnatic
   </motion.button>
-</Link>
+
 
 
       </div>
-     <ContactModal
-
- open={OpenEnquiry}
-  onClose={() => setOpenEnquiry(false)}
+     {/* CONTACT MODAL */}
+<ContactModal
+  open={contactOpen}
+  onClose={() => setContactOpen(false)}
 />
+
+
+
     </section>
   );
 };  

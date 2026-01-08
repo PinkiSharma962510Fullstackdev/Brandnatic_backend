@@ -46,11 +46,13 @@ import Spam from "./admin/Comments/Spam";
 import CustomCursor from "./Public_Page/components/CustomCursor.jsx";
 import VerifyEmail from "./Public_Page/Pages/VerifyEmail.jsx";
 import Portfolio from "./Public_Page/Pages/Portfolio.jsx";
+import ScrollToTop from "./Public_Page/ScrollToTop.jsx";
 
 
 function App() {
   return (
     <BrowserRouter>
+    <ScrollToTop />
 
       {/* ✅ GLOBAL UI COMPONENT */}
       <CustomCursor />

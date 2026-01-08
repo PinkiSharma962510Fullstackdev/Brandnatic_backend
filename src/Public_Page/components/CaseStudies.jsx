@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
+import ContactModal from "../Navbar/ContactModal";
 
 const caseStudies = [
   {
@@ -28,6 +30,7 @@ const caseStudies = [
 ];
 
 export default function CaseStudies() {
+  const [contactOpen, setContactOpen] = useState(false);
   return (
     <section
       className="
@@ -112,9 +115,13 @@ export default function CaseStudies() {
           transition={{ delay: 0.3 }}
           className="mt-24 text-center"
         >
-          <button className="px-10 py-4 rounded-full bg-[#1AA9F2] text-white font-semibold shadow-lg hover:scale-105 transition cursor-pointer">
-            Book a Strategy Call
-          </button>
+         
+          <button
+  onClick={() => setContactOpen(true)}
+  className="px-10 py-4 rounded-full bg-[#1AA9F2] text-white font-semibold shadow-lg hover:scale-105 transition cursor-pointer"
+>
+  Book a Strategy Call
+</button>
         </motion.div>
 
       </div>

@@ -202,8 +202,11 @@
 
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
+import ContactModal from "../Navbar/ContactModal";
 function LeadGeneration() {
+  const [contactOpen, setContactOpen] = useState(false);
   return (
     <>
       <Helmet>
@@ -423,14 +426,20 @@ function LeadGeneration() {
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
               Let Brandnatic’s AI engine turn your marketing budget into a consistent flow of qualified sales opportunities.
             </p>
-            <a
-              href="/contact"
+            <button
+              onClick={() => setContactOpen(true)}
+
               className="inline-block px-10 py-5 bg-cyan-500 text-black font-bold text-lg rounded-full hover:bg-cyan-400 transition shadow-lg shadow-cyan-500/30"
             >
               Get Your Free Lead Strategy Audit →
-            </a>
+            </button>
           </motion.div>
         </div>
+        {/* CONTACT MODAL */}
+<ContactModal
+  open={contactOpen}
+  onClose={() => setContactOpen(false)}
+/>
       </section>
     </>
   );

@@ -1,7 +1,11 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
+import { useState } from "react";
+
+import ContactModal from "../Navbar/ContactModal";
 
  function Automation() {
+  const [contactOpen, setContactOpen] = useState(false);
   return (
     <>
     <Helmet>
@@ -163,7 +167,8 @@ import { motion } from "framer-motion";
         Focus on growth without the cost of extra staff or complex technology.
       </p>
 
-      <button className="my-6 inline-flex items-center gap-2 px-6 py-3 bg-cyan-500 text-black font-semibold rounded-full hover:bg-cyan-400 transition">
+      <button  onClick={() => setContactOpen(true)}
+ className="my-6 inline-flex items-center gap-2 px-6 py-3 bg-cyan-500 text-black font-semibold rounded-full hover:bg-cyan-400 transition">
         Let’s Talk →
       </button>
     </motion.div>
@@ -313,13 +318,22 @@ import { motion } from "framer-motion";
     you’re offline.
   </p>
 
-  <button className="inline-flex items-center gap-2 px-8 py-4 bg-cyan-500 text-black font-semibold rounded-full hover:bg-cyan-400 transition">
+  <button  onClick={() => setContactOpen(true)}
+ className="inline-flex items-center gap-2 px-8 py-4 bg-cyan-500 text-black font-semibold rounded-full hover:bg-cyan-400 transition">
     Start Automation →
   </button>
 </motion.div>
 
 
   </div>
+  
+{/* CONTACT MODAL */}
+<ContactModal
+  open={contactOpen}
+  onClose={() => setContactOpen(false)}
+/>
+
+
 </section>
 
     </>

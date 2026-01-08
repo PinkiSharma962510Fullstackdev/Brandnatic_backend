@@ -1,249 +1,253 @@
-// import { motion } from "framer-motion";
+// import { motion, AnimatePresence } from "framer-motion";
+// import { useEffect, useState } from "react";
+// import EnquiryModal from "../Navbar/ContactModal";
 
-// /* ------------------ FLOATING LABEL ------------------ */
-// const floatingLabel = {
-//   animate: {
-//     y: [0, -10, 0],
+// /* ---------- SLIDES DATA ---------- */
+// const slides = [
+//   {
+//     id: 1,
+//     image: "https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=2000&auto=format&fit=crop",
+//     title: "AI Marketing",
+//     desc: "We help brands generate consistent, high-quality leads using AI-powered ads, data-driven targeting, and performance marketing strategies.",
+//     label: "AI Marketing",
 //   },
-//   transition: {
-//     duration: 4,
-//     repeat: Infinity,
-//     ease: "easeInOut",
+//   {
+//     id: 2,
+//     image: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=2000&auto=format&fit=crop",
+//     title: "Marketing Automation",
+//     desc: "Smart automation workflows, CRM integrations, and funnels that work 24/7 to nurture leads and maximize ROI.",
+//     label: "Automation",
 //   },
-// };
-
-// /* ------------------ HERO ------------------ */
+//   {
+//     id: 3,
+//     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2000&auto=format&fit=crop",
+//     title: "Web Development",
+//     desc: "High-performance websites and landing pages built for speed, SEO, conversions, and long-term scalability.",
+//     label: "Web Development",
+//   },
+// ];
 
 // export default function Hero() {
+//   const [index, setIndex] = useState(0);
+//   const [openEnquiry, setOpenEnquiry] = useState(false);
+
+//   /* AUTO SLIDE */
+//   useEffect(() => {
+//     const timer = setInterval(() => {
+//       setIndex((prev) => (prev + 1) % slides.length);
+//     }, 6500);
+//     return () => clearInterval(timer);
+//   }, []);
+
 //   return (
-//     <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
+//     <>
+//       <section className="relative w-full min-h-[90vh] overflow-hidden bg-black">
 
-//       {/* 🎥 BACKGROUND VIDEO */}
-//       <video
-//         className="absolute inset-0 w-full h-full object-cover"
-//         src="/videos/hero_bg3.mp4" // 🔁 CHANGE VIDEO HERE
-//         autoPlay
-//         muted
-//         loop
-//         playsInline
+//         {/* 🔥 BACKGROUND IMAGE SLIDER */}
+//         <AnimatePresence mode="wait">
+//           <motion.div
+//             key={slides[index].id}
+//             initial={{ opacity: 0 }}
+//             animate={{ opacity: 1 }}
+//             exit={{ opacity: 0 }}
+//             transition={{ duration: 1.2 }}
+//             className="absolute inset-0 bg-cover bg-center"
+//             style={{ backgroundImage: `url(${slides[index].image})` }}
+//           />
+//         </AnimatePresence>
+
+//         {/* DARK OVERLAY */}
+//         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/65 to-black/40 z-[1]" />
+
+//         {/* CONTENT */}
+//         <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32">
+
+//           {/* SMALL LINE */}
+//           <div className="flex items-center gap-3 mb-6">
+//             <span className="w-10 h-[2px] bg-[#28B8DF]" />
+//             <p className="text-sm tracking-widest uppercase text-gray-300">
+//               AI Digital Marketing Agency
+//             </p>
+//           </div>
+
+//           {/* HEADING */}
+//           <motion.h1
+//             key={`title-${index}`}
+//             initial={{ opacity: 0, y: 20 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.8 }}
+//             className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight max-w-3xl"
+//           >
+//             {slides[index].title}
+//           </motion.h1>
+
+//           {/* DESCRIPTION */}
+//           <motion.p
+//             key={`desc-${index}`}
+//             initial={{ opacity: 0, y: 20 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             transition={{ duration: 0.8, delay: 0.2 }}
+//             className="mt-6 max-w-xl text-lg lg:text-xl text-gray-300 leading-relaxed"
+//           >
+//             {slides[index].desc}
+//           </motion.p>
+
+//           {/* CTA */}
+//           <motion.button
+//             whileHover={{ scale: 1.05 }}
+//             whileTap={{ scale: 0.97 }}
+//             onClick={() => setOpenEnquiry(true)}
+//             className="mt-10 inline-flex items-center gap-3 px-8 py-4 rounded-full
+//               bg-gradient-to-r from-[#28B8DF] to-[#1aa9f2]
+//               text-white font-semibold text-lg
+//               shadow-[0_15px_40px_rgba(40,184,223,0.35)]"
+//           >
+//             Book A Call Now
+//             <span className="text-xl">→</span>
+//           </motion.button>
+//         </div>
+
+//         {/* ✅ BOTTOM LEFT LABEL */}
+//         <div className="absolute bottom-8 left-8 text-xs text-white/50 tracking-widest uppercase z-10">
+//           {slides[index].label}
+//         </div>
+
+//         {/* ✅ TRENDING STRIP */}
+//         <div className="absolute bottom-0 w-full bg-[#252c36] border-t border-white/10 z-10">
+//           <div className="max-w-7xl mx-auto px-6 py-5 flex flex-wrap items-center gap-6 text-sm text-gray-300">
+//             <span className="text-white font-semibold">Trending:</span>
+
+//             {["AI Marketing", "Lead Generation", "Web Development", "Automation"].map(
+//               (item) => (
+//                 <span
+//                   key={item}
+//                   className="px-4 py-1 border border-white/30 rounded-full"
+//                 >
+//                   {item}
+//                 </span>
+//               )
+//             )}
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* MODAL */}
+//       <EnquiryModal
+//         open={openEnquiry}
+//         onClose={() => setOpenEnquiry(false)}
 //       />
-
-//       {/* 🌑 OVERLAY */}
-//       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80 z-[1]" />
-
-//       {/* 🧠 CONTENT */}
-//       <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
-
-//         {/* 🔵 FLOATING LABEL (INFINITE) */}
-//         <motion.p
-//           animate={floatingLabel.animate}
-//           transition={floatingLabel.transition}
-//           className="
-//             inline-block
-//             text-[#f5f7f8]
-//             text-sm
-//             tracking-[0.12em]
-//             uppercase
-//             font-semibold
-//             mb-6
-//           "
-//         >
-//           AI DIGITAL MARKETING AGENCY
-//         </motion.p>
-
-// {/* 🧠 HEADING WITH STRONG MULTI-DIRECTION HOVER MOVE */}
-// <motion.h1
-//   initial="rest"
-//   animate="rest"
-//   whileHover="hover"
-//   variants={{
-//     rest: {
-//       scale: 1,
-//       x: 0,
-//       y: 0,
-//     },
-//     hover: {
-//       scale: 1.05,
-//       x: [0, 20, -20, 12, -12, 0],
-//       y: [0, -16, 16, -12, 12, 0],
-//       transition: {
-//         duration: 4,
-//         ease: "easeInOut",
-//         repeat: Infinity,
-//       },
-//     },
-//   }}
-//   className="
-//     text-4xl md:text-6xl lg:text-7xl
-//     font-extrabold
-//     leading-tight
-//     text-white
-//     cursor-default
-//     will-change-transform
-//   "
-// >
-//   Enabling Growth Through <br />
-
-//   {/* 🚀 STRONG FLOATING KEYWORD */}
-//   <motion.span
-//     variants={{
-//       rest: {
-//         x: 0,
-//         y: 0,
-//         textShadow: "0px 0px 0px rgba(40,184,223,0)",
-//       },
-//       hover: {
-//         x: [0, 32, -32, 20, -20, 0],
-//         y: [0, -24, 24, -18, 18, 0],
-//         textShadow: "0px 0px 40px rgba(40,184,223,0.8)",
-//         transition: {
-//           duration: 3.5,
-//           ease: "easeInOut",
-//           repeat: Infinity,
-//         },
-//       },
-//     }}
-//     className="
-//       inline-block
-//       bg-[length:200%_200%]
-//       bg-gradient-to-r
-//       from-[#B8F0FF]
-//       via-[#28B8DF]
-//       to-[#B8F0FF]
-//       bg-clip-text
-//       text-transparent
-//       will-change-transform
-//     "
-//   >
-//     Intelligent SEO
-//   </motion.span>
-// </motion.h1>
-
-
-
-//         {/* DESCRIPTION */}
-//         <p className="mt-8 max-w-3xl mx-auto text-base md:text-lg text-gray-300 leading-relaxed">
-//           AI is transforming how search engines work — and traditional SEO is no longer enough.
-//           At <span className="text-white font-semibold">Brandnatic</span>, we combine AI,
-//           machine learning, automation, and performance marketing to help brands scale
-//           visibility, ROI, and long-term digital dominance.
-//         </p>
-
-//         {/* CTA */}
-//         <motion.a
-//           href="#contact"
-//           whileHover={{ scale: 1.06 }}
-//           transition={{ type: "spring", stiffness: 260, damping: 18 }}
-//           className="
-//             inline-block
-//             mt-12
-//             px-10
-//             py-4
-//             rounded-full
-//             bg-[#1aa9f2]
-//             text-white
-//             font-semibold
-//             text-lg
-//             shadow-xl
-//             cursor-pointer
-//           "
-//         >
-//           Book A Call Now
-//         </motion.a>
-//       </div>
-//     </section>
+//     </>
 //   );
 // }
 
-
-
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import EnquiryModal from "../Navbar/ContactModal";
 
-/* ------------------ FLOATING LABEL ------------------ */
-const floatingLabel = {
-  animate: {
-    y: [0, -10, 0],
+const slides = [
+ {
+    id: 1,
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop",
+    title: "AI Marketing",
+    desc: "We help brands generate high-quality leads using AI-powered strategies.",
+    label: "AI Marketing",
   },
-  transition: {
-    duration: 4,
-    repeat: Infinity,
-    ease: "easeInOut",
+  {
+    id: 2,
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2000&auto=format&fit=crop",
+    title: "Marketing Automation",
+    desc: "Smart automation workflows, CRM integrations, and funnels that work 24/7 to nurture leads and maximize ROI.",
+    label: "Automation",
   },
-};
+  {
+    id: 3,
+    image: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=2000&auto=format&fit=crop",
+    
+    title: "Web Development",
+    desc: "High-performance websites and landing pages built for speed, SEO, conversions, and long-term scalability.",
+    label: "Web Development",
+  },
+];
 
 export default function Hero() {
+  const [index, setIndex] = useState(0);
 
-  // ✅ HOOK INSIDE COMPONENT
-  const [openEnquiry, setOpenEnquiry] = useState(false);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % slides.length);
+    }, 6500);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <>
-      <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
+    <section className="relative w-full min-h-[90vh] overflow-hidden bg-black">
+      {/* Background Slider – Slide Left → Right */}
+      <div className="absolute inset-0">
+        <AnimatePresence initial={false}>
+          <motion.div
+            key={slides[index].id}
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "-100%" }}
+            transition={{
+              duration: 1.1,
+              ease: [0.43, 0.13, 0.23, 0.96], // nice smooth cubic-bezier
+            }}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${slides[index].image})` }}
+          />
+        </AnimatePresence>
+      </div>
 
-        {/* 🎥 BACKGROUND VIDEO */}
-        <video
-          className="absolute inset-0 w-full h-full object-cover"
-          src="/videos/hero_bg3.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-        />
+      {/* Dark overlay – much softer */}
+      <div className="absolute inset-0 bg-black/55 z-[1]" />
 
-        {/*  OVERLAY */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80 z-[1]" />
-
-        {/*  CONTENT */}
-        <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
-
-          {/* FLOATING LABEL */}
-          <motion.p
-            animate={floatingLabel.animate}
-            transition={floatingLabel.transition}
-            className="text-white text-sm tracking-widest uppercase font-semibold mb-6"
-          >
-            `<h1>Brandnatic | AI Digital Marketing Agency in Noida</h1>`
-          </motion.p>
-
-          {/* HEADING */}
-          <motion.h1
-            className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white"
-          >
-            Real-Estate <br />
-            <span className="text-[#28B8DF]">
-            Growth 
-            </span>
-            Partner
-          </motion.h1>
-
-          {/* DESCRIPTION */}
-          <p className="mt-8 max-w-3xl mx-auto text-lg text-gray-300">
-            We help real-estate developers and brokers generate consistent, high-quality property leads using AI-powered ads and automation..
-          </p>
-
-          {/* ✅ CTA BUTTON */}
-          <motion.button
-            onClick={() => setOpenEnquiry(true)}
-            whileHover={{ scale: 1.06 }}
-            transition={{ type: "spring", stiffness: 260, damping: 18 }}
-            className="
-              inline-block mt-12 px-10 py-4 rounded-full
-              bg-[#1aa9f2] text-white font-semibold text-lg shadow-xl cursor-pointer
-            "
-          >
-            Book A Call Now
-          </motion.button>
-
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32">
+        <div className="flex items-center gap-3 mb-6">
+          <span className="w-10 h-[2px] bg-[#28B8DF]" />
+          <h1 className="text-sm tracking-widest uppercase text-gray-300">
+            BRANDNATIC | AI DIGITAL MARKETING AGENCY IN NOIDA & DELHI NCR
+          </h1>
         </div>
-      </section>
 
-      {/* ✅ ENQUIRY MODAL (VERY IMPORTANT) */}
-      <EnquiryModal
-        open={openEnquiry}
-        onClose={() => setOpenEnquiry(false)}
-      />
-    </>
+        <motion.h1
+          key={`title-${index}`}
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight max-w-3xl"
+        >
+          {slides[index].title}
+        </motion.h1>
+
+        <motion.p
+          key={`desc-${index}`}
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="mt-6 max-w-xl text-lg lg:text-xl text-gray-300 leading-relaxed"
+        >
+          {slides[index].desc}
+        </motion.p>
+
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.97 }}
+          onClick={() => {/* open modal */}}
+          className="mt-10 inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-[#28B8DF] to-[#1aa9f2] text-white font-semibold text-lg shadow-[0_15px_40px_rgba(40,184,223,0.35)]"
+        >
+          Book A Call Now
+          <span className="text-xl">→</span>
+        </motion.button>
+      </div>
+
+      {/* Bottom label & trending strip remain the same */}
+      <div className="absolute bottom-8 left-8 text-xs text-white/50 tracking-widest uppercase z-10">
+        {slides[index].label}
+      </div>
+
+      {/* Trending strip ... */}
+    </section>
   );
 }
