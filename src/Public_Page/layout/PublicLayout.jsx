@@ -8,13 +8,16 @@ import Footer from "../Navbar/Footer";
 import PopupModal from "../popups/popupModal";
 import CookieConsent from "../popups/CookieConsent";
 
+
 function PublicLayout() {
   const [contactOpen, setContactOpen] = useState(false);
 
   useEffect(() => {
     const sessionShown = sessionStorage.getItem("contactPopupShown");
+    const cookieConsent = localStorage.getItem("cookieConsent");
 
-    if (sessionShown) return;
+    //  cookies accept/reject nahi hua → contact popup mat dikhao
+    if (!cookieConsent || sessionShown) return;
 
     const timer = setTimeout(() => {
       setContactOpen(true);
@@ -30,16 +33,17 @@ function PublicLayout() {
       <Outlet />
       <Footer />
 
-      {/* AUTO CONTACT POPUP */}
+      {/* COOKIE FIRST */}
+      <CookieConsent />
+
+      {/* CONTACT AFTER COOKIE */}
       <PopupModal
         open={contactOpen}
         onClose={() => setContactOpen(false)}
       />
-
-      {/* COOKIE CONSENT */}
-      <CookieConsent />
     </>
   );
 }
+
 
 export default PublicLayout;

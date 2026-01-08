@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { MapPin, Mail, Phone } from "lucide-react";
 import ContactModal from "../Navbar/ContactModal";
 import { useState } from "react";
+import { Instagram, Linkedin, Facebook, Twitter } from "lucide-react";
 
 function Footer() {
   const [contactOpen, setContactOpen] = useState(false);
@@ -43,6 +44,45 @@ function Footer() {
               businesses grow with data-driven strategies, automation, and
               high-conversion digital experiences.
             </p>
+            {/* SOCIAL LINKS */}
+<div className="flex items-center gap-4 pt-2">
+  <a
+    href="https://www.instagram.com/brandnatic.ai?igsh=N3RpcWU3a3h0NnZv"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="p-2 rounded-full bg-white/5 hover:bg-[#1AA9F2] transition"
+  >
+    <Instagram size={18} />
+  </a>
+
+  <a
+    href="https://www.linkedin.com/company/brandnatic"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="p-2 rounded-full bg-white/5 hover:bg-[#1AA9F2] transition"
+  >
+    <Linkedin size={18} />
+  </a>
+
+  <a
+    href="https://www.facebook.com/brandnaticdigitalmarketing"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="p-2 rounded-full bg-white/5 hover:bg-[#1AA9F2] transition"
+  >
+    <Facebook size={18} />
+  </a>
+
+  {/* <a
+    href="https://twitter.com/yourprofile"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="p-2 rounded-full bg-white/5 hover:bg-[#1AA9F2] transition"
+  >
+    <Twitter size={18} />
+  </a> */}
+</div>
+
           </motion.div>
 
           {/* Services */}
@@ -105,12 +145,12 @@ function Footer() {
             <div className="space-y-4 text-sm">
               <div className="flex items-center gap-3">
                 <MapPin size={18} className="text-[#1AA9F2]" />
-                <span className="text-gray-400">Noida, Delhi NCR</span>
+                <span className="text-gray-400">Gaur City Center, Near Gaur Chowk, Sec-4, Greater Noida West, Greater Noida, Uttar Pradesh - 201318</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail size={18} className="text-[#1AA9F2]" />
                 <a href="mailto:info@brandnatic.com" className="text-gray-400 hover:text-[#1AA9F2] transition">
-                  info@brandnatic.com
+                  support@brandnatic.com
                 </a>
               </div>
               

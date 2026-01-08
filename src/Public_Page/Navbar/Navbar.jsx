@@ -225,6 +225,22 @@ function Navbar() {
 
     {/* MENU */}
     <div className="flex flex-col px-6 py-8 space-y-6 text-lg">
+      {/* 🔍 MOBILE SEARCH BAR */}
+<div className="relative">
+  <input
+    type="text"
+    placeholder="Search..."
+    onFocus={() => setOpenSearch(true)}
+    className="
+      w-full rounded-full
+      bg-zinc-900 border border-white/20
+      px-5 py-3 text-sm text-white
+      placeholder:text-gray-400
+      focus:outline-none focus:ring-2 focus:ring-[#1AA9F2]
+    "
+  />
+</div>
+
 
       <Link to="/" onClick={() => setMobileOpen(false)}>
         Home
