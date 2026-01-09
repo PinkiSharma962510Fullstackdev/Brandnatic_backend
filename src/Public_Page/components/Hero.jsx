@@ -145,29 +145,31 @@ import { useEffect, useState } from "react";
 import EnquiryModal from "../Navbar/ContactModal";
 
 const slides = [
- {
+
+    {
     id: 1,
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop",
+    image: "/hero_img/Marketing_Automation.jpg",
+    title: "Marketing Automation",
+    desc: "Smart automation workflows, CRM integrations, and funnels that work 24/7.",
+    label: "Automation",
+  },
+  {
+    id: 2,
+    image: "/hero_img/AI_Marketing.jpg",
     title: "AI Marketing",
     desc: "We help brands generate high-quality leads using AI-powered strategies.",
     label: "AI Marketing",
   },
-  {
-    id: 2,
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2000&auto=format&fit=crop",
-    title: "Marketing Automation",
-    desc: "Smart automation workflows, CRM integrations, and funnels that work 24/7 to nurture leads and maximize ROI.",
-    label: "Automation",
-  },
+
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=2000&auto=format&fit=crop",
-    
+    image: "/hero_img/Web_Development.jpg",
     title: "Web Development",
     desc: "High-performance websites and landing pages built for speed, SEO, conversions, and long-term scalability.",
     label: "Web Development",
   },
 ];
+
 
 export default function Hero() {
   const [index, setIndex] = useState(0);
@@ -200,10 +202,10 @@ export default function Hero() {
       </div>
 
       {/* Dark overlay – much softer */}
-      <div className="absolute inset-0 bg-black/55 z-[1]" />
+      <div className="absolute inset-0 bg-black/45 z-[1]" />
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-70">
         <div className="flex items-center gap-3 mb-6">
           <span className="w-10 h-[2px] bg-[#28B8DF]" />
           <h1 className="text-sm tracking-widest uppercase text-gray-300">
@@ -251,3 +253,5 @@ export default function Hero() {
     </section>
   );
 }
+
+
