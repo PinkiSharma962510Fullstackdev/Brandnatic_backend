@@ -75,19 +75,66 @@ function CreateBlog() {
   value={content}
   onEditorChange={(val) => setContent(val)}
   init={{
-    height: 600,
+    height: 700,
+
+    /* ================= ADMIN LOOK ONLY ================= */
     skin: "oxide-dark",
     content_css: "dark",
-    menubar: true,
 
-    /* ✅ ADD THIS (Heading H1–H6) */
+    menubar: "file edit view insert format tools table",
+
+    /* ================= STRUCTURE (BACKEND SAFE) ================= */
     block_formats:
       "Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6",
 
-    automatic_uploads: false,
-    images_upload_url: "",
-    media_upload_url: "",
+    forced_root_block: "p",
+    remove_empty: true,
+    convert_urls: false,
 
+    /* ================= PLUGINS ================= */
+    plugins: `
+      advlist autolink lists link image media table
+      code preview fullscreen wordcount
+      charmap emoticons
+      anchor searchreplace visualblocks
+      insertdatetime
+    `,
+
+    /* ================= TOOLBAR (EXTRA PRO) ================= */
+    toolbar: `
+      undo redo | blocks |
+      bold italic underline strikethrough |
+      forecolor backcolor |
+      alignleft aligncenter alignright alignjustify |
+      bullist numlist outdent indent |
+      link anchor |
+      image media table |
+      charmap emoticons |
+      code preview fullscreen
+    `,
+
+    /* ================= COLORS (PRO BLOGS) ================= */
+    color_map: [
+      "FFFFFF", "White",
+      "000000", "Black",
+      "0EA5E9", "Brand Blue",
+      "22C55E", "Green",
+      "F59E0B", "Amber",
+      "EF4444", "Red",
+      "A855F7", "Purple",
+      "64748B", "Gray"
+    ],
+
+    /* ================= BACKGROUND COLOR SUPPORT ================= */
+    toolbar_mode: "wrap",
+
+    /* ================= LINE HEIGHT & FONT SIZE ================= */
+    lineheight_formats: "1 1.2 1.4 1.6 1.8 2",
+    font_size_formats:
+      "12px 14px 16px 18px 20px 24px 28px 32px 36px",
+
+    /* ================= IMAGES / BG IMAGE (BASE64 SAFE) ================= */
+    automatic_uploads: false,
     file_picker_types: "image media",
 
     images_upload_handler: (blobInfo) =>
@@ -104,16 +151,14 @@ function CreateBlog() {
         reader.readAsDataURL(blobInfo.blob());
       }),
 
-    plugins:
-      "lists link image media table code preview fullscreen wordcount",
-
-    /* ✅ ONLY ADD `blocks` (nothing removed) */
-    toolbar:
-      "undo redo | blocks | bold italic underline | alignleft aligncenter alignright | bullist numlist | image media | code preview",
+    /* ================= SECURITY / CLEAN ================= */
+    paste_as_text: false,
+    browser_spellcheck: true,
 
     branding: false,
   }}
 />
+
 
 
       {/* FAQs */}
