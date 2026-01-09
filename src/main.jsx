@@ -16,6 +16,6 @@ createRoot(document.getElementById('root')).render(
 /*  REMOVE PRELOADER ONCE REACT IS READY */
 const loader = document.getElementById("app-loader");
 if (loader) {
-  loader.classList.add("hidden");
-  setTimeout(() => loader.remove(), 600);
+  loader.classList.add("opacity-0");
+  setTimeout(() => loader.remove(), 700);
 }

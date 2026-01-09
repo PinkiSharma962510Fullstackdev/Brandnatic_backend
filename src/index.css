@@ -1,1 +1,19 @@
+/* 1️⃣ Tailwind – MUST BE FIRST */
 @import "tailwindcss";
+
+/* 2️⃣ Global base tweaks (optional) */
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+/* 3️⃣ Loader animation delay helpers */
+.delay-150 {
+  animation-delay: 0.15s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+/* 4️⃣ Any other custom CSS */
