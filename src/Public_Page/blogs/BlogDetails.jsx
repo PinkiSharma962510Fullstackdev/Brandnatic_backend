@@ -220,6 +220,7 @@ function BlogDetails() {
   const [search, setSearch] = useState("");
   const [contactOpen, setContactOpen] = useState(false);
   const [refreshComments, setRefreshComments] = useState(false);
+  const [openFaq, setOpenFaq] = useState(null);
 
   /* 🔽 LOAD MORE CONFIG */
   const INITIAL_VISIBLE = 3;
@@ -286,13 +287,12 @@ function BlogDetails() {
               {new Date(blog.createdAt).toLocaleDateString("en-IN")}
             </div>
 
-            <div
-              className="prose prose-invert max-w-none"
-              dangerouslySetInnerHTML={{
-                __html: blog.contentHTML,
-              }}
-            />
-
+            <div className="tox tox-tinymce">
+  <div
+    className="tox-edit-area"
+    dangerouslySetInnerHTML={{ __html: blog.contentHTML }}
+  />
+</div>
             {/* ================= FAQs ================= */}
 {blog?.faqs?.length > 0 && (
   <section className="mt-16">
@@ -301,22 +301,46 @@ function BlogDetails() {
     </h2>
 
     <div className="space-y-4">
-      {blog.faqs.map((faq, index) => (
-        <div
-          key={index}
-          className="bg-zinc-900 border border-zinc-700 p-5 rounded-xl"
-        >
-          <h4 className="font-semibold mb-2">
-            {faq.question}
-          </h4>
-          <p className="text-gray-400 leading-relaxed">
-            {faq.answer}
-          </p>
-        </div>
-      ))}
+      {blog.faqs.map((faq, index) => {
+        const isOpen = openFaq === index;
+
+        return (
+          <div
+            key={index}
+            className="border border-zinc-700 rounded-xl overflow-hidden bg-black"
+          >
+            {/* QUESTION ROW */}
+            <button
+              onClick={() =>
+                setOpenFaq(isOpen ? null : index)
+              }
+              className="
+                w-full flex items-center justify-between
+                px-5 py-4 text-left
+                text-white font-medium
+                hover:bg-zinc-900 transition
+              "
+            >
+              <span>{faq.question}</span>
+
+              <span className="text-xl">
+                {isOpen ? "−" : "+"}
+              </span>
+            </button>
+
+            {/* ANSWER */}
+            {isOpen && (
+              <div className="px-5 pb-5 text-gray-400 leading-relaxed">
+                {faq.answer}
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   </section>
 )}
+
 
 
             {/* COMMENTS */}

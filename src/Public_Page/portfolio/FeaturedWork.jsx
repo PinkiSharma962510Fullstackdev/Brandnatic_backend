@@ -4,19 +4,19 @@ const projects = [
   {
     title: "AI Lead Generation",
     category: "Performance Marketing",
-    image: "/images/AI_Lead_Generation.png",
+    image: "/images/AI_Lead_Generation.webp",
     alt:"AI Lead Generation Performance Marketing Project by Brandnatic",
   },
   {
     title: "Luxury Brand Website",
     category: "Web Experience",
-    image: "/images/Luxury_Brand_Website.png",
+    image: "/images/Luxury_Brand_Website.webp",
     alt:"Luxury Brand Website Design & Development by Brandnatic"
   },
   {
     title: "E-commerce Growth",
     category: "SEO & Paid Ads",
-    image: "/images/E-commerce_Growth.png",
+    image: "/images/E-commerce_Growth.webp",
     alt:"E-commerce SEO and Paid Ads Growth Campaign by Brandnatic"
   },
 ];

@@ -137,11 +137,17 @@ export default function PopupModal({ open, onClose }) {
               />
               {errors.phone && <p className="text-red-400 text-xs">{errors.phone}</p>}
 
-              <select
-                name="service"
-                onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl bg-[#020617] text-white border border-white/10"
-              >
+             <label htmlFor="service" className="sr-only">
+  Select Service
+</label>
+
+<select
+  id="service"
+  name="service"
+  onChange={handleChange}
+  className="w-full px-4 py-3 rounded-xl bg-[#020617] text-white border border-white/10"
+>
+
                 <option value="">Select Service</option>
                 {servicesList.map((s) => (
                   <option key={s} value={s}>{s}</option>

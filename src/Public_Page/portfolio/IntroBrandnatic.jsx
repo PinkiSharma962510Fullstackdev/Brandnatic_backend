@@ -1,56 +1,3 @@
-// export default function IntroBrandnatic() {
-//   return (
-//     <section className="relative w-full py-32 overflow-hidden">
-
-//       {/* BACKGROUND IMAGE */}
-//       <div
-//         className="absolute inset-0 bg-cover bg-center"
-//         style={{
-//           backgroundImage: "url('/images/intro3.png')",
-//         }}
-//       />
-
-//       {/* DARK OVERLAY */}
-//       {/* <div className="absolute inset-0 bg-black/70" /> */}
-
-//       {/* CONTENT */}
-//       <div className="relative z-10 max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-20 items-start text-white">
-
-//         {/* LEFT: Powerful Sentence */}
-//         <h2 className="sr-only">About Brandnatic</h2>
-//         <h2
-//           className="
-//             text-4xl md:text-6xl
-//             font-light
-//             leading-tight
-//             tracking-tight
-//           "
-//         >
-//           We design brands that grow,
-//           <br />
-//           scale and convert.
-//         </h2>
-
-//         {/* RIGHT: Short Lines */}
-//         <p
-//           className="
-//             text-base md:text-lg
-//             text-white/70
-//             leading-relaxed
-//             max-w-md
-//           "
-//         >
-//           Brandnatic is a creative digital agency focused on strategy,
-//           design and performance marketing.
-//           <br /><br />
-//           We blend creativity with data to build meaningful
-//           digital experiences.
-//         </p>
-
-//       </div>
-//     </section>
-//   );
-// }
 
 
 import { motion } from "framer-motion";
@@ -63,7 +10,7 @@ function IntroBrandnatic() {
       {/* BACKGROUND IMAGE */}
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/intro3.jpg')" }}
+        style={{ backgroundImage: "url('/images/intro3.webp')" }}
       />
 
       {/* CONTENT */}

@@ -15,7 +15,7 @@ const steps = [
       <div
         className="absolute inset-0 bg-no-repeat bg-center bg-cover"
         style={{
-          backgroundImage: "url('/images/process.jpg')",
+          backgroundImage: "url('/images/process.webp')",
         }}
       />
 

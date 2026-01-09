@@ -11,7 +11,7 @@ function Footer() {
     <footer 
       className="relative bg-black text-gray-300 border-t border-white/5 overflow-hidden"
      style={{
-  backgroundImage: "url('/images/footer_bg.jpg')",
+  backgroundImage: "url('/images/footer_bg.webp')",
   backgroundSize: "cover",
   backgroundPosition: "center",
 }}
@@ -46,8 +46,11 @@ function Footer() {
             </p>
             {/* SOCIAL LINKS */}
 <div className="flex items-center gap-4 pt-2">
+  {/* INSTAGRAM */}
   <a
     href="https://www.instagram.com/brandnatic.ai?igsh=N3RpcWU3a3h0NnZv"
+    aria-label="Brandnatic on Instagram"
+    title="Brandnatic Instagram"
     target="_blank"
     rel="noopener noreferrer"
     className="p-2 rounded-full bg-white/5 hover:bg-[#1AA9F2] transition"
@@ -55,8 +58,11 @@ function Footer() {
     <Instagram size={18} />
   </a>
 
+  {/* LINKEDIN */}
   <a
     href="https://www.linkedin.com/company/brandnatic"
+    aria-label="Brandnatic on LinkedIn"
+    title="Brandnatic LinkedIn"
     target="_blank"
     rel="noopener noreferrer"
     className="p-2 rounded-full bg-white/5 hover:bg-[#1AA9F2] transition"
@@ -64,14 +70,18 @@ function Footer() {
     <Linkedin size={18} />
   </a>
 
+  {/* FACEBOOK */}
   <a
     href="https://www.facebook.com/brandnaticdigitalmarketing"
+    aria-label="Brandnatic on Facebook"
+    title="Brandnatic Facebook"
     target="_blank"
     rel="noopener noreferrer"
     className="p-2 rounded-full bg-white/5 hover:bg-[#1AA9F2] transition"
   >
     <Facebook size={18} />
   </a>
+</div>
 
   {/* <a
     href="https://twitter.com/yourprofile"
@@ -81,7 +91,7 @@ function Footer() {
   >
     <Twitter size={18} />
   </a> */}
-</div>
+
 
           </motion.div>
 
@@ -127,6 +137,8 @@ function Footer() {
   onClick={() => setContactOpen(true)}
   className="text-sm text-gray-400 hover:text-[#1AA9F2] transition duration-300 text-left"
 >
+
+
   Contact
 </button></li>
             </ul>

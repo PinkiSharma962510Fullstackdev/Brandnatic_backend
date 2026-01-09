@@ -256,7 +256,7 @@ import ContactModal from "../Navbar/ContactModal";
     <div className="shrink-0">
       <div className="w-36 h-36 rounded-full overflow-hidden border border-white/10">
         <img
-          src="/testimonial_img/Automation.jpg"
+          src="/testimonial_img/Automation.webp"
           alt="Client"
           className="w-full h-full object-cover"
         />

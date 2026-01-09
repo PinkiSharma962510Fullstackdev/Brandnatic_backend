@@ -38,11 +38,11 @@ const item = {
   return (
     <section className="relative w-full py-44 overflow-hidden text-white">
 
-      {/* 🔥 BACKGROUND IMAGE */}
+      {/*  BACKGROUND IMAGE */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/images/serviceimg.png')",
+          backgroundImage: "url('/images/serviceimg.webp')",
         }}
       />
 

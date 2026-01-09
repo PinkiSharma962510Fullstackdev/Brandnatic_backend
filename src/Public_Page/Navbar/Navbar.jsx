@@ -15,7 +15,7 @@ const servicesMenu = [
     id: "ai-chatbot-development",
     title: "AI CHATBOT DEVELOPMENT",
     desc: "Smart AI chatbots for customer support, lead capture, and automation",
-    image: "/services_img/ai-chatbot-development.svg",
+    image: "/services_img/ai-chatbot-development.webp",
     
     route: "/ai-chatbot-development",
   },
@@ -23,63 +23,63 @@ const servicesMenu = [
     id: "software-development",
     title: "SOFTWARE DEVELOPMENT",
     desc: "Custom software solutions tailored to your business needs",
-    image: "/services_img/software-development.svg",
+    image: "/services_img/software-development.webp",
     route: "/software-development",
   },
   {
     id: "automation",
     title: "AUTOMATION",
     desc: "AI-powered marketing & business automation workflows",
-    image: "/services_img/automation.svg",
+    image: "/services_img/automation.webp",
     route: "/automation",
   },
   {
     id: "ecommerce-solution",
     title: "E-COMMERCE SOLUTION",
     desc: "High-performance eCommerce websites that drive sales",
-    image: "/services_img/ecommerce-solution.svg",
+    image: "/services_img/ecommerce-solution.webp",
     route: "/ecommerce-solutions",
   },
   {
     id: "seo-smo",
     title: "SEO & SMO",
     desc: "Search engine optimization & social media visibility growth",
-    image: "/services_img/seo-smo.svg",
+    image: "/services_img/seo-smo.webp",
     route: "/seo-smo",
   },
   {
     id: "paid-ads",
     title: "PAID ADS",
     desc: "ROI-focused Google Ads, Meta Ads & performance campaigns",
-    image: "/services_img/paid-ads.svg",
+    image: "/services_img/paid-ads.webp",
     route: "/paid-ads",
   },
   {
     id: "social-media-marketing",
     title: "SOCIAL MEDIA MARKETING",
     desc: "Brand growth & engagement across all social platforms",
-    image: "/services_img/automation.svg",
+    image: "/services_img/automation.webp",
     route: "/social-media-marketing",
   },
   {
     id: "lead-generation",
     title: "LEAD GENERATION",
     desc: "High-quality leads through data-driven digital strategies",
-    image: "/services_img/lead-generation.svg",
+    image: "/services_img/lead-generation.webp",
     route: "/lead-generation",
   },
   {
     id: "website-design-development",
     title: "WEBSITE DESIGN & DEVELOPMENT",
     desc: "Modern, fast, and high-conversion website solutions",
-    image: "/services_img/website-design-development.svg",
+    image: "/services_img/website-design-development.webp",
     route: "/website-design-development",
   },
   {
     id: "mobile-app-development",
     title: "MOBILE APP DEVELOPMENT",
     desc: "Scalable Android & iOS mobile application development",
-    image: "/services_img/mobile-app-development.svg",
+    image: "/services_img/mobile-app-development.webp",
     route: "/mobile-app-development",
   },
 ];
@@ -89,14 +89,14 @@ const companyMenu = [
     id: "who-we-are",
     title: "Who We Are",
     desc: "Our mission & vision",
-    image: "/images/whoweare.svg",
+    image: "/images/whoweare.webp",
     route: "/who-we-are",
   },
   {
     id: "testimonials",
     title: "Testimonials",
     desc: "What our clients say",
-    image: "/images/testimonial.svg",
+    image: "/images/testimonial.webp",
     route: "/testimonials",
   },
 ];
@@ -132,7 +132,7 @@ function Navbar() {
               }}
             >
               <img
-                src="/images/brandnatic_logo.png"
+                src="/images/brandnatic_logo.webp"
                 alt="Brandnatic Logo"
                 className="h-10 w-auto"
               />
@@ -345,3 +345,4 @@ function Navbar() {
 }
 
 export default Navbar;
+

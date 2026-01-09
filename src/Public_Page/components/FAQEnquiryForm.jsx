@@ -167,13 +167,19 @@ export default function FAQEnquiryForm() {
               />
             </div>
 
-            <div>
-              <select
-                name="service"
-                value={form.service}
-                onChange={handleChange}
-                className={`${inputClass} ${errors.service ? "border-red-500" : ""}`}
-              >
+           <div>
+  <label htmlFor="service" className="sr-only">
+    Select Service
+  </label>
+
+  <select
+    id="service"
+    name="service"
+    value={form.service}
+    onChange={handleChange}
+    className={`${inputClass} ${errors.service ? "border-red-500" : ""}`}
+  >
+
                 <option value="">Select Service *</option>
                 {services.map((service, i) => (
                   <option key={i} value={service} className="bg-[#0b1220] text-white">

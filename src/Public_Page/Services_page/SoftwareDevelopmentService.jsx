@@ -297,7 +297,7 @@ const features = [
     <div className="shrink-0">
       <div className="w-40 h-40 rounded-full overflow-hidden border border-white/10">
         <img
-          src="/testimonial_img/SoftwareDevelopmentService.jpg" 
+          src="/testimonial_img/SoftwareDevelopmentService.webp" 
           alt="Client"
           className="w-full h-full object-cover"
         />

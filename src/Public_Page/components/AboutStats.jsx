@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import aboutImg from "../../assets/about_img.jpg";
-import aboutBg from "/images/process.jpg";
+import aboutBg from "/images/process.webp";
 import ContactModal from "../Navbar/ContactModal";
 
 /* ---------------- COUNT UP HOOK ---------------- */
@@ -119,6 +119,7 @@ function AboutStats() {
                 Brandnatic specializes in AI-powered lead generation & sales systems for real estate developers and brokers. We transcend traditional digital marketing with intelligent automation, precision targeting, and buyer-intent focused campaigns.
               </p>
               <motion.button
+              aria-label="Get Premium Strategy Call"
                 onClick={() => setOpenContact(true)}
                 whileHover={{ scale: 1.06 }}
                 whileTap={{ scale: 0.97 }}
@@ -157,11 +158,15 @@ function AboutStats() {
                 ring-1 ring-white/10
               ">
                 <motion.img
-                  src={aboutImg}
-                  alt="Premium Digital Marketing Team"
-                  className="rounded-2xl w-full max-w-2xl mx-auto border border-white/20 shadow-xl object-cover"
-                  whileHover={{ scale: 1.03, y: -8 }}
-                />
+  src={aboutImg}
+  alt="Premium Digital Marketing Team"
+  width="574"
+  height="399"
+  loading="lazy"
+  className="rounded-2xl w-full max-w-2xl mx-auto border border-white/20 shadow-xl object-cover"
+  whileHover={{ scale: 1.03, y: -8 }}
+/>
+
                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-[#1AA9F2]/20 via-transparent to-transparent pointer-events-none" />
               </div>
 

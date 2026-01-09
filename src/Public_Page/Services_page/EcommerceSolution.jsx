@@ -236,7 +236,7 @@ performance tracking across Meta and Google Ads.
       <div className="relative bg-[#0b0f19] border border-white/10 rounded-3xl p-10 md:p-12 flex flex-col md:flex-row gap-10 items-center">
         <div className="w-36 h-36 rounded-full overflow-hidden border border-white/10 shrink-0">
           <img
-            src="/testimonial_img/Automation.jpg"
+            src="/testimonial_img/Automation.webp"
             alt="Client testimonial"
             className="w-full h-full object-cover"
           />

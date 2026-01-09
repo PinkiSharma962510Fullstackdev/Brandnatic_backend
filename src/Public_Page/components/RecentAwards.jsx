@@ -5,45 +5,45 @@ const awards = [
   {
     title: "SEO Services in Noida for Long-Term Growth",
     desc: `Our team focuses on the search engine optimization techniques that will enable real-estate developers and brokers in Noida to attain long term search visibility. SEO is a strong tool of qualified traffic and genuine queries, as it aims at high-intent property keywords and content optimization.`,
-    logo: "/images/SEO Services.svg",
+    logo: "/images/SEO Services.webp",
   },
   {
     title: "Performance Marketing & Growth Strategy",
     desc: `Our group believes in performance-based marketing concepts that bring quantifiable growth. The optimization of the campaigns is done on the basis of using AI-driven insights to appeal to the sophisticated property acquirers and gain the highest possible returns on investment. The result will be stable lead generation, high conversion rate and predictable growth of real-estate businesses.`,
-    logo: "/images/Performance Marketing.svg",
+    logo: "/images/Performance Marketing.webp",
   },
   {
     title: "Meta Ads Agency for High-Quality Leads",
     desc: `Our team has high-performance Meta advertising campaigns that seek to get serious property buyers. These advertisements provide high-quality leads, which, when translated into real inquiries, will yield tangible outcomes due to the application of AI-based targeting and optimization.`,
-    logo: "/images/Meta Ads.svg",
+    logo: "/images/Meta Ads.webp",
   },
   {
     title: "Google Ads & Search Marketing Experts",
     desc: "Our team pursues the property leads that are highly ambitious with the help of Google Ads and search strategies that are precision-oriented. Every campaign is streamlined in order to convert buyer searches into qualified queries, as opposed to wasted clicks.",
-    logo: "/images/Google Ads.svg",
+    logo: "/images/Google Ads.webp",
   },
    {
     title: "AI-Powered Digital Marketing Agency in Noida",
     desc: `Our team will provide AI-based digital marketing solutions to real-estate developers/brokers in Noida. This is done through the application of targeted advertising, automation, and data-driven strategies to produce high-quality property leads on a consistent basis.`,
-    logo: "/images/AI-Powered.svg",
+    logo: "/images/AI-Powered.webp",
   },
   {
     title: "Custom Website & Web App Development",
     desc: `Our team develops high-performing websites and web applications that are aimed to turn visitors of the property into high-quality leads. All platforms are quite fast, focus on the customer experience, and are focused on inquiries, visiting the site, and bookings.`,
-    logo: "/images/Custom Website.svg",
+    logo: "/images/Custom Website.webp",
   },
    {
     title: "CMS & WordPress Development Services",
     desc: `Our group creates fast, secure, and maintainable CMS and WordPress websites to generate leads and be scaleable.
 Both sites are designed in such a way that they allow AI-based advertisements, automation and a user-friendly experience.
 It is about performance, flexibility, and conversions to the real-estate developers and brokers.`,
-    logo: "/images/CMS & WordPress.svg",
+    logo: "/images/CMS & WordPress.webp",
   },
    {
     title: "Marketing Automation & CRM Integration",
     desc:  `Our team connects marketing automation with CRM systems to manage every property lead seamlessly.
 This ensures faster follow-ups, better visibility, and higher conversions from inquiry to sale.`,
-    logo: "/images/Marketing Automation.svg",
+    logo: "/images/Marketing Automation.webp",
   },
 ];
 

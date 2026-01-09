@@ -184,12 +184,17 @@ export default function ContactModal({ open, onClose }) {
           />
 
           {/* SERVICE */}
-          <select
-            name="service"
-            value={form.service}
-            onChange={handleChange}
-            className={inputClass}
-          >
+<label htmlFor="service" className="sr-only">
+  Select Service
+</label>
+
+<select
+  id="service"
+  name="service"
+  value={form.service}
+  onChange={handleChange}
+  className={inputClass}
+>
             <option value="">Select Service</option>
             {servicesList.map((s) => (
               <option key={s} value={s} className="bg-[#020617]">
