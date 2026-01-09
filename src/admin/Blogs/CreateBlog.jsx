@@ -33,14 +33,23 @@ function CreateBlog() {
     setLoading(true);
 
     try {
-      const res = await api.post("/blogs", {
-        title,
-        contentHTML: content,
-        faqs: faqs.filter(
-          (f) => f.question.trim() && f.answer.trim()
-        ),
-        status
-      });
+      // const res = await api.post("/blogs", {
+      //   title,
+      //   contentHTML: content,
+      //   faqs: faqs.filter(
+      //     (f) => f.question.trim() && f.answer.trim()
+      //   ),
+      //   status
+      // });
+   const res = await api.post("/blogs", {
+  title,
+  contentHTML: content,
+  faqs: faqs.filter(
+    (f) => f.question.trim() && f.answer.trim()
+  ),
+  status
+});
+
 
       alert("Blog saved successfully ✅");
       console.log(res.data);
@@ -49,13 +58,18 @@ function CreateBlog() {
       setTitle("");
       setContent("");
       setFaqs([{ question: "", answer: "" }]);
-    } catch (err) {
-      console.error(err);
-      alert("Save failed ❌");
-    } finally {
-      setLoading(false);
-    }
-  };
+  } catch (err) {
+  console.error("FULL ERROR 👉", err);
+  console.error("RESPONSE 👉", err.response?.data);
+
+  alert(
+    err.response?.data?.message ||
+    err.message ||
+    "Unknown error"
+  );
+} finally {
+  setLoading(false);
+}};
 
   return (
     <div className="min-h-screen bg-black text-white p-8">
@@ -156,7 +170,9 @@ function CreateBlog() {
     browser_spellcheck: true,
 
     branding: false,
-  }}
+
+}}
+
 />
 
 

@@ -211,6 +211,8 @@ import CommentForm from "./CommentForm";
 import CommentList from "./CommentList";
 import ContactModal from "../Navbar/ContactModal";
 import api from "../utils/api";
+import "../../styles/blog-content.css";
+import { Helmet } from "react-helmet-async";
 
 function BlogDetails() {
   const { slug } = useParams();
@@ -220,7 +222,6 @@ function BlogDetails() {
   const [search, setSearch] = useState("");
   const [contactOpen, setContactOpen] = useState(false);
   const [refreshComments, setRefreshComments] = useState(false);
-  const [openFaq, setOpenFaq] = useState(null);
 
   /* 🔽 LOAD MORE CONFIG */
   const INITIAL_VISIBLE = 3;
@@ -272,10 +273,81 @@ function BlogDetails() {
     <>
       <div className="bg-black text-white pt-28 px-6">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-12">
+          <Helmet>
+  {/* ===== TITLE ===== */}
+  <title>{blog.title} | Brandnatic</title>
 
-          {/* ================= LEFT CONTENT ================= */}
-          <article className="lg:col-span-2">
+  {/* ===== META DESCRIPTION ===== */}
+  <meta
+    name="description"
+    content={
+      blog.excerpt ||
+      blog.metaDescription ||
+      blog.contentHTML
+        ?.replace(/<[^>]+>/g, "")
+        ?.slice(0, 155)
+    }
+  />
+
+  {/* ===== CANONICAL ===== */}
+  <link
+    rel="canonical"
+    href={`https://brandnatic.com/blog/${blog.slug}`}
+  />
+
+  {/* ===== OPEN GRAPH (FACEBOOK / LINKEDIN) ===== */}
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content={blog.title} />
+  <meta
+    property="og:description"
+    content={
+      blog.excerpt ||
+      blog.metaDescription ||
+      "Read this detailed blog on Brandnatic."
+    }
+  />
+  <meta
+    property="og:url"
+    content={`https://brandnatic.com/blog/${blog.slug}`}
+  />
+  <meta
+    property="og:image"
+    content={blog.coverImage || "https://brandnatic.com/og-blog.jpg"}
+  />
+
+  {/* ===== TWITTER CARD ===== */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={blog.title} />
+  <meta
+    name="twitter:description"
+    content={
+      blog.excerpt ||
+      blog.metaDescription ||
+      "Read this blog on Brandnatic."
+    }
+  />
+  <meta
+    name="twitter:image"
+    content={blog.coverImage || "https://brandnatic.com/og-blog.jpg"}
+  />
+
+  {/* ===== ARTICLE META ===== */}
+  <meta
+    property="article:published_time"
+    content={blog.createdAt}
+  />
+</Helmet>
+
+
+          {/* ================= LEFT: BLOG CONTENT ================= */}
+          <article
+            className="blog-content lg:col-span-2"
+            itemScope
+            itemType="https://schema.org/Article"
+          >
+            {/* TITLE */}
             <motion.h1
+              itemProp="headline"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="text-4xl md:text-5xl font-bold mb-6"
@@ -283,69 +355,21 @@ function BlogDetails() {
               {blog.title}
             </motion.h1>
 
+            {/* DATE */}
             <div className="text-sm text-gray-400 mb-10">
-              {new Date(blog.createdAt).toLocaleDateString("en-IN")}
+              <time itemProp="datePublished">
+                {new Date(blog.createdAt).toLocaleDateString("en-IN")}
+              </time>
             </div>
 
-            <div className="tox">
-  <div
-    className="mce-content-body"
-    dangerouslySetInnerHTML={{ __html: blog.contentHTML }}
-  />
-</div>
+            {/* BLOG CONTENT */}
+            <div
+              itemProp="articleBody"
+              dangerouslySetInnerHTML={{ __html: blog.contentHTML }}
+            />
 
-            {/* ================= FAQs ================= */}
-{blog?.faqs?.length > 0 && (
-  <section className="mt-16">
-    <h2 className="text-2xl font-bold mb-6">
-      Frequently Asked Questions
-    </h2>
-
-    <div className="space-y-4">
-      {blog.faqs.map((faq, index) => {
-        const isOpen = openFaq === index;
-
-        return (
-          <div
-            key={index}
-            className="border border-zinc-700 rounded-xl overflow-hidden bg-black"
-          >
-            {/* QUESTION ROW */}
-            <button
-              onClick={() =>
-                setOpenFaq(isOpen ? null : index)
-              }
-              className="
-                w-full flex items-center justify-between
-                px-5 py-4 text-left
-                text-white font-medium
-                hover:bg-zinc-900 transition
-              "
-            >
-              <span>{faq.question}</span>
-
-              <span className="text-xl">
-                {isOpen ? "−" : "+"}
-              </span>
-            </button>
-
-            {/* ANSWER */}
-            {isOpen && (
-              <div className="px-5 pb-5 text-gray-400 leading-relaxed">
-                {faq.answer}
-              </div>
-            )}
-          </div>
-        );
-      })}
-    </div>
-  </section>
-)}
-
-
-
-            {/* COMMENTS */}
-            <div className="mt-16">
+            {/* ================= COMMENTS ================= */}
+            <div className="mt-20">
               <CommentForm
                 blogId={blog._id}
                 onSuccess={() =>
@@ -359,32 +383,34 @@ function BlogDetails() {
             </div>
           </article>
 
-          {/* ================= RIGHT SIDEBAR ================= */}
+          {/* ================= RIGHT: RECENT BLOGS ================= */}
           <aside className="space-y-8 sticky top-28 h-fit">
 
-            {/* TALK TO EXPERT (UNCHANGED) */}
-             <div className="text-2xl px-2">Recent Blogs</div>
+            <div className="text-2xl font-semibold">
+              Recent Blogs
+            </div>
+
+            {/* CTA */}
             <div className="p-6 rounded-2xl bg-gradient-to-br from-zinc-900 to-zinc-800 border border-zinc-700">
               <h4 className="text-lg font-semibold mb-2">
                 Need Digital Growth?
               </h4>
               <p className="text-sm text-gray-400 mb-4">
-                SEO • Websi
-                tes • Paid Ads
+                SEO • Websites • Paid Ads
               </p>
               <button
                 onClick={() => setContactOpen(true)}
                 className="
                   w-full py-3 rounded-xl font-semibold
                   bg-gradient-to-r from-blue-500 via-sky-500 to-blue-500
-                  hover:from-blue-600 hover:via-sky-600 hover:to-cyan-500 cursor-pointer
+                  hover:from-blue-600 hover:via-sky-600 hover:to-cyan-500
                 "
               >
                 Talk to Expert →
               </button>
             </div>
 
-            {/* SEARCH (UNCHANGED) */}
+            {/* SEARCH */}
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -392,8 +418,7 @@ function BlogDetails() {
               className="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-2 text-sm"
             />
 
-            {/* RECENT BLOGS */}
-           
+            {/* BLOG LIST */}
             <div className="space-y-4">
               <AnimatePresence>
                 {visibleBlogs.map((post) => (
@@ -425,7 +450,7 @@ function BlogDetails() {
                   setVisibleCount((prev) => prev + LOAD_MORE_COUNT)
                 }
                 className="
-                  w-[60%] mx-auto block cursor-pointer mx-auto py-3 mx-[50px] rounded-xl font-semibold
+                  w-full py-3 rounded-xl font-semibold
                   bg-gradient-to-r from-blue-500 via-sky-500 to-blue-500
                   hover:from-blue-600 hover:via-sky-600 hover:to-cyan-500
                 "
