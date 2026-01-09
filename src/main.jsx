@@ -12,3 +12,10 @@ createRoot(document.getElementById('root')).render(
     </HelmetProvider>
   </StrictMode>,
 )
+
+/*  REMOVE PRELOADER ONCE REACT IS READY */
+const loader = document.getElementById("app-loader");
+if (loader) {
+  loader.classList.add("hidden");
+  setTimeout(() => loader.remove(), 600);
+}

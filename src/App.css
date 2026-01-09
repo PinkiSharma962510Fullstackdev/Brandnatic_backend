@@ -1,0 +1,46 @@
+#app-loader {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, #0b1220, #000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#app-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-wrap {
+  text-align: center;
+  color: #fff;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.loader-wrap .logo {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.loader-wrap .line {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #28B8DF, #1aa9f2);
+  margin: 18px auto;
+  animation: lineMove 1.2s infinite ease-in-out;
+}
+
+.loader-wrap p {
+  font-size: 14px;
+  color: #b6c2cf;
+}
+
+@keyframes lineMove {
+  0% { transform: translateX(-40px); opacity: 0.3; }
+  50% { transform: translateX(40px); opacity: 1; }
+  100% { transform: translateX(-40px); opacity: 0.3; }
+}
