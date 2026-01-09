@@ -287,12 +287,13 @@ function BlogDetails() {
               {new Date(blog.createdAt).toLocaleDateString("en-IN")}
             </div>
 
-            <div className="tox tox-tinymce">
+            <div className="tox">
   <div
-    className="tox-edit-area"
+    className="mce-content-body"
     dangerouslySetInnerHTML={{ __html: blog.contentHTML }}
   />
 </div>
+
             {/* ================= FAQs ================= */}
 {blog?.faqs?.length > 0 && (
   <section className="mt-16">
