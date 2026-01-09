@@ -92,11 +92,10 @@ function BlogDetails() {
             {blog.title}
           </h1>
 
-          <div className="blog-article">
-  <div className="mce-content-body">
-  <div dangerouslySetInnerHTML={{ __html: blog.contentHTML }} />
-</div>
-</div>
+       <div
+  className="prose prose-invert max-w-none"
+  dangerouslySetInnerHTML={{ __html: blog.contentHTML }}
+/>
 
 
         {/* RIGHT SIDEBAR */}
