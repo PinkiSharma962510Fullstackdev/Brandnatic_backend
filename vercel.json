@@ -8,7 +8,7 @@
     },
     {
       "source": "/sitemap.xml",
-      "destination": "/sitemap.xml"
+      "destination": "https://brandnatic-backend-bac.vercel.app/sitemap.xml"
     },
     {
       "source": "/(.*)",
