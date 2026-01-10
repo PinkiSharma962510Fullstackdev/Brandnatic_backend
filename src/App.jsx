@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import PageLoader from "./components/PageLoader";
+// import { useEffect, useState } from "react";
+
+
 
 /* ===== CONTEXT ===== */
 import { GlobalSearchProvider } from "./Public_Page/context/GlobalSearchContext";
@@ -51,22 +51,17 @@ import CustomCursor from "./Public_Page/components/CustomCursor.jsx";
 import VerifyEmail from "./Public_Page/Pages/VerifyEmail.jsx";
 import Portfolio from "./Public_Page/Pages/Portfolio.jsx";
 import ScrollToTop from "./Public_Page/ScrollToTop.jsx";
+import PageLoader from "./admin/components/PageLoader.jsx";
 
 
 function App() {
-  const location = useLocation();
-  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    setLoading(true);
-    const timer = setTimeout(() => setLoading(false), 400);
-    return () => clearTimeout(timer);
-  }, [location.pathname]);
 
   return (
     <>
-    {loading && <PageLoader />}
+    
     <BrowserRouter>
+   \
     <ScrollToTop />
 
       {/*  GLOBAL UI COMPONENT */}
@@ -149,3 +144,4 @@ function App() {
 }
 
 export default App;
+

@@ -2,29 +2,27 @@
 
 
 
-// import { motion, AnimatePresence } from "framer-motion";
+// // 
+// import { motion } from "framer-motion";
 // import { useEffect, useState } from "react";
 
 // const slides = [
 //   {
-//     id: 1,
-//     image: "/hero_img/Marketing_Automation.jpg",
+//     image: "/hero_img/Marketing_Automation.webp",
 //     title: "Marketing Automation",
 //     desc: "Smart automation workflows, CRM integrations, and funnels that work 24/7.",
 //     label: "Automation",
 //   },
 //   {
-//     id: 2,
-//     image: "/hero_img/AI_Marketing.jpg",
+//     image: "/hero_img/AI_Marketing.webp",
 //     title: "AI Marketing",
 //     desc: "We help brands generate high-quality leads using AI-powered strategies.",
 //     label: "AI Marketing",
 //   },
 //   {
-//     id: 3,
-//     image: "/hero_img/Web_Development.jpg",
+//     image: "/hero_img/Web_Development.webp",
 //     title: "Web Development",
-//     desc: "High-performance websites and landing pages built for speed, SEO, conversions, and long-term scalability.",
+//     desc: "High-performance websites and landing pages built for speed, SEO, conversions, and scalability.",
 //     label: "Web Development",
 //   },
 // ];
@@ -34,7 +32,7 @@
 
 //   useEffect(() => {
 //     const timer = setInterval(() => {
-//       setIndex((prev) => (prev + 1) % slides.length);
+//       setIndex((i) => (i + 1) % slides.length);
 //     }, 6500);
 //     return () => clearInterval(timer);
 //   }, []);
@@ -42,71 +40,86 @@
 //   return (
 //     <section className="relative w-full min-h-[90vh] overflow-hidden bg-black">
 
-//       {/* 🔥 BACKGROUND IMAGE (LCP FIXED) */}
-//       <div className="absolute inset-0">
-//         <AnimatePresence initial={false}>
-//           <motion.img
-//             key={slides[index].id}
-//             src={slides[index].image}
-//             alt={slides[index].title}
-//             className="absolute inset-0 w-full h-full object-cover"
-//             initial={index === 0 ? false : { x: "100%" }}
-//             animate={{ x: 0 }}
-//             exit={{ x: "-100%" }}
-//             transition={{
-//               duration: 1.1,
-//               ease: [0.43, 0.13, 0.23, 0.96],
+//       {/* ✅ STATIC LCP IMAGE (NO ANIMATION EVER) */}
+//       <img
+//         src={slides[0].image}
+//         width="1600"
+//         height="900"
+//         loading="eager"
+//         fetchpriority="high"
+//         decoding="async"
+//         alt="AI Powered Digital Marketing"
+//         className="absolute inset-0 w-full h-full object-cover"
+//       />
+
+//       {/* ✅ SLIDING FAKE LAYER (NOT LCP) */}
+//       <div
+//         className="absolute inset-0 will-change-transform transition-transform duration-[1100ms] ease-out"
+//         style={{
+//           transform: `translateX(-${index * 100}%)`,
+//           display: "flex",
+//         }}
+//       >
+//         {slides.map((slide, i) => (
+//           <div
+//             key={i}
+//             className="min-w-full h-full"
+//             style={{
+//               backgroundImage: `url(${slide.image})`,
+//               backgroundSize: "cover",
+//               backgroundPosition: "center",
 //             }}
-//             loading={index === 0 ? "eager" : "lazy"}
-//             fetchpriority={index === 0 ? "high" : "auto"}
-//             decoding="async"
 //           />
-//         </AnimatePresence>
+//         ))}
 //       </div>
 
 //       {/* Overlay */}
 //       <div className="absolute inset-0 bg-black/45 z-[1]" />
 
-//       {/* Content */}
+//       {/* CONTENT */}
 //       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32">
+
 //         <div className="flex items-center gap-3 mb-6">
 //           <span className="w-10 h-[2px] bg-[#28B8DF]" />
-//           <h1 className="text-sm tracking-widest uppercase text-gray-300">
+//           <p className="text-sm tracking-widest uppercase text-gray-300">
 //             BRANDNATIC | AI DIGITAL MARKETING AGENCY IN NOIDA & DELHI NCR
-//           </h1>
+//           </p>
 //         </div>
 
 //         <motion.h1
-//           key={`title-${index}`}
-//           initial={{ opacity: 0, x: -30 }}
-//           animate={{ opacity: 1, x: 0 }}
-//           transition={{ duration: 0.8, delay: 0.3 }}
-//           className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight max-w-3xl"
+//           key={slides[index].title}
+//           initial={{ x: -30, opacity: 0 }}
+//           animate={{ x: 0, opacity: 1 }}
+//           transition={{ duration: 0.6 }}
+//           className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white max-w-3xl"
 //         >
 //           {slides[index].title}
 //         </motion.h1>
 
 //         <motion.p
-//           key={`desc-${index}`}
-//           initial={{ opacity: 0, x: -30 }}
-//           animate={{ opacity: 1, x: 0 }}
-//           transition={{ duration: 0.8, delay: 0.5 }}
-//           className="mt-6 max-w-xl text-lg lg:text-xl text-gray-300 leading-relaxed"
+//           key={slides[index].desc}
+//           initial={{ x: -30, opacity: 0 }}
+//           animate={{ x: 0, opacity: 1 }}
+//           transition={{ duration: 0.6, delay: 0.15 }}
+//           className="mt-6 max-w-xl text-lg text-gray-300"
 //         >
 //           {slides[index].desc}
 //         </motion.p>
 
 //         <motion.button
-//         aria-label="Book a call with Brandnatic"
+//           aria-label="Book a call with Brandnatic"
 //           whileHover={{ scale: 1.05 }}
 //           whileTap={{ scale: 0.97 }}
-//           className="mt-10 inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-[#28B8DF] to-[#1aa9f2] text-white font-semibold text-lg shadow-[0_15px_40px_rgba(40,184,223,0.35)]"
+//           className="mt-10 px-8 py-4 rounded-full
+//           bg-gradient-to-r from-[#28B8DF] to-[#1aa9f2]
+//           text-white font-semibold text-lg"
 //         >
 //           Book A Call Now →
 //         </motion.button>
 //       </div>
 
-//       <div className="absolute bottom-8 left-8 text-xs text-white/50 tracking-widest uppercase z-10">
+//       {/* Label */}
+//       <div className="absolute bottom-8 left-8 text-xs text-white/50 uppercase tracking-widest z-10">
 //         {slides[index].label}
 //       </div>
 //     </section>
@@ -114,115 +127,98 @@
 // }
 
 
-
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const slides = [
   {
-    id: 1,
     image: "/hero_img/Marketing_Automation.webp",
     title: "Marketing Automation",
     desc: "Smart automation workflows, CRM integrations, and funnels that work 24/7.",
     label: "Automation",
   },
   {
-    id: 2,
     image: "/hero_img/AI_Marketing.webp",
     title: "AI Marketing",
     desc: "We help brands generate high-quality leads using AI-powered strategies.",
     label: "AI Marketing",
   },
   {
-    id: 3,
     image: "/hero_img/Web_Development.webp",
     title: "Web Development",
-    desc: "High-performance websites and landing pages built for speed, SEO, conversions, and long-term scalability.",
+    desc: "High-performance websites built for speed, SEO & conversions.",
     label: "Web Development",
   },
 ];
 
 export default function Hero() {
   const [index, setIndex] = useState(0);
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   useEffect(() => {
+    if (isMobile) return; // ❌ mobile pe slider band
+
     const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % slides.length);
+      setIndex((i) => (i + 1) % slides.length);
     }, 6500);
+
     return () => clearInterval(timer);
-  }, []);
+  }, [isMobile]);
 
   return (
-    <section className="relative w-full min-h-[90vh] overflow-hidden bg-black">
-      {/* 🔥 BACKGROUND IMAGE SLIDER (PERFORMANCE SAFE) */}
-      <div className="absolute inset-0">
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={slides[index].id}
-            src={slides[index].image}
-            alt={slides[index].title}
-            className="absolute inset-0 w-full h-full object-cover will-change-transform"
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "-100%" }}
-            transition={{
-              duration: 1.1,
-              ease: [0.43, 0.13, 0.23, 0.96],
-            }}
-            loading="eager"               // 🔥 hero images should NOT be lazy
-            fetchpriority={index === 0 ? "high" : "auto"}
-            decoding="async"
-          />
-        </AnimatePresence>
-      </div>
+    <section className="relative w-full min-h-[90vh] bg-black overflow-hidden">
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/45 z-[1]" />
+      {/* ✅ ONLY LCP IMAGE */}
+      <img
+        src={slides[index].image}
+        width="1280"
+        height="720"
+        fetchPriority="high"
+        loading="eager"
+        decoding="async"
+        alt="AI Digital Marketing Agency in Noida"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
 
-      {/* Content */}
+      {/* overlay */}
+      <div className="absolute inset-0 bg-black/50 z-[1]" />
+
+      {/* CONTENT */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32">
-        <div className="flex items-center gap-3 mb-6">
-          <span className="w-10 h-[2px] bg-[#28B8DF]" />
-          <h1 className="text-sm tracking-widest uppercase text-gray-300">
-            BRANDNATIC | AI DIGITAL MARKETING AGENCY IN NOIDA & DELHI NCR
-          </h1>
-        </div>
+
+        <p className="text-sm tracking-widest uppercase text-gray-300 mb-6">
+          BRANDNATIC | AI DIGITAL MARKETING AGENCY
+        </p>
 
         <motion.h1
-          key={`title-${index}`}
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight max-w-3xl"
+          initial={isMobile ? false : { y: 24, opacity: 0 }}
+          animate={isMobile ? false : { y: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white max-w-3xl"
         >
           {slides[index].title}
         </motion.h1>
 
         <motion.p
-          key={`desc-${index}`}
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-6 max-w-xl text-lg lg:text-xl text-gray-300 leading-relaxed"
+          initial={isMobile ? false : { y: 24, opacity: 0 }}
+          animate={isMobile ? false : { y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mt-6 max-w-xl text-lg text-gray-300"
         >
           {slides[index].desc}
         </motion.p>
 
-        <motion.button
-          aria-label="Book a call with Brandnatic"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.97 }}
-          className="mt-10 inline-flex items-center gap-3 px-8 py-4 rounded-full
+        <button
+          aria-label="Book a call"
+          className="mt-10 px-8 py-4 rounded-full
           bg-gradient-to-r from-[#28B8DF] to-[#1aa9f2]
-          text-white font-semibold text-lg
-          shadow-[0_15px_40px_rgba(40,184,223,0.35)]"
+          text-white font-semibold text-lg"
         >
           Book A Call Now →
-        </motion.button>
+        </button>
       </div>
 
-      {/* Bottom label */}
-      <div className="absolute bottom-8 left-8 text-xs text-white/50 tracking-widest uppercase z-10">
+      <div className="absolute bottom-6 left-6 text-xs text-white/60 uppercase z-10">
         {slides[index].label}
       </div>
     </section>
