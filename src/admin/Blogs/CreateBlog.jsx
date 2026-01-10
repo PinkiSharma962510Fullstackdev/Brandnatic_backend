@@ -13,6 +13,7 @@ function CreateBlog() {
   const [loading, setLoading] = useState(false);
   const [seoTitle, setSeoTitle] = useState("");
 const [seoDescription, setSeoDescription] = useState("");
+const [slug, setSlug] = useState("");
 
   /* ================= FAQ LOGIC ================= */
   const addFaq = () => {
@@ -43,16 +44,18 @@ const [seoDescription, setSeoDescription] = useState("");
       //   ),
       //   status
       // });
- const res = await api.post("/blogs", {
+const res = await api.post("/blogs", {
   title,
+  slug, // 👈 
   contentHTML: content,
+  status,
+  seoTitle,
+  seoDescription,
   faqs: faqs.filter(
     (f) => f.question.trim() && f.answer.trim()
   ),
-  status,
-  seoTitle,
-  seoDescription
 });
+
 
 
 
@@ -87,6 +90,24 @@ const [seoDescription, setSeoDescription] = useState("");
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
+      <div className="mb-6">
+  <label className="block text-sm text-zinc-400 mb-1">
+    Blog URL (Slug)
+  </label>
+
+  <input
+    type="text"
+    value={slug}
+    onChange={(e) => setSlug(e.target.value)}
+    placeholder="ppc-digital-marketing-guide-2026"
+    className="w-full p-3 bg-zinc-900 border border-zinc-700 rounded"
+  />
+
+  <p className="text-xs text-zinc-500 mt-1">
+    URL Preview: https://brandnatic.com/blogs/{slug || "auto-generated"}
+  </p>
+</div>
+
       {/* SEO FIELDS */}
 <div className="bg-zinc-900 border border-zinc-700 rounded p-4 mb-6">
   <h3 className="text-sm uppercase tracking-wider text-zinc-400 mb-3">
