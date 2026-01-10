@@ -1,5 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import PageLoader from "./components/PageLoader";
+
 /* ===== CONTEXT ===== */
 import { GlobalSearchProvider } from "./Public_Page/context/GlobalSearchContext";
 
@@ -50,11 +54,22 @@ import ScrollToTop from "./Public_Page/ScrollToTop.jsx";
 
 
 function App() {
+  const location = useLocation();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    const timer = setTimeout(() => setLoading(false), 400);
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
+
   return (
+    <>
+    {loading && <PageLoader />}
     <BrowserRouter>
     <ScrollToTop />
 
-      {/* ✅ GLOBAL UI COMPONENT */}
+      {/*  GLOBAL UI COMPONENT */}
       <CustomCursor />
 
       <Routes>
@@ -129,6 +144,7 @@ function App() {
         
       </Routes>
     </BrowserRouter>
+    </>
   );
 }
 
