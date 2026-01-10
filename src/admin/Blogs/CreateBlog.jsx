@@ -11,6 +11,8 @@ function CreateBlog() {
     { question: "", answer: "" },
   ]);
   const [loading, setLoading] = useState(false);
+  const [seoTitle, setSeoTitle] = useState("");
+const [seoDescription, setSeoDescription] = useState("");
 
   /* ================= FAQ LOGIC ================= */
   const addFaq = () => {
@@ -41,14 +43,17 @@ function CreateBlog() {
       //   ),
       //   status
       // });
-   const res = await api.post("/blogs", {
+ const res = await api.post("/blogs", {
   title,
   contentHTML: content,
   faqs: faqs.filter(
     (f) => f.question.trim() && f.answer.trim()
   ),
-  status
+  status,
+  seoTitle,
+  seoDescription
 });
+
 
 
       alert("Blog saved successfully ✅");
@@ -82,6 +87,47 @@ function CreateBlog() {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
+      {/* SEO FIELDS */}
+<div className="bg-zinc-900 border border-zinc-700 rounded p-4 mb-6">
+  <h3 className="text-sm uppercase tracking-wider text-zinc-400 mb-3">
+    SEO Settings
+  </h3>
+
+  <div className="mb-4">
+    <label className="block text-sm text-zinc-400 mb-1">
+      SEO Title
+    </label>
+    <input
+      type="text"
+      value={seoTitle}
+      onChange={(e) => setSeoTitle(e.target.value)}
+      placeholder="SEO title (max 60 characters)"
+      maxLength={60}
+      className="w-full p-2 bg-black border border-zinc-700 rounded"
+    />
+    <p className="text-xs text-zinc-500 mt-1">
+      Leave empty to use Blog Title
+    </p>
+  </div>
+
+  <div>
+    <label className="block text-sm text-zinc-400 mb-1">
+      Meta Description
+    </label>
+    <textarea
+      value={seoDescription}
+      onChange={(e) => setSeoDescription(e.target.value)}
+      placeholder="Meta description (max 160 characters)"
+      maxLength={160}
+      rows={3}
+      className="w-full p-2 bg-black border border-zinc-700 rounded"
+    />
+    <p className="text-xs text-zinc-500 mt-1">
+      Leave empty to auto-generate from content
+    </p>
+  </div>
+</div>
+
 
       {/* EDITOR */}
      <Editor

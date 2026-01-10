@@ -273,16 +273,15 @@ function BlogDetails() {
     <>
       <div className="bg-black text-white pt-28 px-6">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-12">
-          <Helmet>
-  {/* ===== TITLE ===== */}
-  <title>{blog.title} | Brandnatic</title>
+       <Helmet>
+  {/* ===== SEO TITLE ===== */}
+  <title>{blog.seoTitle || blog.title}</title>
 
   {/* ===== META DESCRIPTION ===== */}
   <meta
     name="description"
     content={
-      blog.excerpt ||
-      blog.metaDescription ||
+      blog.seoDescription ||
       blog.contentHTML
         ?.replace(/<[^>]+>/g, "")
         ?.slice(0, 155)
@@ -295,48 +294,56 @@ function BlogDetails() {
     href={`https://brandnatic.com/blog/${blog.slug}`}
   />
 
-  {/* ===== OPEN GRAPH (FACEBOOK / LINKEDIN) ===== */}
+  {/* ===== OPEN GRAPH ===== */}
   <meta property="og:type" content="article" />
-  <meta property="og:title" content={blog.title} />
-  <meta
-    property="og:description"
-    content={
-      blog.excerpt ||
-      blog.metaDescription ||
-      "Read this detailed blog on Brandnatic."
-    }
-  />
-  <meta
-    property="og:url"
-    content={`https://brandnatic.com/blog/${blog.slug}`}
-  />
+  <meta property="og:title" content={blog.seoTitle || blog.title} />
+  <meta property="og:description" content={blog.seoDescription} />
   <meta
     property="og:image"
-    content={blog.coverImage || "https://brandnatic.com/og-blog.jpg"}
+    content={
+      blog.coverImage || "https://brandnatic.com/og-blog.jpg"
+    }
   />
 
-  {/* ===== TWITTER CARD ===== */}
+  {/* ===== TWITTER ===== */}
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={blog.title} />
+  <meta
+    name="twitter:title"
+    content={blog.seoTitle || blog.title}
+  />
   <meta
     name="twitter:description"
-    content={
-      blog.excerpt ||
-      blog.metaDescription ||
-      "Read this blog on Brandnatic."
-    }
+    content={blog.seoDescription}
   />
   <meta
     name="twitter:image"
-    content={blog.coverImage || "https://brandnatic.com/og-blog.jpg"}
+    content={
+      blog.coverImage || "https://brandnatic.com/og-blog.jpg"
+    }
   />
 
-  {/* ===== ARTICLE META ===== */}
-  <meta
-    property="article:published_time"
-    content={blog.createdAt}
-  />
+  {/* ✅ FAQ SCHEMA (AUTO INJECT) */}
+  {blog.faqs?.length > 0 && (
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": blog.faqs
+          .filter(faq => faq.question && faq.answer)
+          .map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": faq.answer.replace(/<[^>]+>/g, "")
+            }
+          }))
+      })}
+    </script>
+  )}
 </Helmet>
+
+
 
 
           {/* ================= LEFT: BLOG CONTENT ================= */}
