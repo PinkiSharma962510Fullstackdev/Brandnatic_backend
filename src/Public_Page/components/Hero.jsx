@@ -131,12 +131,12 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const slides = [
-  {
-    image: "/hero_img/Marketing_Automation.webp",
-    title: "Marketing Automation",
-    desc: "Smart automation workflows, CRM integrations, and funnels that work 24/7.",
-    label: "Automation",
-  },
+  // {
+  //   image: "/hero_img/Marketing_Automation.webp",
+  //   title: "Marketing Automation",
+  //   desc: "Smart automation workflows, CRM integrations, and funnels that work 24/7.",
+  //   label: "Automation",
+  // },
   {
     image: "/hero_img/AI_Marketing.webp",
     title: "AI Marketing",
