@@ -51,7 +51,7 @@ import CustomCursor from "./Public_Page/components/CustomCursor.jsx";
 import VerifyEmail from "./Public_Page/Pages/VerifyEmail.jsx";
 import Portfolio from "./Public_Page/Pages/Portfolio.jsx";
 import ScrollToTop from "./Public_Page/ScrollToTop.jsx";
-import PageLoader from "./admin/components/PageLoader.jsx";
+
 
 
 function App() {
