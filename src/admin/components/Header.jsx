@@ -40,10 +40,11 @@ function Header({ onMenuClick, isSidebarOpen, onCloseMenu }) {
       <button
   onClick={isSidebarOpen ? onCloseMenu : onMenuClick}
   className="md:hidden p-2"
-  aria-label="Toggle Menu"
+  aria-label={isSidebarOpen ? "Close navigation menu" : "Open navigation menu"}
+  aria-expanded={isSidebarOpen}
 >
   {isSidebarOpen ? (
-    /* ❌ CLOSE ICON */
+    /* CLOSE ICON */
     <svg
       xmlns="http://www.w3.org/2000/svg"
       className="w-6 h-6"
@@ -51,6 +52,7 @@ function Header({ onMenuClick, isSidebarOpen, onCloseMenu }) {
       viewBox="0 0 24 24"
       stroke="#FFFFFF"
       strokeWidth={2.5}
+      aria-hidden="true"
     >
       <path
         strokeLinecap="round"
@@ -59,7 +61,7 @@ function Header({ onMenuClick, isSidebarOpen, onCloseMenu }) {
       />
     </svg>
   ) : (
-    /* ☰ MENU ICON */
+    /* MENU ICON */
     <svg
       xmlns="http://www.w3.org/2000/svg"
       className="w-7 h-7"
@@ -67,6 +69,7 @@ function Header({ onMenuClick, isSidebarOpen, onCloseMenu }) {
       viewBox="0 0 24 24"
       stroke="#FFFFFF"
       strokeWidth={2}
+      aria-hidden="true"
     >
       <path
         strokeLinecap="round"
@@ -76,6 +79,7 @@ function Header({ onMenuClick, isSidebarOpen, onCloseMenu }) {
     </svg>
   )}
 </button>
+
 
 
       {/* spacer */}

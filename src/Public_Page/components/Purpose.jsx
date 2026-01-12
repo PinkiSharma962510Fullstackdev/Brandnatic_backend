@@ -228,19 +228,26 @@ const ExploreOurPurpose = () => {
                 className={inputClass}
               />
 
-              <select
-                name="service"
-                value={form.service}
-                onChange={handleChange}
-                className={inputClass}
-              >
-                <option value="">Select Real Estate Service</option>
-                {servicesList.map((s) => (
-                  <option key={s} value={s} className="bg-[#020617]">
-                    {s}
-                  </option>
-                ))}
-              </select>
+         <label htmlFor="service" className="sr-only">
+  Select Real Estate Service
+</label>
+
+<select
+  id="service"
+  name="service"
+  value={form.service}
+  onChange={handleChange}
+  className={inputClass}
+>
+  <option value="">Select Real Estate Service</option>
+  {servicesList.map((s) => (
+    <option key={s} value={s} className="bg-[#020617]">
+      {s}
+    </option>
+  ))}
+</select>
+
+
               {errors.service && <p className="text-red-500 text-xs">{errors.service}</p>}
 
               {form.service === "Other Real Estate Service" && (
