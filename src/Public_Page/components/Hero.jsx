@@ -128,12 +128,10 @@
 
 
 
-
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const slides = [
-  
   {
     image: "/hero_img/AI_Marketing.webp",
     title: "AI Marketing",
@@ -143,7 +141,7 @@ const slides = [
   {
     image: "/hero_img/Web_Development.webp",
     title: "Web Development",
-    desc: "High-performance websites and landing pages built for speed, SEO, conversions, and scalability.",
+    desc: "High-performance websites built for speed, SEO, conversions, and scalability.",
     label: "Web Development",
   },
 ];
@@ -151,113 +149,88 @@ const slides = [
 export default function Hero() {
   const [index, setIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Auto slide every 6.5 seconds
+  /* ✅ PROPER MOBILE DETECT */
   useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  /* ✅ DESKTOP AUTO SLIDE */
+  useEffect(() => {
+    if (isMobile) return;
+
     const timer = setInterval(() => {
       setIsTransitioning(true);
-      setIndex((prev) => (prev + 1) % slides.length);
+      setIndex((i) => (i + 1) % slides.length);
     }, 6500);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [isMobile]);
 
-  // Reset transition flag after animation completes
   useEffect(() => {
     if (!isTransitioning) return;
-    const timer = setTimeout(() => {
-      setIsTransitioning(false);
-    }, 1200); // should match or be slightly longer than transition duration
-
-    return () => clearTimeout(timer);
+    const t = setTimeout(() => setIsTransitioning(false), 1200);
+    return () => clearTimeout(t);
   }, [isTransitioning]);
 
-  const currentSlide = slides[index];
-  const nextIndex = (index + 1) % slides.length;
-  const nextSlide = slides[nextIndex];
+  const current = slides[index];
+  const next = slides[(index + 1) % slides.length];
 
   return (
     <section className="relative w-full min-h-[90vh] overflow-hidden bg-black">
-      {/* === LCP Hero Image - First slide - never moves === */}
+
+      {/* ✅ STATIC LCP IMAGE (BOTTOM LAYER) */}
       <img
         src={slides[0].image}
         width="1600"
         height="900"
         loading="eager"
-        fetchpriority="high"
+        fetchPriority="high"
         decoding="async"
         alt="AI Powered Digital Marketing - Brandnatic"
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover z-0"
       />
 
-      {/* === Moving layer - only slides left → right === */}
-      <div
-        className="absolute inset-0 will-change-transform"
-        style={{
-          transform: isTransitioning
-            ? `translateX(-100%)`
-            : "translateX(0%)",
-          transition: isTransitioning
-            ? "transform 1100ms ease-out"
-            : "none", // ← key point: no transition when jumping back!
-        }}
-      >
-        {/* Current + Next slide side by side */}
+      {/* ✅ DESKTOP CAROUSEL (MIDDLE LAYER) */}
+      {!isMobile && (
         <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${currentSlide.image})` }}
-        />
-        <div
-          className="absolute inset-0 translate-x-full bg-cover bg-center"
-          style={{ backgroundImage: `url(${nextSlide.image})` }}
-        />
-      </div>
-
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/45 z-[1]" />
-
-      {/* Content - fade + slide animation per slide */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-24">
-        <div className="flex items-center gap-3 mb-6">
-          <span className="w-10 h-[2px] bg-[#28B8DF]" />
-          <p className="text-sm tracking-widest uppercase text-gray-300">
-            BRANDNATIC | AI DIGITAL MARKETING AGENCY IN NOIDA & DELHI NCR
-          </p>
+          className="absolute inset-0 z-[1]"
+          style={{
+            transform: isTransitioning ? "translateX(-100%)" : "translateX(0)",
+            transition: isTransitioning
+              ? "transform 1100ms ease-out"
+              : "none",
+          }}
+        >
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${current.image})` }}
+          />
+          <div
+            className="absolute inset-0 translate-x-full bg-cover bg-center"
+            style={{ backgroundImage: `url(${next.image})` }}
+          />
         </div>
+      )}
 
-        <motion.h1
-          key={currentSlide.title}
-          initial={{ x: -40, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white max-w-3xl leading-tight"
-        >
-          {currentSlide.title}
-        </motion.h1>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/45 z-[2]" />
 
-        <motion.p
-          key={currentSlide.desc}
-          initial={{ x: -40, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
-          className="mt-6 max-w-xl text-lg md:text-xl text-gray-200 leading-relaxed"
-        >
-          {currentSlide.desc}
-        </motion.p>
-
-        <motion.button
-          aria-label="Book a call with Brandnatic"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.97 }}
-          className="mt-10 px-8 py-4 rounded-full bg-gradient-to-r from-[#28B8DF] to-[#1aa9f2] text-white font-semibold text-lg shadow-lg shadow-cyan-500/20"
-        >
-          Book A Call Now →
-        </motion.button>
+      {/* CONTENT */}
+      <div className="relative z-[3] max-w-7xl mx-auto px-6 pt-32 pb-24">
+        <h1 className="text-6xl font-bold text-white">{current.title}</h1>
+        <p className="mt-6 text-xl text-gray-200 max-w-xl">
+          {current.desc}
+        </p>
       </div>
 
-      {/* Current label */}
-      <div className="absolute bottom-8 left-8 text-xs text-white/50 uppercase tracking-widest z-10">
-        {currentSlide.label}
+      {/* Label */}
+      <div className="absolute bottom-8 left-8 z-[3] text-xs text-white/50 uppercase">
+        {current.label}
       </div>
     </section>
   );
