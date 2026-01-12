@@ -74,13 +74,18 @@ export default function CaseStudies() {
               className="group relative h-[420px] rounded-3xl overflow-hidden bg-black shadow-xl"
             >
               <video
-                src={item.media}
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700"
-              />
+  src={item.media}
+  autoPlay
+  muted
+  loop
+  playsInline
+  preload="metadata"
+  width="600"
+  height="420"
+  style={{ aspectRatio: "600 / 420" }}
+  className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700"
+/>
+
 
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 

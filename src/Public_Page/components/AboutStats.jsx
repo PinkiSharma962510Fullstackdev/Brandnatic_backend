@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import aboutImg from "../../assets/about_img.jpg";
+import aboutImg from "../../assets/about_img.webp";
 import aboutBg from "/images/process.webp";
 import ContactModal from "../Navbar/ContactModal";
 

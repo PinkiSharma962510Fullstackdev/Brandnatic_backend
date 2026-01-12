@@ -181,13 +181,16 @@ function Service_Section() {
   loop
   playsInline
   preload="metadata"
-  aria-label={`${service.title} background video`}
+  width="380"
+  height="500"
+  style={{ aspectRatio: "380 / 500" }}
   className="absolute inset-0 w-full h-full object-cover"
   initial={{ opacity: 0 }}
   animate={{ opacity: 1 }}
   whileHover={{ scale: 1.12 }}
   transition={{ duration: 0.8, ease: "easeOut" }}
 />
+
 
 
 
@@ -225,3 +228,4 @@ function Service_Section() {
 }
 
 export default Service_Section;
+
