@@ -263,6 +263,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../../admin/utils/api";
+import { getFirstImageFromHTML } from "../utils/getFirstImageFromHTML";
 
 function HomeBlogsSection() {
   const [blogs, setBlogs] = useState([]);
@@ -317,21 +318,29 @@ function HomeBlogsSection() {
                 hover:shadow-[0_0_30px_rgba(59,130,246,0.25)]
               "
             >
-              {/* IMAGE */}
-              {blog.coverImage && (
-                <div className="h-48 overflow-hidden">
-                  <img
-                    src={blog.coverImage}
-                    alt={blog.title}
-                    className="
-                      w-full h-full object-cover
-                      group-hover:scale-105 transition duration-500
-                    "
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              )}
+            {/* IMAGE */}
+{(() => {
+  const image =
+    blog.coverImage ||
+    getFirstImageFromHTML(blog.contentHTML) ||
+    "/images/blog-placeholder.webp";
+
+  return (
+    <div className="h-48 overflow-hidden">
+      <img
+        src={image}
+        alt={blog.title || "Blog image"}
+        className="
+          w-full h-full object-cover
+          group-hover:scale-105 transition duration-500
+        "
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  );
+})()}
+
 
               {/* CONTENT */}
               <div className="p-6">
