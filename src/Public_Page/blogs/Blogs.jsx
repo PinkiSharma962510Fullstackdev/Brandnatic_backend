@@ -116,12 +116,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../utils/api";
 
-/* 🔹 Extract first image from TinyMCE HTML */
-const extractFirstImage = (html) => {
-  if (!html) return null;
-  const match = html.match(/<img[^>]+src="([^">]+)"/i);
-  return match ? match[1] : null;
-};
+
 
 function Blogs() {
   const [blogs, setBlogs] = useState([]);
@@ -167,7 +162,7 @@ function Blogs() {
         {/* BLOG GRID */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {visibleBlogs.map((blog) => {
-            const image = extractFirstImage(blog.contentHTML);
+           
 
             return (
               <article
@@ -181,13 +176,16 @@ function Blogs() {
   "
 >
   {/* IMAGE */}
-  {image && (
-    <img
-      src={image}
-      alt={blog.title}
-      className="w-full h-48 object-cover"
-    />
-  )}
+<img
+  src={blog.coverImage}
+  alt={blog.title}
+  className="w-full h-48 object-cover"
+  onError={(e) => {
+    e.currentTarget.style.display = "none";
+  }}
+/>
+
+
 
   {/* CONTENT */}
   <div className="p-7 flex flex-col flex-1">
@@ -199,12 +197,12 @@ function Blogs() {
       {new Date(blog.createdAt).toLocaleDateString("en-IN")}
     </p>
 
-    <p className="text-gray-400 text-sm line-clamp-3 mb-6">
-      {blog.contentHTML
-        .replace(/<[^>]+>/g, "")
-        .slice(0, 120)}
-      …
-    </p>
+   <p className="text-gray-400 text-sm line-clamp-3 mb-6">
+  {(blog.contentHTML || "")
+    .replace(/<[^>]+>/g, "")
+    .slice(0, 120)}
+  …
+</p>
 
     {/* ✅ ALWAYS VISIBLE */}
     <Link

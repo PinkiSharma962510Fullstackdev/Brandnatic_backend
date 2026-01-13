@@ -15,6 +15,8 @@ function CreateBlog() {
 const [seoDescription, setSeoDescription] = useState("");
 const [slug, setSlug] = useState("");
 
+const [coverImage, setCoverImage] = useState("");
+
   /* ================= FAQ LOGIC ================= */
   const addFaq = () => {
     setFaqs([...faqs, { question: "", answer: "" }]);
@@ -44,10 +46,23 @@ const [slug, setSlug] = useState("");
       //   ),
       //   status
       // });
+// const res = await api.post("/blogs", {
+//   title,
+//   slug, // 👈 
+//   contentHTML: content,
+//   status,
+//   seoTitle,
+//   seoDescription,
+//   faqs: faqs.filter(
+//     (f) => f.question.trim() && f.answer.trim()
+//   ),
+// });
+
 const res = await api.post("/blogs", {
   title,
-  slug, // 👈 
+  slug,
   contentHTML: content,
+  coverImage, // 👈 VERY IMPORTANT
   status,
   seoTitle,
   seoDescription,
@@ -148,6 +163,25 @@ const res = await api.post("/blogs", {
     </p>
   </div>
 </div>
+{/* COVER IMAGE */}
+<div className="mb-6">
+  <label className="block text-sm text-zinc-400 mb-1">
+    Cover Image URL
+  </label>
+
+  <input
+    type="text"
+    value={coverImage}
+    onChange={(e) => setCoverImage(e.target.value)}
+    placeholder="https://res.cloudinary.com/.../blog-cover.webp"
+    className="w-full p-3 bg-zinc-900 border border-zinc-700 rounded"
+  />
+
+  <p className="text-xs text-zinc-500 mt-1">
+    Use a public image URL (Cloudinary / CDN)
+  </p>
+</div>
+
 
 
       {/* EDITOR */}

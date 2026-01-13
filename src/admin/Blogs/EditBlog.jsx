@@ -15,7 +15,7 @@ function EditBlog() {
   const [seoTitle, setSeoTitle] = useState("");
   const [seoDescription, setSeoDescription] = useState("");
   const [loading, setLoading] = useState(false);
-
+const [coverImage, setCoverImage] = useState("");
   /* ================= FETCH BLOG ================= */
   useEffect(() => {
     const fetchBlog = async () => {
@@ -24,11 +24,13 @@ function EditBlog() {
         const blog = res.data;
 
         setTitle(blog.title || "");
-        setSlug(blog.slug || "");
-        setContent(blog.contentHTML || "");
-        setStatus(blog.status || "draft");
-        setSeoTitle(blog.seoTitle || "");
-        setSeoDescription(blog.seoDescription || "");
+setSlug(blog.slug || "");
+setContent(blog.contentHTML || "");
+setStatus(blog.status || "draft");
+setSeoTitle(blog.seoTitle || "");
+setSeoDescription(blog.seoDescription || "");
+setCoverImage(blog.coverImage || "");
+
         setFaqs(
           Array.isArray(blog.faqs) && blog.faqs.length
             ? blog.faqs
@@ -65,16 +67,18 @@ function EditBlog() {
 
     try {
       await api.put(`/blogs/${id}`, {
-        title,
-        slug, // 👈 custom slug
-        contentHTML: content,
-        status,
-        seoTitle,
-        seoDescription,
-        faqs: faqs.filter(
-          (f) => f.question.trim() && f.answer.trim()
-        ),
-      });
+  title,
+  slug,
+  contentHTML: content,
+  coverImage, // 👈 VERY IMPORTANT
+  status,
+  seoTitle,
+  seoDescription,
+  faqs: faqs.filter(
+    (f) => f.question.trim() && f.answer.trim()
+  ),
+});
+
 
       alert("Blog updated successfully ✅");
       navigate("/admin/blogs");
@@ -149,6 +153,29 @@ function EditBlog() {
           <option value="published">Published</option>
         </select>
       </div>
+      {/* COVER IMAGE */}
+<div className="mb-6">
+  <label className="block text-sm text-zinc-400 mb-1">
+    Cover Image URL
+  </label>
+
+  <input
+    type="text"
+    value={coverImage}
+    onChange={(e) => setCoverImage(e.target.value)}
+    placeholder="https://res.cloudinary.com/.../blog-cover.webp"
+    className="w-full p-3 bg-zinc-900 border border-zinc-700 rounded"
+  />
+
+  {coverImage && (
+    <img
+      src={coverImage}
+      alt="Cover Preview"
+      className="mt-3 h-32 rounded"
+    />
+  )}
+</div>
+
 
       {/* EDITOR */}
       <Editor
