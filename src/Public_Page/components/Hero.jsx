@@ -138,26 +138,28 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import ContactModal from "../Navbar/ContactModal";
 
+
 const slides = [
   {
     image: "/hero_img/hero3.webp",
     title: "Marketing Automation",
-    desc: "AI-powered automation systems that capture, nurture, and convert leads automatically.",
+    desc: "AI-powered marketing automation that captures, nurtures and converts leads automatically. Smart workflows, follow-ups and campaigns designed to maximize ROI through digital marketing.",
     label: "MARKETING AUTOMATION",
   },
   {
     image: "/hero_img/hero1.webp",
     title: "AI-Powered Digital Growth",
-    desc: "High-quality leads with smart AI strategies that actually convert.",
-    label: "AI Marketing",
+    desc: "AI-driven digital marketing strategies combining SEO, paid ads and analytics to deliver high-quality leads and scalable business growth.",
+    label: "AI DIGITAL MARKETING",
   },
   {
     image: "/hero_img/hero2.webp",
     title: "High-Performance Websites",
-    desc: "Fast, SEO-optimized sites built to scale your real estate business.",
-    label: "Web Development",
+    desc: "Fast, SEO-optimized and conversion-focused website development that boosts visibility, engagement and lead generation.",
+    label: "WEBSITE DEVELOPMENT",
   },
 ];
+
 
 const services = [
   "AI Chatbot Development",
@@ -242,7 +244,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/50" />
 
       {/* Content - yeh dono jagah change hoga */}
-      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 h-full flex flex-col justify-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-5 pt-7 sm:px-6 h-full flex flex-col justify-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
