@@ -99,15 +99,10 @@ export default function FAQEnquiryForm() {
               <span className="w-12 h-12 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
                 ✉️
               </span>
-              <p>info@brandnatic.com</p>
+              <p>support@brandnatic.com</p>
             </div>
 
-            <div className="flex gap-4">
-              <span className="w-12 h-12 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
-                📞
-              </span>
-              <p>+91 84334 99574</p>
-            </div>
+            
           </div>
         </div>
 

@@ -35,7 +35,7 @@ function Footer() {
             className="space-y-6"
           >
             <img
-              src="/logo/brandnatic_logo.png"
+              src="/images/brandnatic_logo.webp"
               alt="Brandnatic Logo"
               className="h-12"
             />
