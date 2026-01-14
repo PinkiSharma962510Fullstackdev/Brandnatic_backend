@@ -486,7 +486,7 @@ function Blogs() {
               onClick={() =>
                 setVisibleCount((prev) => prev + LOAD_MORE_COUNT)
               }
-              className="px-10 py-3 rounded-xl font-semibold bg-blue-600 hover:bg-blue-700"
+              className="px-10 mb-6 py-3 rounded-xl font-semibold bg-blue-600 hover:bg-blue-700"
             >
               Load More Blogs
             </button>
