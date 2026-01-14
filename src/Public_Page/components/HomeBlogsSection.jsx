@@ -274,7 +274,7 @@ function HomeBlogsSection() {
     const timer = setTimeout(async () => {
       try {
         // backend already limit kar raha hai
-        const res = await api.get("/blogs/public?limit=3");
+        const res = await api.get("/blogs/public/home"); 
         setBlogs(res.data);
       } catch (err) {
         console.error("Failed to fetch blogs", err);
