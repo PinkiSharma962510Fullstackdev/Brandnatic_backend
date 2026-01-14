@@ -202,14 +202,18 @@ function Navbar() {
 
             {/* ================= MOBILE TOGGLE ================= */}
             <button
-              onClick={() => {
-                setMobileOpen(!mobileOpen);
-                setActiveMobileSubmenu(null);
-              }}
-              className="lg:hidden"
-            >
-              {mobileOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
+  onClick={() => {
+    setMobileOpen(!mobileOpen);
+    setActiveMobileSubmenu(null);
+  }}
+  className="lg:hidden"
+  aria-label={mobileOpen ? "Close mobile menu" : "Open mobile menu"}
+  aria-expanded={mobileOpen}
+  aria-controls="mobile-navigation"
+>
+  {mobileOpen ? <X size={28} /> : <Menu size={28} />}
+</button>
+
           </nav>
         </div>
 
