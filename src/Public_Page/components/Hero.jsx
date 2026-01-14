@@ -233,10 +233,10 @@ export default function Hero() {
       </div>
 
       {/* Mobile ke liye fixed background (first image) */}
-      <div
+      {/* <div
         className="absolute inset-0 bg-cover bg-center hidden md:block"
-        style={{ backgroundImage: `url(${current.image})` }} // ← yeh sirf desktop pe change hoga
-      />
+        style={{ backgroundImage: `url(${current.image})` }} // 
+      /> */}
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/50" />
