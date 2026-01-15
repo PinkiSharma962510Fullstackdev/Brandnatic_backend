@@ -191,6 +191,9 @@ function BlogDetails() {
             />
             
                               {/* INLINE FAQ ACCORDION */}
+            <h2 className="text-2xl font-bold mb-6 text-[#00AAD8]">
+      Frequently Asked Questions
+    </h2>                    
           {blog.faqs?.length > 0 && (
             <div className="mt-10 space-y-4">
               {blog.faqs.map((faq, index) => (
