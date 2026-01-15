@@ -52,6 +52,7 @@ import VerifyEmail from "./Public_Page/Pages/VerifyEmail.jsx";
 import Portfolio from "./Public_Page/Pages/Portfolio.jsx";
 import ScrollToTop from "./Public_Page/ScrollToTop.jsx";
 import RedirectOldBlog from "./RedirectOldBlog.jsx";
+import RedirectOldService from "./RedirectOldService.jsx";
 
 
 
