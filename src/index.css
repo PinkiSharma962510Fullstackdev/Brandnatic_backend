@@ -40,3 +40,12 @@ body {
   -ms-overflow-style: none; /* IE / Edge */
   scrollbar-width: none; /* Firefox */
 }
+/* 6️⃣ BLOG CONTENT LINK STYLE (FRONTEND FIX) */
+.blog-content a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.blog-content a:hover {
+  text-decoration: underline;
+}
