@@ -245,6 +245,19 @@ const res = await api.post("/blogs", {
     // `,
    
 content_style: `
+  /* 🔗 LINK STYLE FIX (NO BLUE, NO UNDERLINE) */
+  a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: inherit;
+    cursor: pointer;
+  }
+
+  a:hover {
+    text-decoration: underline; /* optional, premium UX */
+  }
+
+  /* 🟦 HIGHLIGHT BOX */
   .highlight-box {
     background: #0f172a;
     border-left: 4px solid #3b82f6;
@@ -252,12 +265,14 @@ content_style: `
     margin: 16px 0;
   }
 
+  /* 📝 NOTE BOX */
   .note {
     background: #020617;
     border: 1px solid #334155;
     padding: 12px;
   }
 `
+
 ,
 
     /* ================= COLORS (PRO BLOGS) ================= */
