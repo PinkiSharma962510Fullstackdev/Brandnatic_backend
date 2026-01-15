@@ -189,6 +189,15 @@ function BlogDetails() {
               itemProp="articleBody"
               dangerouslySetInnerHTML={{ __html: blog.contentHTML }}
             />
+            
+                              {/* INLINE FAQ ACCORDION */}
+          {blog.faqs?.length > 0 && (
+            <div className="mt-10 space-y-4">
+              {blog.faqs.map((faq, index) => (
+                <BlogFAQ key={index} faq={faq} />
+              ))}
+            </div>
+          )}
 
             {/* ================= COMMENTS ================= */}
             <div className="mt-20">
@@ -198,19 +207,13 @@ function BlogDetails() {
                   setRefreshComments((p) => !p)
                 }
               />
+
               <CommentList
                 blogId={blog._id}
                 refresh={refreshComments}
               />
             </div>
-                          {/* INLINE FAQ ACCORDION */}
-          {blog.faqs?.length > 0 && (
-            <div className="mt-10 space-y-4">
-              {blog.faqs.map((faq, index) => (
-                <BlogFAQ key={index} faq={faq} />
-              ))}
-            </div>
-          )}
+          
 
                     </article>
          
@@ -277,51 +280,51 @@ function BlogDetails() {
               </AnimatePresence>
             </div> */}
 
-            <div className="space-y-4">
-  <AnimatePresence>
-    {visibleBlogs.map((post) => (
-      <motion.div
-        key={post._id}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        <Link
-          to={`/blogs/${post.slug}`}
-          className="
-            group flex gap-4 p-3 rounded-xl
-            bg-zinc-900 hover:bg-zinc-800
-            border border-zinc-800 hover:border-blue-500/40
-            transition
-          "
-        >
-          {/* ✅ COVER IMAGE */}
-          <div className="w-20 h-20 rounded-lg overflow-hidden bg-zinc-800 flex-shrink-0">
-            <img
-              src={post.coverImage || "/images/blog-placeholder.webp"}
-              alt={post.title}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              loading="lazy"
-              onError={(e) => {
-                e.currentTarget.src = "/images/blog-placeholder.webp";
-              }}
-            />
-          </div>
+                            <div className="space-y-4">
+                  <AnimatePresence>
+                    {visibleBlogs.map((post) => (
+                      <motion.div
+                        key={post._id}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                      >
+                        <Link
+                          to={`/blogs/${post.slug}`}
+                          className="
+                            group flex gap-4 p-3 rounded-xl
+                            bg-zinc-900 hover:bg-zinc-800
+                            border border-zinc-800 hover:border-blue-500/40
+                            transition
+                          "
+                        >
+                          {/* ✅ COVER IMAGE */}
+                          <div className="w-20 h-20 rounded-lg overflow-hidden bg-zinc-800 flex-shrink-0">
+                            <img
+                              src={post.coverImage || "/images/blog-placeholder.webp"}
+                              alt={post.title}
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                              loading="lazy"
+                              onError={(e) => {
+                                e.currentTarget.src = "/images/blog-placeholder.webp";
+                              }}
+                            />
+                          </div>
 
-          {/* ✅ CONTENT */}
-          <div className="flex flex-col justify-between">
-            <p className="text-sm font-medium line-clamp-2 leading-snug">
-              {post.title}
-            </p>
+                          {/* ✅ CONTENT */}
+                          <div className="flex flex-col justify-between">
+                            <p className="text-sm font-medium line-clamp-2 leading-snug">
+                              {post.title}
+                            </p>
 
-            <p className="text-xs text-gray-500 mt-1">
-              {new Date(post.createdAt).toLocaleDateString("en-IN")}
-            </p>
-          </div>
-        </Link>
-      </motion.div>
-    ))}
-  </AnimatePresence>
-</div>
+                            <p className="text-xs text-gray-500 mt-1">
+                              {new Date(post.createdAt).toLocaleDateString("en-IN")}
+                            </p>
+                          </div>
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+                </div>
 
 
             {/* LOAD MORE */}
