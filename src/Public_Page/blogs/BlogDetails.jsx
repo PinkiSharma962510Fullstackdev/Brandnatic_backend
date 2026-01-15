@@ -92,7 +92,7 @@ function BlogDetails() {
   {/* ===== CANONICAL ===== */}
   <link
     rel="canonical"
-    href={`https://brandnatic.com/blog/${blog.slug}`}
+    href={`https://brandnatic.com/blogs/${blog.slug}`}
   />
 
   {/* ===== OPEN GRAPH ===== */}
@@ -190,6 +190,45 @@ function BlogDetails() {
               />
             </div>
           </article>
+          {/* ================= FAQs (VISIBLE) ================= */}
+{blog.faqs?.length > 0 && (
+  <section className="mt-16" itemScope itemType="https://schema.org/FAQPage">
+    <h2 className="text-2xl font-bold mb-6">
+      Frequently Asked Questions
+    </h2>
+
+    <div className="space-y-4">
+      {blog.faqs.map((faq, index) => (
+        <div
+          key={index}
+          className="bg-zinc-900 border border-zinc-800 rounded-xl p-5"
+          itemScope
+          itemProp="mainEntity"
+          itemType="https://schema.org/Question"
+        >
+          <h3
+            className="font-semibold mb-2"
+            itemProp="name"
+          >
+            {faq.question}
+          </h3>
+
+          <p
+            className="text-gray-400 text-sm"
+            itemProp="acceptedAnswer"
+            itemScope
+            itemType="https://schema.org/Answer"
+          >
+            <span itemProp="text">
+              {faq.answer}
+            </span>
+          </p>
+        </div>
+      ))}
+    </div>
+  </section>
+)}
+
 
           {/* ================= RIGHT: RECENT BLOGS ================= */}
           <aside className="space-y-8 sticky top-28 h-fit">
@@ -260,7 +299,7 @@ function BlogDetails() {
         animate={{ opacity: 1, y: 0 }}
       >
         <Link
-          to={`/blog/${post.slug}`}
+          to={`/blogs/${post.slug}`}
           className="
             group flex gap-4 p-3 rounded-xl
             bg-zinc-900 hover:bg-zinc-800
