@@ -185,7 +185,7 @@ const res = await api.post("/blogs", {
 
 
       {/* EDITOR */}
-     <Editor
+<Editor
   apiKey="yyckg30efa9r16ib5pnyfnh0tqlojzdo9iwpsrdrjjdtutl3"
   value={content}
   onEditorChange={(val) => setContent(val)}
@@ -197,6 +197,10 @@ const res = await api.post("/blogs", {
     content_css: "dark",
 
     menubar: "file edit view insert format tools table",
+
+    table_toolbar:
+  "tableprops tablecellprops | tableinsertrowbefore tableinsertrowafter | tableinsertcolbefore tableinsertcolafter",
+
 
     /* ================= STRUCTURE (BACKEND SAFE) ================= */
     block_formats:
@@ -213,11 +217,12 @@ const res = await api.post("/blogs", {
       charmap emoticons
       anchor searchreplace visualblocks
       insertdatetime
+       formatpainter
     `,
 
     /* ================= TOOLBAR (EXTRA PRO) ================= */
     toolbar: `
-      undo redo | blocks |
+       undo redo | formatpainter | blocks |
       bold italic underline strikethrough |
       forecolor backcolor |
       alignleft aligncenter alignright alignjustify |
@@ -227,6 +232,46 @@ const res = await api.post("/blogs", {
       charmap emoticons |
       code preview fullscreen
     `,
+     /* ADD IT EXACTLY HERE */
+    // content_style: `
+    //   a {
+    //     color: #3b82f6;        /* blue link */
+    //     text-decoration: none; /* no underline */
+    //     font-weight: 500;
+    //   }
+    //   a:hover {
+    //     text-decoration: underline;
+    //   }
+    // `,
+    content_style: `
+  body {
+    font-family: Inter, system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+  }
+
+  a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  table, th, td {
+    border: 1px solid #444;
+  }
+
+  th, td {
+    padding: 10px;
+  }
+`,
 
     /* ================= COLORS (PRO BLOGS) ================= */
     color_map: [
@@ -265,6 +310,8 @@ const res = await api.post("/blogs", {
         reader.onload = () => resolve(reader.result);
         reader.readAsDataURL(blobInfo.blob());
       }),
+
+      
 
     /* ================= SECURITY / CLEAN ================= */
     paste_as_text: false,
