@@ -14,6 +14,7 @@ import ContactModal from "../Navbar/ContactModal";
 import api from "../utils/api";
 import "../../styles/blog-content.css";
 import { Helmet } from "react-helmet-async";
+import { BlogFAQ } from "./BlogFAQ";
 
 function BlogDetails() {
   const { slug } = useParams();
@@ -153,6 +154,19 @@ function BlogDetails() {
             itemScope
             itemType="https://schema.org/Article"
           >
+             {/* ===== ARTICLE META (SEO) ===== */}
+  <meta itemProp="author" content="Brandnatic" />
+  <meta itemProp="publisher" content="Brandnatic" />
+  <meta
+    itemProp="dateModified"
+    content={new Date(
+      blog.updatedAt || blog.createdAt
+    ).toISOString()}
+  />
+  <meta
+    itemProp="mainEntityOfPage"
+    content={`https://brandnatic.com/blogs/${blog.slug}`}
+  />
             {/* TITLE */}
             <motion.h1
               itemProp="headline"
@@ -189,45 +203,18 @@ function BlogDetails() {
                 refresh={refreshComments}
               />
             </div>
-          </article>
-          {/* ================= FAQs (VISIBLE) ================= */}
-{blog.faqs?.length > 0 && (
-  <section className="mt-16" itemScope itemType="https://schema.org/FAQPage">
-    <h2 className="text-2xl font-bold mb-6">
-      Frequently Asked Questions
-    </h2>
+                          {/* INLINE FAQ ACCORDION */}
+          {blog.faqs?.length > 0 && (
+            <div className="mt-10 space-y-4">
+              {blog.faqs.map((faq, index) => (
+                <BlogFAQ key={index} faq={faq} />
+              ))}
+            </div>
+          )}
 
-    <div className="space-y-4">
-      {blog.faqs.map((faq, index) => (
-        <div
-          key={index}
-          className="bg-zinc-900 border border-zinc-800 rounded-xl p-5"
-          itemScope
-          itemProp="mainEntity"
-          itemType="https://schema.org/Question"
-        >
-          <h3
-            className="font-semibold mb-2"
-            itemProp="name"
-          >
-            {faq.question}
-          </h3>
+                    </article>
+         
 
-          <p
-            className="text-gray-400 text-sm"
-            itemProp="acceptedAnswer"
-            itemScope
-            itemType="https://schema.org/Answer"
-          >
-            <span itemProp="text">
-              {faq.answer}
-            </span>
-          </p>
-        </div>
-      ))}
-    </div>
-  </section>
-)}
 
 
           {/* ================= RIGHT: RECENT BLOGS ================= */}
