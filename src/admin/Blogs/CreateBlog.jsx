@@ -217,12 +217,12 @@ const res = await api.post("/blogs", {
       charmap emoticons
       anchor searchreplace visualblocks
       insertdatetime
-       formatpainter
+     
     `,
 
     /* ================= TOOLBAR (EXTRA PRO) ================= */
     toolbar: `
-       undo redo | formatpainter | blocks |
+       undo redo| blocks |
       bold italic underline strikethrough |
       forecolor backcolor |
       alignleft aligncenter alignright alignjustify |
@@ -243,35 +243,22 @@ const res = await api.post("/blogs", {
     //     text-decoration: underline;
     //   }
     // `,
-    content_style: `
-  body {
-    font-family: Inter, system-ui, -apple-system, sans-serif;
-    font-size: 16px;
+   
+content_style: `
+  .highlight-box {
+    background: #0f172a;
+    border-left: 4px solid #3b82f6;
+    padding: 16px;
+    margin: 16px 0;
   }
 
-  a {
-    color: #3b82f6;
-    text-decoration: none;
-    font-weight: 500;
+  .note {
+    background: #020617;
+    border: 1px solid #334155;
+    padding: 12px;
   }
-
-  a:hover {
-    text-decoration: underline;
-  }
-
-  table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-
-  table, th, td {
-    border: 1px solid #444;
-  }
-
-  th, td {
-    padding: 10px;
-  }
-`,
+`
+,
 
     /* ================= COLORS (PRO BLOGS) ================= */
     color_map: [
