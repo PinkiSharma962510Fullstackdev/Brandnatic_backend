@@ -103,7 +103,10 @@ function App() {
         <Route path="/lead-generation" element={<LeadGeneration />} />
         <Route path="/website-design-development" element={<WebsiteDesignDevelopment />} />
         <Route path="/mobile-app-development" element={<MobileAppDevelopment />} />
-         <Route path="/portfolio" element={<Portfolio />} />
+         {/* OLD WORDPRESS SERVICE REDIRECT */}
+        <Route path="/service/:slug" element={<RedirectOldService />} />
+
+         
        
         
 
@@ -112,7 +115,7 @@ function App() {
         <Route path="/testimonials" element={<Testimonials />} />
         </Route>
 
-        
+        <Route path="/portfolio" element={<Portfolio />} />
 
 
         {/* ================= ADMIN LOGIN ================= */}
