@@ -51,6 +51,7 @@ import CustomCursor from "./Public_Page/components/CustomCursor.jsx";
 import VerifyEmail from "./Public_Page/Pages/VerifyEmail.jsx";
 import Portfolio from "./Public_Page/Pages/Portfolio.jsx";
 import ScrollToTop from "./Public_Page/ScrollToTop.jsx";
+import RedirectOldBlog from "./RedirectOldBlog.jsx";
 
 
 
@@ -61,7 +62,7 @@ function App() {
     <>
     
     <BrowserRouter>
-   \
+   
     <ScrollToTop />
 
       {/*  GLOBAL UI COMPONENT */}
@@ -77,11 +78,18 @@ function App() {
             </GlobalSearchProvider>
           }
         >
-          <Route path="/" element={<Home />} />
-          <Route path="/blogs" element={<Blogs />} />
+
+          
          
           <Route path="/blogs/:slug" element={<BlogDetails />} />
+          
+          {/* UNIVERSAL OLD WP BLOG REDIRECT */}
+          <Route path="/:slug" element={<RedirectOldBlog />} />
+
+          <Route path="/blogs" element={<Blogs />} />
           <Route path="/verify-email/:token" element={<VerifyEmail />} />
+          <Route path="/" element={<Home />} />
+          
 
 
            {/* SERVICES */}
