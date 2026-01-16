@@ -138,9 +138,9 @@ const ExploreOurPurpose = () => {
     "w-full rounded-xl bg-gradient-to-b from-[#1a2538] to-[#0f172a] border border-white/10 px-4 py-3 text-white placeholder:text-gray-400 shadow-inner shadow-black/40 focus:outline-none focus:ring-2 focus:ring-cyan-500";
 
   return (
-    <section ref={ref} className="relative w-full h-screen overflow-hidden">
+    <section ref={ref} className="relative w-full min-h-fit overflow-hidden">
       {/* ================= STICKY BACKGROUND ================= */}
-      <div className="sticky top-0 h-screen w-full bg-gray-900">
+      <div className="absolute inset-0 w-full h-full bg-gray-900">
         <img
           src="/images/images_bg.webp"
           alt="AI Powered Real Estate Marketing Background"
@@ -153,10 +153,17 @@ const ExploreOurPurpose = () => {
       </div>
 
       {/* ================= CONTENT ================= */}
-      <div className="absolute inset-0 z-10 flex">
+      <div className="relative z-10 flex min-h-fit">
         <div className="hidden lg:block lg:w-2/3" />
 
-        <div className="w-full lg:w-1/3 h-full bg-white/90 backdrop-blur-xl overflow-y-auto">
+        <div
+  className="
+    w-full lg:w-1/3
+    bg-white/90
+    backdrop-blur-xl
+    overflow-visible
+  "
+>
           <motion.div
             style={{ y, opacity }}
             initial={isMobile ? false : undefined}
