@@ -1851,42 +1851,23 @@ import { motion } from "framer-motion";
 import api from "../utils/api";
 
 /* =========================
-   BRANDNATIC SERVICES
+   BRANDNATIC SERVICES (UI FILTER)
 ========================= */
 const SERVICES = [
-  "Digital Marketing",
   "SEO Marketing",
   "AI Automation",
+  "Web Development",
   "Performance Marketing",
   "Lead Generation",
-  "Web Development",
   "Software Development",
 ];
-
-/* =========================
-   CATEGORY NORMALIZATION
-========================= */
-function normalizeCategory(raw) {
-  if (!raw) return "Digital Marketing";
-  const c = raw.toLowerCase();
-
-  if (c.includes("seo")) return "SEO Marketing";
-  if (c.includes("ai") || c.includes("automation")) return "AI Automation";
-  if (c.includes("ppc") || c.includes("ads")) return "Performance Marketing";
-  if (c.includes("lead")) return "Lead Generation";
-  if (c.includes("web")) return "Web Development";
-  if (c.includes("software") || c.includes("saas"))
-    return "Software Development";
-
-  return "Digital Marketing";
-}
 
 function Blogs() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const [search, setSearch] = useState("");
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [activeService, setActiveService] = useState(null);
 
   const INITIAL_COUNT = 6;
   const LOAD_MORE_COUNT = 6;
@@ -1899,7 +1880,8 @@ function Blogs() {
   }, []);
 
   /* =========================
-     FILTERED BLOGS
+     FILTERED BLOGS (HONEST FILTER)
+     👉 only search-based for now
   ========================= */
   const filteredBlogs = useMemo(() => {
     return blogs.filter((blog) => {
@@ -1909,14 +1891,15 @@ function Blogs() {
           .toLowerCase();
 
       const matchesSearch = text.includes(search.toLowerCase());
-      const blogCategory = normalizeCategory(blog.category);
 
-      const matchesCategory =
-        activeCategory === "All" || blogCategory === activeCategory;
+      // TEMP service hint (soft match)
+      const matchesService = activeService
+        ? text.includes(activeService.split(" ")[0].toLowerCase())
+        : true;
 
-      return matchesSearch && matchesCategory;
+      return matchesSearch && matchesService;
     });
-  }, [blogs, search, activeCategory]);
+  }, [blogs, search, activeService]);
 
   const visibleBlogs = filteredBlogs.slice(0, visibleCount);
 
@@ -1929,109 +1912,85 @@ function Blogs() {
   }
 
   return (
-    <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white min-h-screen pt-28 pb-20 px-5 md:px-8">
+    <div className="bg-black text-white min-h-screen pt-28 pb-20 px-5 md:px-8">
       <div className="max-w-7xl mx-auto">
 
-        {/* ================= SEARCH + SERVICES ================= */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="grid md:grid-cols-[1fr_280px] gap-14 mb-20"
-        >
+        {/* ================= SEARCH ================= */}
+        <div className="mb-10">
+          <div className="relative max-w-3xl">
+            <input
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value);
+                setVisibleCount(INITIAL_COUNT);
+              }}
+              placeholder="Search blogs, SEO, AI, automation…"
+              className="
+                w-full px-6 py-4 rounded-full
+                bg-zinc-900 border border-zinc-700
+                text-white placeholder-zinc-400
+                focus:outline-none focus:border-cyan-400
+                focus:shadow-[0_0_25px_rgba(34,211,238,0.35)]
+                transition
+              "
+            />
 
-          {/* 🔍 SEARCH */}
-          <div>
-            <h3 className="text-xl font-semibold mb-5">Search</h3>
-
-            <div className="relative group">
-              <div className="
-                absolute -inset-0.5 rounded-full
-                bg-gradient-to-r from-cyan-500 via-blue-500 to-pink-500
-                opacity-30 blur
-                group-focus-within:opacity-70
-                transition duration-500
-                animate-gradient
-              " />
-
-              <div className="
-                relative flex items-center
-                bg-zinc-950 border border-zinc-700
-                rounded-full overflow-hidden
-              ">
-                <input
-                  value={search}
-                  onChange={(e) => {
-                    setSearch(e.target.value);
-                    setVisibleCount(INITIAL_COUNT);
-                  }}
-                  placeholder="Search blogs, SEO, AI, automation…"
-                  className="
-                    w-full px-6 py-4 bg-transparent
-                    text-white placeholder-zinc-400
-                    focus:outline-none
-                  "
-                />
-
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="
-                    mr-2 h-11 w-11
-                    flex items-center justify-center
-                    rounded-full
-                    bg-gradient-to-r from-pink-500 to-rose-500
-                    shadow-lg shadow-pink-500/40
-                  "
-                >
-                  🔍
-                </motion.div>
-              </div>
+            {/* Brandnatic color icon */}
+            <div className="
+              absolute right-2 top-1/2 -translate-y-1/2
+              h-10 w-10 rounded-full
+              flex items-center justify-center
+              bg-gradient-to-r from-cyan-400 to-blue-500
+              shadow-lg shadow-cyan-500/30
+            ">
+              🔍
             </div>
           </div>
+        </div>
 
-          {/* 🗂 SERVICES */}
-          <div>
-            <h3 className="text-xl font-semibold mb-5">Services</h3>
+        {/* ================= SERVICES ROW ================= */}
+        <div className="mb-14">
+          <div className="flex flex-wrap gap-3">
+            <button
+              onClick={() => setActiveService(null)}
+              className={`
+                px-5 py-2 rounded-full text-sm font-semibold
+                border transition
+                ${!activeService
+                  ? "bg-cyan-500 text-black border-cyan-400"
+                  : "border-zinc-700 text-zinc-300 hover:border-cyan-400"
+                }
+              `}
+            >
+              All
+            </button>
 
-            <ul className="space-y-4">
-              <li
+            {SERVICES.map((service) => (
+              <button
+                key={service}
                 onClick={() => {
-                  setActiveCategory("All");
+                  setActiveService(service);
                   setVisibleCount(INITIAL_COUNT);
                 }}
-                className={`cursor-pointer transition ${
-                  activeCategory === "All"
-                    ? "text-cyan-400 font-semibold"
-                    : "text-zinc-400 hover:text-white"
-                }`}
+                className={`
+                  px-5 py-2 rounded-full text-sm font-semibold
+                  border transition
+                  ${activeService === service
+                    ? "bg-cyan-500 text-black border-cyan-400"
+                    : "border-zinc-700 text-zinc-300 hover:border-cyan-400"
+                  }
+                `}
               >
-                All Services
-              </li>
-
-              {SERVICES.map((service) => (
-                <li
-                  key={service}
-                  onClick={() => {
-                    setActiveCategory(service);
-                    setVisibleCount(INITIAL_COUNT);
-                  }}
-                  className={`cursor-pointer transition ${
-                    activeCategory === service
-                      ? "text-cyan-400 font-semibold"
-                      : "text-zinc-400 hover:text-white"
-                  }`}
-                >
-                  {service}
-                </li>
-              ))}
-            </ul>
+                {service}
+              </button>
+            ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* ================= BLOG GRID ================= */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {visibleBlogs.length === 0 && (
-            <div className="col-span-full text-center text-zinc-400 py-24">
+            <div className="col-span-full text-center text-zinc-400 py-20">
               No blogs found.
             </div>
           )}
@@ -2039,34 +1998,27 @@ function Blogs() {
           {visibleBlogs.map((blog, i) => (
             <motion.article
               key={blog._id}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05 }}
-              whileHover={{ y: -8, scale: 1.03 }}
+              whileHover={{ y: -6 }}
               className="
-                group bg-zinc-900/60 backdrop-blur-xl
-                border border-zinc-800 rounded-2xl overflow-hidden
-                hover:border-cyan-400/40
-                hover:shadow-[0_0_40px_rgba(34,211,238,0.15)]
+                bg-zinc-900 border border-zinc-800
+                rounded-2xl overflow-hidden
+                hover:border-cyan-400/50
+                transition
               "
             >
               {blog.coverImage && (
-                <div className="relative overflow-hidden">
-                  <img
-                    src={blog.coverImage}
-                    alt={blog.title}
-                    className="
-                      w-full aspect-[16/9] object-cover
-                      transition-transform duration-700
-                      group-hover:scale-110
-                    "
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                </div>
+                <img
+                  src={blog.coverImage}
+                  alt={blog.title}
+                  className="w-full aspect-[16/9] object-cover"
+                />
               )}
 
               <div className="p-6 flex flex-col">
-                <h2 className="text-xl font-bold mb-3 line-clamp-2 group-hover:text-cyan-400 transition">
+                <h2 className="text-lg font-bold mb-3 line-clamp-2">
                   {blog.title}
                 </h2>
 
@@ -2079,7 +2031,7 @@ function Blogs() {
 
                 <Link
                   to={`/blogs/${blog.slug}`}
-                  className="mt-auto text-cyan-400 font-semibold inline-flex items-center gap-2 group-hover:gap-3 transition-all"
+                  className="mt-auto text-cyan-400 font-semibold"
                 >
                   Read More →
                 </Link>
@@ -2090,24 +2042,19 @@ function Blogs() {
 
         {/* LOAD MORE */}
         {visibleCount < filteredBlogs.length && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="mt-20 text-center"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+          <div className="mt-16 text-center">
+            <button
               onClick={() => setVisibleCount((p) => p + LOAD_MORE_COUNT)}
               className="
-                px-12 py-4 rounded-full font-bold text-lg
-                bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600
-                shadow-lg shadow-cyan-500/25
+                px-10 py-3 rounded-full font-semibold
+                bg-gradient-to-r from-cyan-500 to-blue-500
+                text-black
+                hover:scale-105 transition
               "
             >
               Load More Blogs
-            </motion.button>
-          </motion.div>
+            </button>
+          </div>
         )}
       </div>
     </div>
