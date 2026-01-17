@@ -67,43 +67,64 @@ function Blogs() {
   }
 
   return (
-    <div className="bg-black text-white min-h-screen pt-28 pb-20 px-5 md:px-8">
+    <div className="bg-black text-white min-h-screen pt-10 pb-20 px-5 md:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* ================= BLOG INTRO ================= */}
-{/* ================= BLOG HERO ================= */}
-<div className="relative mb-14 rounded-3xl overflow-hidden">
-  {/* 🔥 GRADIENT BACKGROUND */}
-  <div className="absolute inset-0 bg-gradient-to-r from-[#00c6ff]/10 via-[#0072ff]/10 to-[#00c6ff]/10 blur-2xl" />
+        
+    {/* ================= BLOG HERO ================= */}
+<div className="relative mb-10 rounded-3xl overflow-hidden">
 
-  <div className="relative px-6 py-12 md:py-14 text-center">
+  {/*  MAIN BACKGROUND GRADIENT */}
+  <div className="absolute inset-0 bg-gradient-to-br
+    from-[#020617]
+    via-[#03111f]
+    to-[#020617]" />
+
+  {/* 🔵 BRANDNATIC GLOW LAYERS */}
+  <div className="absolute -top-24 -left-24 w-96 h-96
+    bg-cyan-500/40 rounded-full blur-3xl" />
+
+  <div className="absolute -bottom-24 -right-24 w-96 h-96
+    bg-blue-500/40 rounded-full blur-3xl" />
+
+  {/* CONTENT */}
+  <div className="relative px-6 py-10 md:py-12 text-center">
+
     {/* BADGE */}
-    <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-4 rounded-full
-      bg-cyan-500/10 border border-cyan-400/30 text-cyan-400 text-xs font-semibold tracking-wider">
-      BRANDNATIC INSIGHTS
+    <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-4
+      rounded-full
+      bg-cyan-500/10
+      border border-cyan-400/30
+      text-cyan-400
+      text-xs font-semibold tracking-wider">
+      BRANDNATIC BLOG
     </div>
 
     {/* TITLE */}
-    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white max-w-4xl mx-auto leading-tight">
-      Growth, AI & Digital Strategy  
-      <span className="block text-transparent bg-clip-text
+    <h1 className="text-3xl md:text-4xl lg:text-5xl
+      font-bold text-white
+      max-w-5xl mx-auto leading-tight">
+      Strategy, AI & Digital Growth
+      <span className="block mt-1 text-transparent bg-clip-text
         bg-gradient-to-r from-cyan-400 to-blue-500">
-        for Modern Businesses
+        Built for Modern Businesses
       </span>
     </h1>
 
-    {/* SUBTEXT */}
-    <p className="mt-5 max-w-4xl mx-auto text-zinc-400 text-base md:text-lg leading-relaxed">
-      Welcome to the Brandnatic Blog — where strategy meets execution. Explore
-      real-world insights, proven systems, and future-ready frameworks across{" "}
-      <span className="text-cyan-400 font-medium">SEO</span>,{" "}
+    {/* DESCRIPTION */}
+    <p className="mt-4 max-w-5xl mx-auto
+      text-zinc-400 text-base md:text-lg leading-relaxed">
+      Welcome to the Brandnatic Blog — your knowledge hub for real-world
+      digital growth. We publish actionable insights on{" "}
+      <span className="text-cyan-400 font-medium">SEO marketing</span>,{" "}
       <span className="text-cyan-400 font-medium">AI automation</span>,{" "}
       <span className="text-cyan-400 font-medium">website development</span>,{" "}
-      performance marketing, and scalable lead generation.
+      performance marketing, and scalable lead generation — designed to help
+      brands rank higher, convert better, and scale faster.
     </p>
 
-    {/* META LINE */}
+    {/* META */}
     <p className="mt-3 text-sm text-zinc-500">
-      Written by practitioners • Built for growth • No fluff, only results
+      Written by growth strategists • Backed by real client results • No fluff
     </p>
   </div>
 </div>
