@@ -177,10 +177,13 @@ function BlogList() {
             {startIndex + index + 1}. {blog.title}
           </h2>
 
-          <p className="text-xs text-zinc-500">
-            Status: {blog.status} · Author:{" "}
-            {blog.author?.name || "Admin"}
+         <p className="text-xs text-zinc-500">
+            Status: {blog.status} · Created by:{" "}
+            {blog.author && blog.author.name
+              ? blog.author.name
+              : "Unknown"}
           </p>
+
 
           <div
             className="text-sm text-zinc-400 line-clamp-3"
