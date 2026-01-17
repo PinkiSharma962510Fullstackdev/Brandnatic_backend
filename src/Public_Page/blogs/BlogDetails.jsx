@@ -8,6 +8,7 @@ import { useParams, Link } from "react-router-dom";
 import { useEffect, useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+
 import CommentForm from "./CommentForm";
 import CommentList from "./CommentList";
 import ContactModal from "../Navbar/ContactModal";
@@ -15,6 +16,10 @@ import api from "../utils/api";
 import "../../styles/blog-content.css";
 import { Helmet } from "react-helmet-async";
 import { BlogFAQ } from "./BlogFAQ";
+import {User} from "lucide-react"
+
+
+
 
 function BlogDetails() {
   const { slug } = useParams();
@@ -177,11 +182,14 @@ function BlogDetails() {
               {blog.title}
             </motion.h1>
             <div className="flex flex-wrap items-center gap-2 text-sm text-zinc-400 mb-6">
+  <div className="flex items-center gap-2 text-sm text-zinc-400 mt-3">
+  <User size={16} className="text-cyan-400" />
   <span>
-    Published by{" "}
-    <span className="text-white font-medium">
+    By <span className="text-white font-medium">
       {blog.author?.name || "Brandnatic Team"}
     </span>
+  </span>
+</div>
   </span>
 
   <span>•</span>

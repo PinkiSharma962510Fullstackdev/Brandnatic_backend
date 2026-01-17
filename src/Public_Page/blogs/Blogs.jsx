@@ -1849,6 +1849,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import api from "../utils/api";
+import { User } from "lucide-react";
 
 /* =========================
    BRANDNATIC SERVICES (UI FILTER)
@@ -2022,11 +2023,14 @@ function Blogs() {
                   {blog.title}
                 </h2>
                 <p className="text-xs text-zinc-400 mb-2">
-  By{" "}
-  <span className="text-zinc-200 font-medium">
-    {blog.author?.name || "Brandnatic Team"}
+ <div className="flex items-center gap-2 text-sm text-zinc-400 mt-3">
+  <User size={16} className="text-cyan-400" />
+  <span>
+    By <span className="text-white font-medium">
+      {blog.author?.name || "Brandnatic Team"}
+    </span>
   </span>
-</p>
+</div>
 
 
                 <p className="text-zinc-400 text-sm line-clamp-3 mb-6">
