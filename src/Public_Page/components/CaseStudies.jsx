@@ -35,7 +35,7 @@ export default function CaseStudies() {
   const [contactOpen, setContactOpen] = useState(false);
 
   return (
-    <section className="relative bg-gradient-to-b from-black via-[#05080f] to-black pb-10 pt-24">
+    <section className="relative bg-gradient-to-b from-black via-[#05080f] to-black pb-20 pt-24">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* HEADER */}
