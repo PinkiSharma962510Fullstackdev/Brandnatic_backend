@@ -151,7 +151,7 @@ const Home = () => {
             <ExploreOurPurpose ></ExploreOurPurpose>
            </SectionWrapper>
            
-           <SectionWrapper id="studies" padding="pt-32 pb-40">
+           <SectionWrapper id="studies" padding="pt-10 pb-10">
            <CaseStudies id="case-studies"></CaseStudies>
            </SectionWrapper>
 
