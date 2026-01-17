@@ -1845,16 +1845,15 @@
 // }
 
 // export default Blogs;
-
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import api from "../utils/api";
 
 /* =========================
-   BRANDNATIC SERVICE CATEGORIES
+   BRANDNATIC SERVICES
 ========================= */
-const BRANDNATIC_CATEGORIES = [
+const SERVICES = [
   "Digital Marketing",
   "SEO Marketing",
   "AI Automation",
@@ -1865,51 +1864,21 @@ const BRANDNATIC_CATEGORIES = [
 ];
 
 /* =========================
-   CATEGORY INFERENCE (IMPROVED)
+   CATEGORY NORMALIZATION
 ========================= */
-function inferCategory(blog) {
-  const text = (
-    blog.title +
-    " " +
-    (blog.contentHTML || "")
-  ).toLowerCase();
+function normalizeCategory(raw) {
+  if (!raw) return "Digital Marketing";
+  const c = raw.toLowerCase();
 
-  // Most specific checks first (highest priority)
-  if (text.includes("ppc") || text.includes("pay per click") || 
-      text.includes("google ads") || text.includes("performance marketing") || 
-      text.includes("ads") || text.includes("paid search")) {
-    return "Performance Marketing";
-  }
-  if (text.includes("seo") || text.includes("search engine optimization")) {
-    return "SEO Marketing";
-  }
-  if (text.includes("ai") || text.includes("automation") || 
-      text.includes("artificial intelligence")) {
-    return "AI Automation";
-  }
-  if (text.includes("lead") || text.includes("lead generation")) {
-    return "Lead Generation";
-  }
-  if (text.includes("web") || text.includes("frontend") || 
-      text.includes("react") || text.includes("website")) {
-    return "Web Development";
-  }
-  if (text.includes("software") || text.includes("saas") || 
-      text.includes("application") || text.includes("app development")) {
+  if (c.includes("seo")) return "SEO Marketing";
+  if (c.includes("ai") || c.includes("automation")) return "AI Automation";
+  if (c.includes("ppc") || c.includes("ads")) return "Performance Marketing";
+  if (c.includes("lead")) return "Lead Generation";
+  if (c.includes("web")) return "Web Development";
+  if (c.includes("software") || c.includes("saas"))
     return "Software Development";
-  }
 
   return "Digital Marketing";
-}
-
-function getBlogCategory(blog) {
-  // 1️⃣ real category from backend (preferred)
-  if (blog.category && blog.category !== "Uncategorized" && blog.category.trim() !== "") {
-    return blog.category.trim();
-  }
-
-  // 2️⃣ fallback inference
-  return inferCategory(blog);
 }
 
 function Blogs() {
@@ -1918,7 +1887,6 @@ function Blogs() {
 
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
-  const [showAllCategories, setShowAllCategories] = useState(false);
 
   const INITIAL_COUNT = 6;
   const LOAD_MORE_COUNT = 6;
@@ -1931,21 +1899,6 @@ function Blogs() {
   }, []);
 
   /* =========================
-     CATEGORY COUNTS
-  ========================= */
-  const categories = useMemo(() => {
-    const map = {};
-    BRANDNATIC_CATEGORIES.forEach((c) => (map[c] = 0));
-
-    blogs.forEach((blog) => {
-      const cat = getBlogCategory(blog);
-      map[cat]++;
-    });
-
-    return map;
-  }, [blogs]);
-
-  /* =========================
      FILTERED BLOGS
   ========================= */
   const filteredBlogs = useMemo(() => {
@@ -1956,7 +1909,7 @@ function Blogs() {
           .toLowerCase();
 
       const matchesSearch = text.includes(search.toLowerCase());
-      const blogCategory = getBlogCategory(blog);
+      const blogCategory = normalizeCategory(blog.category);
 
       const matchesCategory =
         activeCategory === "All" || blogCategory === activeCategory;
@@ -1970,7 +1923,7 @@ function Blogs() {
   if (loading) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center text-white">
-        Loading amazing blogs…
+        Loading blogs…
       </div>
     );
   }
@@ -1979,53 +1932,66 @@ function Blogs() {
     <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white min-h-screen pt-28 pb-20 px-5 md:px-8">
       <div className="max-w-7xl mx-auto">
 
-        {/* ================= SEARCH + CATEGORIES ================= */}
+        {/* ================= SEARCH + SERVICES ================= */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="grid md:grid-cols-[1fr_300px] gap-14 mb-20"
+          className="grid md:grid-cols-[1fr_280px] gap-14 mb-20"
         >
 
-          {/* 🔍 SEARCH - Improved gradient style */}
+          {/* 🔍 SEARCH */}
           <div>
             <h3 className="text-xl font-semibold mb-5">Search</h3>
 
-            <div className="
-              relative flex items-center
-              bg-zinc-950 border-2 border-transparent
-              rounded-full
-              bg-gradient-to-r from-cyan-500/30 via-pink-500/20 to-purple-500/30 bg-clip-padding p-[2px]
-              focus-within:ring-2 focus-within:ring-cyan-400/50
-              transition-all duration-300
-            ">
-              <input
-                value={search}
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                  setVisibleCount(INITIAL_COUNT);
-                }}
-                placeholder="Search blogs, SEO, AI, PPC, automation…"
-                className="
-                  w-full px-6 py-4 bg-zinc-950 text-white placeholder-zinc-400
-                  rounded-full focus:outline-none
-                "
-              />
+            <div className="relative group">
               <div className="
-                absolute right-2 h-11 w-11
-                flex items-center justify-center
-                rounded-full
-                bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600
-                shadow-lg shadow-pink-500/40
-                transition-all duration-300
+                absolute -inset-0.5 rounded-full
+                bg-gradient-to-r from-cyan-500 via-blue-500 to-pink-500
+                opacity-30 blur
+                group-focus-within:opacity-70
+                transition duration-500
+                animate-gradient
+              " />
+
+              <div className="
+                relative flex items-center
+                bg-zinc-950 border border-zinc-700
+                rounded-full overflow-hidden
               ">
-                🔍
+                <input
+                  value={search}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                    setVisibleCount(INITIAL_COUNT);
+                  }}
+                  placeholder="Search blogs, SEO, AI, automation…"
+                  className="
+                    w-full px-6 py-4 bg-transparent
+                    text-white placeholder-zinc-400
+                    focus:outline-none
+                  "
+                />
+
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="
+                    mr-2 h-11 w-11
+                    flex items-center justify-center
+                    rounded-full
+                    bg-gradient-to-r from-pink-500 to-rose-500
+                    shadow-lg shadow-pink-500/40
+                  "
+                >
+                  🔍
+                </motion.div>
               </div>
             </div>
           </div>
 
-          {/* 🗂 CATEGORIES */}
+          {/* 🗂 SERVICES */}
           <div>
-            <h3 className="text-xl font-semibold mb-5">Categories</h3>
+            <h3 className="text-xl font-semibold mb-5">Services</h3>
 
             <ul className="space-y-4">
               <li
@@ -2039,38 +2005,26 @@ function Blogs() {
                     : "text-zinc-400 hover:text-white"
                 }`}
               >
-                All ({blogs.length})
+                All Services
               </li>
 
-              {Object.entries(categories)
-                .filter(([, count]) => count > 0)
-                .slice(0, showAllCategories ? undefined : 5)
-                .map(([cat, count]) => (
-                  <li
-                    key={cat}
-                    onClick={() => {
-                      setActiveCategory(cat);
-                      setVisibleCount(INITIAL_COUNT);
-                    }}
-                    className={`cursor-pointer transition ${
-                      activeCategory === cat
-                        ? "text-cyan-400 font-semibold"
-                        : "text-zinc-400 hover:text-white"
-                    }`}
-                  >
-                    {cat} ({count})
-                  </li>
-                ))}
+              {SERVICES.map((service) => (
+                <li
+                  key={service}
+                  onClick={() => {
+                    setActiveCategory(service);
+                    setVisibleCount(INITIAL_COUNT);
+                  }}
+                  className={`cursor-pointer transition ${
+                    activeCategory === service
+                      ? "text-cyan-400 font-semibold"
+                      : "text-zinc-400 hover:text-white"
+                  }`}
+                >
+                  {service}
+                </li>
+              ))}
             </ul>
-
-            {Object.keys(categories).length > 5 && (
-              <button
-                onClick={() => setShowAllCategories(!showAllCategories)}
-                className="mt-6 text-sm font-semibold text-blue-400 hover:text-blue-300"
-              >
-                {showAllCategories ? "Show Less" : "View All Categories →"}
-              </button>
-            )}
           </div>
         </motion.div>
 
@@ -2078,7 +2032,7 @@ function Blogs() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {visibleBlogs.length === 0 && (
             <div className="col-span-full text-center text-zinc-400 py-24">
-              No blogs found for this filter.
+              No blogs found.
             </div>
           )}
 
@@ -2134,7 +2088,7 @@ function Blogs() {
           ))}
         </div>
 
-        {/* LOAD MORE - Modern gradient + shine effect */}
+        {/* LOAD MORE */}
         {visibleCount < filteredBlogs.length && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -2143,20 +2097,15 @@ function Blogs() {
           >
             <motion.button
               whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => setVisibleCount((p) => p + LOAD_MORE_COUNT)}
               className="
-                relative px-12 py-5 rounded-full font-bold text-lg overflow-hidden
-                bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600
-                shadow-2xl shadow-cyan-500/30
-                hover:shadow-cyan-400/60
-                transition-all duration-500
-                before:content-[''] before:absolute before:inset-0
-                before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent
-                before:animate-[shine_2.5s_infinite]
+                px-12 py-4 rounded-full font-bold text-lg
+                bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600
+                shadow-lg shadow-cyan-500/25
               "
             >
-              <span className="relative z-10">Load More Blogs</span>
+              Load More Blogs
             </motion.button>
           </motion.div>
         )}
