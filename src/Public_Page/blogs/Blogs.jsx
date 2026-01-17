@@ -1078,6 +1078,16 @@ function inferCategory(blog) {
 
   return "Digital Marketing";
 }
+function getBlogCategory(blog) {
+  // 1️⃣ real category from backend
+  if (blog.category && blog.category !== "Uncategorized") {
+    return blog.category;
+  }
+
+  // 2️⃣ fallback inference
+  return inferCategory(blog);
+}
+
 
 function Blogs() {
   const [blogs, setBlogs] = useState([]);
@@ -1105,7 +1115,7 @@ function Blogs() {
     BRANDNATIC_CATEGORIES.forEach((c) => (map[c] = 0));
 
     blogs.forEach((blog) => {
-      const cat = inferCategory(blog);
+      const cat = getBlogCategory(blog);
       map[cat]++;
     });
 
@@ -1123,7 +1133,7 @@ function Blogs() {
           .toLowerCase();
 
       const matchesSearch = text.includes(search.toLowerCase());
-      const blogCategory = inferCategory(blog);
+      const blogCategory = getBlogCategory(blog);
 
       const matchesCategory =
         activeCategory === "All" || blogCategory === activeCategory;
