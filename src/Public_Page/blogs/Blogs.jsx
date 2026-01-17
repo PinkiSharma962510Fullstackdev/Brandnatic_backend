@@ -219,24 +219,39 @@ function Blogs() {
               transition={{ delay: i * 0.05 }}
               whileHover={{ y: -6 }}
               className="
-                bg-zinc-900 border border-zinc-800
-                rounded-2xl overflow-hidden
-                hover:border-cyan-400/50
-                transition
+                 group
+  relative
+  bg-zinc-900/80 backdrop-blur
+  border border-zinc-800
+  rounded-2xl overflow-hidden
+  transition-all duration-300
+  hover:border-cyan-400/40
+  hover:shadow-[0_20px_50px_-15px_rgba(34,211,238,0.35)]
               "
             >
               {blog.coverImage && (
-                <img
-                  src={blog.coverImage}
-                  alt={blog.title}
-                  className="w-full aspect-[16/9] object-cover"
-                />
+                <div className="overflow-hidden">
+  <img
+    src={blog.coverImage}
+    alt={blog.title}
+    className="
+      w-full aspect-[16/9] object-cover
+      transition-transform duration-500
+      group-hover:scale-[1.04]
+    "
+  />
+</div>
+
               )}
 
              <div className="p-6 flex flex-col">
-  <h2 className="text-lg font-bold mb-2 line-clamp-2">
-    {blog.title}
-  </h2>
+  <h2 className="
+  text-lg font-bold mb-2 line-clamp-2
+  transition-colors
+  group-hover:text-cyan-400
+">
+  {blog.title}
+</h2>
 
 
 {/* AUTHOR + DATE  */}
