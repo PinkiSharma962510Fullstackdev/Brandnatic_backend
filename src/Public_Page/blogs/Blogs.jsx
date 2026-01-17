@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import api from "../utils/api";
-import { User } from "lucide-react";
+import { User, Calendar } from "lucide-react";
 
 /* =========================
    BRANDNATIC SERVICES (UI FILTER)
@@ -36,7 +36,7 @@ function Blogs() {
 
   /* =========================
      FILTERED BLOGS (HONEST FILTER)
-     👉 only search-based for now
+
   ========================= */
   const filteredBlogs = useMemo(() => {
     return blogs.filter((blog) => {
@@ -239,10 +239,17 @@ function Blogs() {
   </h2>
 
 
- {/* AUTHOR + DATE */}
-<div className="flex items-center gap-4 text-sm text-zinc-400 mb-3">
+{/* AUTHOR + DATE  */}
+<div className="
+  flex items-center gap-4
+  text-sm text-zinc-400
+  bg-zinc-800/40 border border-zinc-700/60
+  rounded-full px-4 py-2 mb-4
+  w-fit
+">
+  {/* AUTHOR */}
   <div className="flex items-center gap-2">
-    <User size={15} className="text-cyan-400" />
+    <User size={14} className="text-cyan-400" />
     <span>
       By{" "}
       <span className="text-white font-medium">
@@ -255,14 +262,18 @@ function Blogs() {
   <span className="text-zinc-600">•</span>
 
   {/* DATE */}
-  <span>
-    {new Date(blog.createdAt).toLocaleDateString("en-IN", {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-    })}
-  </span>
+  <div className="flex items-center gap-2">
+    <Calendar size={14} className="text-cyan-400" />
+    <span>
+      {new Date(blog.createdAt).toLocaleDateString("en-IN", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      })}
+    </span>
+  </div>
 </div>
+
 
 
   <p className="text-zinc-400 text-sm line-clamp-3 mb-6">
