@@ -148,11 +148,16 @@ export default function CaseStudies() {
           <button
             onClick={() => setContactOpen(true)}
             className="
-              px-12  rounded-full
-              bg-[#1AA9F2] text-white font-semibold
-              shadow-[0_20px_60px_rgba(26,169,242,0.45)]
-              hover:scale-105 transition
-            "
+               inline-flex items-center justify-center
+                px-12 py-4
+                 rounded-lg
+                bg-[#1AA9F2] text-black font-semibold
+                shadow-[0_20px_60px_rgba(26,169,242,0.45)]
+                transition-all duration-300 ease-out
+                hover:scale-105
+                hover:shadow-[0_30px_80px_rgba(26,169,242,0.65)]
+                active:scale-100
+                        "
           >
             Book a Strategy Call
           </button>
