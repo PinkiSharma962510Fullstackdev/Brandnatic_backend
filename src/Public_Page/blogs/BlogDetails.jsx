@@ -176,6 +176,25 @@ function BlogDetails() {
             >
               {blog.title}
             </motion.h1>
+            <div className="flex flex-wrap items-center gap-2 text-sm text-zinc-400 mb-6">
+  <span>
+    Published by{" "}
+    <span className="text-white font-medium">
+      {blog.author?.name || "Brandnatic Team"}
+    </span>
+  </span>
+
+  <span>•</span>
+
+  <span>
+    {new Date(blog.createdAt).toLocaleDateString("en-IN", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    })}
+  </span>
+</div>
+
 
             {/* DATE */}
             <div className="text-sm text-gray-400 mb-10">

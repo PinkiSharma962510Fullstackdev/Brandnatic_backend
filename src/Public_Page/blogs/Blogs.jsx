@@ -2021,6 +2021,13 @@ function Blogs() {
                 <h2 className="text-lg font-bold mb-3 line-clamp-2">
                   {blog.title}
                 </h2>
+                <p className="text-xs text-zinc-400 mb-2">
+  By{" "}
+  <span className="text-zinc-200 font-medium">
+    {blog.author?.name || "Brandnatic Team"}
+  </span>
+</p>
+
 
                 <p className="text-zinc-400 text-sm line-clamp-3 mb-6">
                   {(blog.contentHTML || "")

@@ -14,6 +14,7 @@ function CreateBlog() {
   const [seoTitle, setSeoTitle] = useState("");
 const [seoDescription, setSeoDescription] = useState("");
 const [slug, setSlug] = useState("");
+const [service, setService] = useState("");
 
 const [coverImage, setCoverImage] = useState("");
 
@@ -62,13 +63,15 @@ const res = await api.post("/blogs", {
   title,
   slug,
   contentHTML: content,
-  coverImage, // 👈 VERY IMPORTANT
+  coverImage,
+  service, 
   status,
   seoTitle,
   seoDescription,
   faqs: faqs.filter(
     (f) => f.question.trim() && f.answer.trim()
   ),
+  
 });
 
 
@@ -163,6 +166,32 @@ const res = await api.post("/blogs", {
     </p>
   </div>
 </div>
+{/* SERVICE SELECTION */}
+<div className="mb-6">
+  <label className="block text-sm text-zinc-400 mb-1">
+    Blog Service (Very Important)
+  </label>
+
+  <select
+    value={service}
+    onChange={(e) => setService(e.target.value)}
+    className="w-full p-3 bg-zinc-900 border border-zinc-700 rounded"
+    required
+  >
+    <option value="">Select Service</option>
+    <option value="SEO Marketing">SEO Marketing</option>
+    <option value="AI Automation">AI Automation</option>
+    <option value="Web Development">Web Development</option>
+    <option value="Performance Marketing">Performance Marketing</option>
+    <option value="Lead Generation">Lead Generation</option>
+    <option value="Software Development">Software Development</option>
+  </select>
+
+  <p className="text-xs text-zinc-500 mt-1">
+    This decides where the blog appears on the website.
+  </p>
+</div>
+
 {/* COVER IMAGE */}
 <div className="mb-6">
   <label className="block text-sm text-zinc-400 mb-1">

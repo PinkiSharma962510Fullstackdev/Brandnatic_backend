@@ -16,6 +16,7 @@ function EditBlog() {
   const [seoDescription, setSeoDescription] = useState("");
   const [loading, setLoading] = useState(false);
 const [coverImage, setCoverImage] = useState("");
+const [service, setService] = useState("");
   /* ================= FETCH BLOG ================= */
   useEffect(() => {
     const fetchBlog = async () => {
@@ -30,6 +31,7 @@ setStatus(blog.status || "draft");
 setSeoTitle(blog.seoTitle || "");
 setSeoDescription(blog.seoDescription || "");
 setCoverImage(blog.coverImage || "");
+setService(blog.service || "");
 
         setFaqs(
           Array.isArray(blog.faqs) && blog.faqs.length
@@ -138,6 +140,28 @@ setCoverImage(blog.coverImage || "");
           className="w-full p-2 bg-black border border-zinc-700 rounded"
         />
       </div>
+      {/* SERVICE SELECTION */}
+<div className="mb-6">
+  <label className="block text-sm text-zinc-400 mb-1">
+    Blog Service
+  </label>
+
+  <select
+    value={service}
+    onChange={(e) => setService(e.target.value)}
+    className="w-full p-3 bg-zinc-900 border border-zinc-700 rounded"
+    required
+  >
+    <option value="">Select Service</option>
+    <option value="SEO Marketing">SEO Marketing</option>
+    <option value="AI Automation">AI Automation</option>
+    <option value="Web Development">Web Development</option>
+    <option value="Performance Marketing">Performance Marketing</option>
+    <option value="Lead Generation">Lead Generation</option>
+    <option value="Software Development">Software Development</option>
+  </select>
+</div>
+
 
       {/* STATUS */}
       <div className="mb-6">
