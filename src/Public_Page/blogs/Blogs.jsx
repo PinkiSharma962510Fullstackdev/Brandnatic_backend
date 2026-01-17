@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import api from "../utils/api";
+import { User } from "lucide-react";
 
 /* =========================
    BRANDNATIC SERVICES (UI FILTER)
