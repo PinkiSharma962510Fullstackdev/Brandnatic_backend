@@ -70,37 +70,37 @@ function Blogs() {
       <div className="max-w-7xl mx-auto">
 
         {/* ================= SEARCH ================= */}
-        <div className="mb-10">
-          <div className="relative w-full">
-            <input
-              value={search}
-              onChange={(e) => {
-                setSearch(e.target.value);
-                setVisibleCount(INITIAL_COUNT);
-              }}
-              placeholder="Search blogs, SEO, AI, automation…"
-              className="
-                w-full px-6 py-4 rounded-full
-                bg-zinc-900 border border-zinc-700
-                text-white placeholder-zinc-400
-                focus:outline-none focus:border-cyan-400
-                focus:shadow-[0_0_25px_rgba(34,211,238,0.35)]
-                transition
-              "
-            />
+        <div className="mb-10 flex justify-center">
+  <div className="relative w-full max-w-7xl">
+    <input
+      value={search}
+      onChange={(e) => {
+        setSearch(e.target.value);
+        setVisibleCount(INITIAL_COUNT);
+      }}
+      placeholder="Search blogs, SEO, AI, automation…"
+      className="
+        w-full pl-6 pr-16 py-4 rounded-full
+        bg-zinc-900 border border-zinc-700
+        text-white placeholder-zinc-400
+        focus:outline-none focus:border-cyan-400
+        focus:shadow-[0_0_25px_rgba(34,211,238,0.35)]
+        transition
+      "
+    />
 
-            {/* Brandnatic color icon */}
-            <div className="
-              absolute right-2 top-1/2 -translate-y-1/2
-              h-10 w-10 rounded-full
-              flex items-center justify-center
-              bg-gradient-to-r from-cyan-400 to-blue-500
-              shadow-lg shadow-cyan-500/30
-            ">
-              🔍
-            </div>
-          </div>
-        </div>
+    <div className="
+      absolute right-2 top-1/2 -translate-y-1/2
+      h-10 w-10 rounded-full
+      flex items-center justify-center
+      bg-gradient-to-r from-cyan-400 to-blue-500
+      shadow-lg shadow-cyan-500/30
+    ">
+      🔍
+    </div>
+  </div>
+</div>
+
 
         {/* ================= SERVICES ROW ================= */}
         <div className="mb-14">
