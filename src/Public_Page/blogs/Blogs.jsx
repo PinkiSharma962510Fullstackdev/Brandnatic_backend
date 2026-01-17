@@ -889,105 +889,332 @@
 
 // export default Blogs;
 
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
+// import { Link } from "react-router-dom";
+// import api from "../utils/api";
+
+// function Blogs() {
+//   const [blogs, setBlogs] = useState([]);
+//   const [loading, setLoading] = useState(true);
+  
+//   const INITIAL_COUNT = 6;     // slightly more initial cards feel premium
+//   const LOAD_MORE_COUNT = 6;
+//   const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
+
+//   useEffect(() => {
+//     api
+//       .get("/blogs/public")
+//       .then((res) => {
+//         console.log("API RESPONSE LENGTH:", res.data.length);
+//         setBlogs(res.data);
+//       })
+//       .catch((err) => {
+//         console.error("API ERROR:", err);
+//       })
+//       .finally(() => setLoading(false));
+//   }, []);
+
+//   if (loading) {
+//     return (
+//       <div className="bg-black text-white min-h-screen flex items-center justify-center">
+//         <div className="flex flex-col items-center gap-4">
+//           <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+//           <p className="text-lg">Loading amazing blogs…</p>
+//         </div>
+//       </div>
+//     );
+//   }
+
+//   const visibleBlogs = blogs.slice(0, visibleCount);
+
+//   return (
+//     <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white min-h-screen pt-28 pb-20 px-5 md:px-8">
+//       <div className="max-w-7xl mx-auto">
+//         {/* HEADER - more premium typography */}
+//         <div className="mb-16 md:mb-20 text-center">
+//           <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent mb-5">
+//             Our Blogs
+//           </h1>
+//           <p className="text-lg md:text-xl text-zinc-400 max-w-3xl mx-auto font-light">
+//             Insights, strategies & cutting-edge tips on digital marketing, SEO, and explosive web growth.
+//           </p>
+//         </div>
+
+//         {/* BLOG GRID */}
+//         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+//           {visibleBlogs.map((blog) => (
+//             <article
+//               key={blog._id}
+//               className="
+//                 group relative bg-zinc-900/60 backdrop-blur-xl 
+//                 border border-zinc-800/80 rounded-2xl overflow-hidden
+//                 transition-all duration-500 ease-out
+//                 hover:scale-[1.03] hover:shadow-2xl hover:shadow-blue-900/30
+//                 hover:border-blue-500/40
+//               "
+//             >
+//               {/* IMAGE with overlay gradient */}
+//               {blog.coverImage ? (
+//                 <div className="relative aspect-[16/9] overflow-hidden">
+//                   <img
+//                     src={blog.coverImage}
+//                     alt={blog.title}
+//                     className="
+//                       w-full h-full object-cover transition-transform duration-700
+//                       group-hover:scale-110
+//                     "
+//                     loading="lazy"
+//                   />
+//                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+//                 </div>
+//               ) : (
+//                 <div className="aspect-[16/9] bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center">
+//                   <span className="text-zinc-600 text-xl font-bold">No Cover</span>
+//                 </div>
+//               )}
+
+//               {/* CONTENT */}
+//               <div className="p-6 md:p-7 flex flex-col flex-1">
+//                 <h2 className="text-2xl font-bold mb-3 line-clamp-2 group-hover:text-blue-400 transition-colors">
+//                   {blog.title}
+//                 </h2>
+
+//                 <p className="text-xs text-zinc-500 mb-4 tracking-wide">
+//                   {new Date(blog.createdAt).toLocaleDateString("en-IN", {
+//                     year: "numeric",
+//                     month: "long",
+//                     day: "numeric",
+//                   })}
+//                 </p>
+
+//                 <p className="text-zinc-300 text-base leading-relaxed line-clamp-3 mb-6 flex-1">
+//                   {(blog.contentHTML || "")
+//                     .replace(/<[^>]+>/g, "")
+//                     .slice(0, 140)}
+//                   …
+//                 </p>
+
+//                 <Link
+//                   to={`/blogs/${blog.slug}`}
+//                   className="
+//                     mt-auto inline-flex items-center gap-2
+//                     text-blue-400 font-semibold tracking-wide
+//                     hover:text-blue-300 transition-colors duration-300
+//                     group-hover:translate-x-1
+//                   "
+//                 >
+//                   Read More
+//                   <span className="transition-transform group-hover:translate-x-1">→</span>
+//                 </Link>
+//               </div>
+//             </article>
+//           ))}
+//         </div>
+
+//         {/* LOAD MORE - gradient button with pulse */}
+//         {visibleCount < blogs.length && (
+//           <div className="mt-16 md:mt-20 text-center">
+//             <button
+//               onClick={() => setVisibleCount((prev) => prev + LOAD_MORE_COUNT)}
+//               className="
+//                 relative px-10 py-4 rounded-full font-bold text-lg
+//                 bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600
+//                 hover:from-blue-700 hover:via-cyan-600 hover:to-blue-700
+//                 shadow-lg shadow-blue-900/40 hover:shadow-blue-700/60
+//                 transition-all duration-500 transform hover:scale-105
+//                 overflow-hidden
+//               "
+//             >
+//               <span className="relative z-10">Load More Blogs</span>
+//               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
+//             </button>
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default Blogs;
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../utils/api";
 
 function Blogs() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
-  
-  const INITIAL_COUNT = 6;     // slightly more initial cards feel premium
+
+  // 🔍 SEARCH & FILTER STATE
+  const [search, setSearch] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const INITIAL_COUNT = 6;
   const LOAD_MORE_COUNT = 6;
   const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
 
   useEffect(() => {
     api
       .get("/blogs/public")
-      .then((res) => {
-        console.log("API RESPONSE LENGTH:", res.data.length);
-        setBlogs(res.data);
-      })
-      .catch((err) => {
-        console.error("API ERROR:", err);
-      })
+      .then((res) => setBlogs(res.data))
       .finally(() => setLoading(false));
   }, []);
+
+  /* =========================
+     CATEGORY CALCULATION
+  ========================= */
+  const categories = useMemo(() => {
+    const map = {};
+
+    blogs.forEach((blog) => {
+      const cats = Array.isArray(blog.categories)
+        ? blog.categories
+        : blog.category
+        ? [blog.category]
+        : ["Uncategorized"];
+
+      cats.forEach((c) => {
+        map[c] = (map[c] || 0) + 1;
+      });
+    });
+
+    return map;
+  }, [blogs]);
+
+  /* =========================
+     FILTERED BLOGS
+  ========================= */
+  const filteredBlogs = useMemo(() => {
+    return blogs.filter((blog) => {
+      const text =
+        (blog.title + " " + (blog.contentHTML || ""))
+          .replace(/<[^>]+>/g, "")
+          .toLowerCase();
+
+      const matchesSearch = text.includes(search.toLowerCase());
+
+      const blogCategories = Array.isArray(blog.categories)
+        ? blog.categories
+        : blog.category
+        ? [blog.category]
+        : ["Uncategorized"];
+
+      const matchesCategory =
+        activeCategory === "All" ||
+        blogCategories.includes(activeCategory);
+
+      return matchesSearch && matchesCategory;
+    });
+  }, [blogs, search, activeCategory]);
+
+  const visibleBlogs = filteredBlogs.slice(0, visibleCount);
 
   if (loading) {
     return (
       <div className="bg-black text-white min-h-screen flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-          <p className="text-lg">Loading amazing blogs…</p>
-        </div>
+        Loading amazing blogs…
       </div>
     );
   }
 
-  const visibleBlogs = blogs.slice(0, visibleCount);
-
   return (
     <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white min-h-screen pt-28 pb-20 px-5 md:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* HEADER - more premium typography */}
-        <div className="mb-16 md:mb-20 text-center">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent mb-5">
-            Our Blogs
-          </h1>
-          <p className="text-lg md:text-xl text-zinc-400 max-w-3xl mx-auto font-light">
-            Insights, strategies & cutting-edge tips on digital marketing, SEO, and explosive web growth.
-          </p>
+
+        {/* ================= SEARCH + CATEGORIES ================= */}
+        <div className="grid md:grid-cols-[1fr_280px] gap-10 mb-16">
+          
+          {/* SEARCH */}
+          <div>
+            <h3 className="text-lg font-semibold mb-3">Search</h3>
+            <div className="flex">
+              <input
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setVisibleCount(INITIAL_COUNT);
+                }}
+                placeholder="Search blogs..."
+                className="
+                  w-full px-5 py-3 rounded-l-full
+                  bg-zinc-900 border border-zinc-800
+                  focus:outline-none focus:border-blue-500
+                "
+              />
+              <button
+                className="
+                  px-8 rounded-r-full
+                  bg-gradient-to-r from-pink-500 to-rose-500
+                  font-semibold
+                "
+              >
+                Search
+              </button>
+            </div>
+          </div>
+
+          {/* CATEGORIES */}
+          <div>
+            <h3 className="text-lg font-semibold mb-3">Categories</h3>
+            <ul className="space-y-3">
+              <li
+                onClick={() => {
+                  setActiveCategory("All");
+                  setVisibleCount(INITIAL_COUNT);
+                }}
+                className={`cursor-pointer ${
+                  activeCategory === "All"
+                    ? "text-blue-400 font-semibold"
+                    : "text-zinc-400 hover:text-white"
+                }`}
+              >
+                All ({blogs.length})
+              </li>
+
+              {Object.entries(categories).map(([cat, count]) => (
+                <li
+                  key={cat}
+                  onClick={() => {
+                    setActiveCategory(cat);
+                    setVisibleCount(INITIAL_COUNT);
+                  }}
+                  className={`cursor-pointer ${
+                    activeCategory === cat
+                      ? "text-blue-400 font-semibold"
+                      : "text-zinc-400 hover:text-white"
+                  }`}
+                >
+                  {cat} ({count})
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
-        {/* BLOG GRID */}
+        {/* ================= BLOG GRID ================= */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
           {visibleBlogs.map((blog) => (
             <article
               key={blog._id}
               className="
-                group relative bg-zinc-900/60 backdrop-blur-xl 
-                border border-zinc-800/80 rounded-2xl overflow-hidden
-                transition-all duration-500 ease-out
-                hover:scale-[1.03] hover:shadow-2xl hover:shadow-blue-900/30
-                hover:border-blue-500/40
+                group bg-zinc-900/60 backdrop-blur-xl
+                border border-zinc-800 rounded-2xl overflow-hidden
+                hover:scale-[1.03] transition
               "
             >
-              {/* IMAGE with overlay gradient */}
-              {blog.coverImage ? (
-                <div className="relative aspect-[16/9] overflow-hidden">
-                  <img
-                    src={blog.coverImage}
-                    alt={blog.title}
-                    className="
-                      w-full h-full object-cover transition-transform duration-700
-                      group-hover:scale-110
-                    "
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-                </div>
-              ) : (
-                <div className="aspect-[16/9] bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center">
-                  <span className="text-zinc-600 text-xl font-bold">No Cover</span>
-                </div>
+              {blog.coverImage && (
+                <img
+                  src={blog.coverImage}
+                  alt={blog.title}
+                  className="w-full aspect-[16/9] object-cover"
+                />
               )}
 
-              {/* CONTENT */}
-              <div className="p-6 md:p-7 flex flex-col flex-1">
-                <h2 className="text-2xl font-bold mb-3 line-clamp-2 group-hover:text-blue-400 transition-colors">
+              <div className="p-6 flex flex-col">
+                <h2 className="text-xl font-bold mb-2 line-clamp-2">
                   {blog.title}
                 </h2>
 
-                <p className="text-xs text-zinc-500 mb-4 tracking-wide">
-                  {new Date(blog.createdAt).toLocaleDateString("en-IN", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </p>
-
-                <p className="text-zinc-300 text-base leading-relaxed line-clamp-3 mb-6 flex-1">
+                <p className="text-zinc-400 text-sm line-clamp-3 mb-4">
                   {(blog.contentHTML || "")
                     .replace(/<[^>]+>/g, "")
                     .slice(0, 140)}
@@ -996,37 +1223,25 @@ function Blogs() {
 
                 <Link
                   to={`/blogs/${blog.slug}`}
-                  className="
-                    mt-auto inline-flex items-center gap-2
-                    text-blue-400 font-semibold tracking-wide
-                    hover:text-blue-300 transition-colors duration-300
-                    group-hover:translate-x-1
-                  "
+                  className="mt-auto text-blue-400 font-semibold"
                 >
-                  Read More
-                  <span className="transition-transform group-hover:translate-x-1">→</span>
+                  Read More →
                 </Link>
               </div>
             </article>
           ))}
         </div>
 
-        {/* LOAD MORE - gradient button with pulse */}
-        {visibleCount < blogs.length && (
-          <div className="mt-16 md:mt-20 text-center">
+        {/* LOAD MORE */}
+        {visibleCount < filteredBlogs.length && (
+          <div className="mt-16 text-center">
             <button
-              onClick={() => setVisibleCount((prev) => prev + LOAD_MORE_COUNT)}
-              className="
-                relative px-10 py-4 rounded-full font-bold text-lg
-                bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600
-                hover:from-blue-700 hover:via-cyan-600 hover:to-blue-700
-                shadow-lg shadow-blue-900/40 hover:shadow-blue-700/60
-                transition-all duration-500 transform hover:scale-105
-                overflow-hidden
-              "
+              onClick={() =>
+                setVisibleCount((prev) => prev + LOAD_MORE_COUNT)
+              }
+              className="px-10 py-4 rounded-full bg-blue-600 font-bold"
             >
-              <span className="relative z-10">Load More Blogs</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
+              Load More Blogs
             </button>
           </div>
         )}
@@ -1036,6 +1251,7 @@ function Blogs() {
 }
 
 export default Blogs;
+
 
 // git main blogs 
 // import { useEffect, useState } from "react";
