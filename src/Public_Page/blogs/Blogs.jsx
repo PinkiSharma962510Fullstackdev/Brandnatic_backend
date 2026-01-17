@@ -69,6 +69,33 @@ function Blogs() {
   return (
     <div className="bg-black text-white min-h-screen pt-28 pb-20 px-5 md:px-8">
       <div className="max-w-7xl mx-auto">
+        {/* ================= BLOG INTRO ================= */}
+<div className="text-center mb-14">
+  <h1 className="text-4xl md:text-5xl font-bold text-white">
+    Brandnatic Blog
+  </h1>
+
+  <p className="mt-3 text-sm uppercase tracking-widest text-cyan-400">
+    Strategy • Technology • Growth
+  </p>
+
+  <p className="mt-5 max-w-3xl mx-auto text-zinc-400 text-lg leading-relaxed">
+    Welcome to the Brandnatic Blog — your go-to knowledge hub for modern digital
+    growth. Here we share real-world insights, proven strategies, and future-ready
+    frameworks around{" "}
+    <span className="text-cyan-400 font-medium">SEO marketing</span>,{" "}
+    <span className="text-cyan-400 font-medium">AI automation</span>,{" "}
+    <span className="text-cyan-400 font-medium">website development</span>,{" "}
+    performance marketing, and scalable lead generation.
+    <br />
+    <br />
+    Every article is written by industry practitioners and growth strategists who
+    work directly with startups, enterprises, and high-growth brands. No fluff,
+    no recycled theory — only actionable content designed to help you rank higher,
+    convert better, and grow faster in 2026 and beyond.
+  </p>
+</div>
+
 
         {/* ================= SEARCH ================= */}
         <div className="mb-10 flex justify-center">
