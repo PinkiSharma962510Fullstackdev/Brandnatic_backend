@@ -238,9 +238,11 @@ function Blogs() {
     {blog.title}
   </h2>
 
-  {/* AUTHOR */}
-  <div className="flex items-center gap-2 text-sm text-zinc-400 mb-3">
-    <User size={16} className="text-cyan-400" />
+
+ {/* AUTHOR + DATE */}
+<div className="flex items-center gap-4 text-sm text-zinc-400 mb-3">
+  <div className="flex items-center gap-2">
+    <User size={15} className="text-cyan-400" />
     <span>
       By{" "}
       <span className="text-white font-medium">
@@ -248,6 +250,20 @@ function Blogs() {
       </span>
     </span>
   </div>
+
+  {/* DOT */}
+  <span className="text-zinc-600">•</span>
+
+  {/* DATE */}
+  <span>
+    {new Date(blog.createdAt).toLocaleDateString("en-IN", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    })}
+  </span>
+</div>
+
 
   <p className="text-zinc-400 text-sm line-clamp-3 mb-6">
     {(blog.contentHTML || "")
