@@ -35,7 +35,7 @@ export default function CaseStudies() {
   const [contactOpen, setContactOpen] = useState(false);
 
   return (
-    <section className="relative bg-gradient-to-b from-black via-[#05080f] to-black pt-24">
+    <section className="relative bg-gradient-to-b from-black via-[#05080f] to-black pb-10 pt-24">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* HEADER */}
@@ -148,7 +148,7 @@ export default function CaseStudies() {
           <button
             onClick={() => setContactOpen(true)}
             className="
-              px-12 py-4 rounded-full
+              px-12  rounded-full
               bg-[#1AA9F2] text-white font-semibold
               shadow-[0_20px_60px_rgba(26,169,242,0.45)]
               hover:scale-105 transition
