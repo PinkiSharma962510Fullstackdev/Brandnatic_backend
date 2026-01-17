@@ -70,31 +70,44 @@ function Blogs() {
     <div className="bg-black text-white min-h-screen pt-28 pb-20 px-5 md:px-8">
       <div className="max-w-7xl mx-auto">
         {/* ================= BLOG INTRO ================= */}
-<div className="text-center mb-14">
-  <h1 className="text-4xl md:text-5xl font-bold text-white">
-    Brandnatic Blog
-  </h1>
+{/* ================= BLOG HERO ================= */}
+<div className="relative mb-14 rounded-3xl overflow-hidden">
+  {/* 🔥 GRADIENT BACKGROUND */}
+  <div className="absolute inset-0 bg-gradient-to-r from-[#00c6ff]/10 via-[#0072ff]/10 to-[#00c6ff]/10 blur-2xl" />
 
-  <p className="mt-3 text-sm uppercase tracking-widest text-cyan-400">
-    Strategy • Technology • Growth
-  </p>
+  <div className="relative px-6 py-12 md:py-14 text-center">
+    {/* BADGE */}
+    <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-4 rounded-full
+      bg-cyan-500/10 border border-cyan-400/30 text-cyan-400 text-xs font-semibold tracking-wider">
+      BRANDNATIC INSIGHTS
+    </div>
 
-  <p className="mt-5 max-w-3xl mx-auto text-zinc-400 text-lg leading-relaxed">
-    Welcome to the Brandnatic Blog — your go-to knowledge hub for modern digital
-    growth. Here we share real-world insights, proven strategies, and future-ready
-    frameworks around{" "}
-    <span className="text-cyan-400 font-medium">SEO marketing</span>,{" "}
-    <span className="text-cyan-400 font-medium">AI automation</span>,{" "}
-    <span className="text-cyan-400 font-medium">website development</span>,{" "}
-    performance marketing, and scalable lead generation.
-    <br />
-    <br />
-    Every article is written by industry practitioners and growth strategists who
-    work directly with startups, enterprises, and high-growth brands. No fluff,
-    no recycled theory — only actionable content designed to help you rank higher,
-    convert better, and grow faster in 2026 and beyond.
-  </p>
+    {/* TITLE */}
+    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white max-w-4xl mx-auto leading-tight">
+      Growth, AI & Digital Strategy  
+      <span className="block text-transparent bg-clip-text
+        bg-gradient-to-r from-cyan-400 to-blue-500">
+        for Modern Businesses
+      </span>
+    </h1>
+
+    {/* SUBTEXT */}
+    <p className="mt-5 max-w-4xl mx-auto text-zinc-400 text-base md:text-lg leading-relaxed">
+      Welcome to the Brandnatic Blog — where strategy meets execution. Explore
+      real-world insights, proven systems, and future-ready frameworks across{" "}
+      <span className="text-cyan-400 font-medium">SEO</span>,{" "}
+      <span className="text-cyan-400 font-medium">AI automation</span>,{" "}
+      <span className="text-cyan-400 font-medium">website development</span>,{" "}
+      performance marketing, and scalable lead generation.
+    </p>
+
+    {/* META LINE */}
+    <p className="mt-3 text-sm text-zinc-500">
+      Written by practitioners • Built for growth • No fluff, only results
+    </p>
+  </div>
 </div>
+
 
 
         {/* ================= SEARCH ================= */}
