@@ -1038,6 +1038,7 @@
 // export default Blogs;
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import api from "../utils/api";
 
 /* =========================
@@ -1053,11 +1054,35 @@ const BRANDNATIC_CATEGORIES = [
   "Software Development",
 ];
 
+/* =========================
+   CATEGORY INFERENCE (SINGLE SOURCE OF TRUTH)
+========================= */
+function inferCategory(blog) {
+  const text = (
+    blog.title +
+    " " +
+    (blog.contentHTML || "")
+  ).toLowerCase();
+
+  if (text.includes("seo")) return "SEO Marketing";
+  if (text.includes("ai") || text.includes("automation"))
+    return "AI Automation";
+  if (text.includes("ppc") || text.includes("ads"))
+    return "Performance Marketing";
+  if (text.includes("lead"))
+    return "Lead Generation";
+  if (text.includes("web") || text.includes("frontend") || text.includes("react"))
+    return "Web Development";
+  if (text.includes("software") || text.includes("saas") || text.includes("application"))
+    return "Software Development";
+
+  return "Digital Marketing";
+}
+
 function Blogs() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // 🔍 SEARCH & FILTER STATE
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
   const [showAllCategories, setShowAllCategories] = useState(false);
@@ -1067,57 +1092,21 @@ function Blogs() {
   const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
 
   useEffect(() => {
-    api
-      .get("/blogs/public")
+    api.get("/blogs/public")
       .then((res) => setBlogs(res.data))
       .finally(() => setLoading(false));
   }, []);
 
   /* =========================
-     CATEGORY CALCULATION (FIXED)
+     CATEGORY COUNTS
   ========================= */
   const categories = useMemo(() => {
     const map = {};
-
-    // initialize Brandnatic categories
     BRANDNATIC_CATEGORIES.forEach((c) => (map[c] = 0));
 
     blogs.forEach((blog) => {
-      let cat = blog.category && blog.category !== "Uncategorized"
-        ? blog.category
-        : null;
-
-      const text = (
-        blog.title +
-        " " +
-        (blog.contentHTML || "")
-      ).toLowerCase();
-
-      // 🔁 AUTO CATEGORY MAPPING
-      if (!cat) {
-        if (text.includes("seo")) cat = "SEO Marketing";
-        else if (text.includes("ai") || text.includes("automation"))
-          cat = "AI Automation";
-        else if (text.includes("ppc") || text.includes("ads"))
-          cat = "Performance Marketing";
-        else if (text.includes("lead"))
-          cat = "Lead Generation";
-        else if (
-          text.includes("web") ||
-          text.includes("frontend") ||
-          text.includes("react")
-        )
-          cat = "Web Development";
-        else if (
-          text.includes("software") ||
-          text.includes("saas") ||
-          text.includes("application")
-        )
-          cat = "Software Development";
-        else cat = "Digital Marketing";
-      }
-
-      map[cat] = (map[cat] || 0) + 1;
+      const cat = inferCategory(blog);
+      map[cat]++;
     });
 
     return map;
@@ -1134,25 +1123,20 @@ function Blogs() {
           .toLowerCase();
 
       const matchesSearch = text.includes(search.toLowerCase());
-
-      const blogText = text;
-      const inferredCategory = Object.keys(categories).find((cat) =>
-        blogText.includes(cat.toLowerCase().split(" ")[0])
-      );
+      const blogCategory = inferCategory(blog);
 
       const matchesCategory =
-        activeCategory === "All" ||
-        inferredCategory === activeCategory;
+        activeCategory === "All" || blogCategory === activeCategory;
 
       return matchesSearch && matchesCategory;
     });
-  }, [blogs, search, activeCategory, categories]);
+  }, [blogs, search, activeCategory]);
 
   const visibleBlogs = filteredBlogs.slice(0, visibleCount);
 
   if (loading) {
     return (
-      <div className="bg-black text-white min-h-screen flex items-center justify-center">
+      <div className="min-h-screen bg-black flex items-center justify-center text-white">
         Loading amazing blogs…
       </div>
     );
@@ -1163,20 +1147,22 @@ function Blogs() {
       <div className="max-w-7xl mx-auto">
 
         {/* ================= SEARCH + CATEGORIES ================= */}
-        <div className="grid md:grid-cols-[1fr_280px] gap-12 mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="grid md:grid-cols-[1fr_300px] gap-14 mb-20"
+        >
 
-          {/* 🔍 SEARCH (VISIBLE & PREMIUM) */}
+          {/* 🔍 SEARCH */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-white">
-              Search
-            </h3>
+            <h3 className="text-xl font-semibold mb-5">Search</h3>
 
             <div className="
               relative flex items-center
               bg-zinc-950 border-2 border-zinc-700
               rounded-full
               focus-within:border-cyan-400
-              focus-within:shadow-[0_0_30px_rgba(34,211,238,0.35)]
+              focus-within:shadow-[0_0_35px_rgba(34,211,238,0.4)]
               transition
             ">
               <input
@@ -1193,11 +1179,12 @@ function Blogs() {
                 "
               />
               <div className="
-                absolute right-2 h-11 w-11
+                absolute right-2 h-12 w-12
                 flex items-center justify-center
                 rounded-full
                 bg-gradient-to-r from-pink-500 to-rose-500
                 shadow-lg shadow-pink-500/40
+                animate-pulse
               ">
                 🔍
               </div>
@@ -1206,17 +1193,15 @@ function Blogs() {
 
           {/* 🗂 CATEGORIES */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-white">
-              Categories
-            </h3>
+            <h3 className="text-xl font-semibold mb-5">Categories</h3>
 
-            <ul className="space-y-3">
+            <ul className="space-y-4">
               <li
                 onClick={() => {
                   setActiveCategory("All");
                   setVisibleCount(INITIAL_COUNT);
                 }}
-                className={`cursor-pointer ${
+                className={`cursor-pointer transition ${
                   activeCategory === "All"
                     ? "text-cyan-400 font-semibold"
                     : "text-zinc-400 hover:text-white"
@@ -1235,7 +1220,7 @@ function Blogs() {
                       setActiveCategory(cat);
                       setVisibleCount(INITIAL_COUNT);
                     }}
-                    className={`cursor-pointer ${
+                    className={`cursor-pointer transition ${
                       activeCategory === cat
                         ? "text-cyan-400 font-semibold"
                         : "text-zinc-400 hover:text-white"
@@ -1249,35 +1234,57 @@ function Blogs() {
             {Object.keys(categories).length > 5 && (
               <button
                 onClick={() => setShowAllCategories(!showAllCategories)}
-                className="mt-4 text-sm font-semibold text-blue-400 hover:text-blue-300"
+                className="mt-6 text-sm font-semibold text-blue-400 hover:text-blue-300"
               >
                 {showAllCategories ? "Show Less" : "View All Categories →"}
               </button>
             )}
           </div>
-        </div>
+        </motion.div>
 
         {/* ================= BLOG GRID ================= */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {visibleBlogs.map((blog) => (
-            <article
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          {visibleBlogs.length === 0 && (
+            <div className="col-span-full text-center text-zinc-400 py-24">
+              No blogs found for this filter.
+            </div>
+          )}
+
+          {visibleBlogs.map((blog, i) => (
+            <motion.article
               key={blog._id}
-              className="group bg-zinc-900/60 border border-zinc-800 rounded-2xl overflow-hidden hover:scale-[1.03] transition"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.05 }}
+              whileHover={{ y: -8, scale: 1.03 }}
+              className="
+                group bg-zinc-900/60 backdrop-blur-xl
+                border border-zinc-800 rounded-2xl overflow-hidden
+                hover:border-cyan-400/40
+                hover:shadow-[0_0_40px_rgba(34,211,238,0.15)]
+              "
             >
               {blog.coverImage && (
-                <img
-                  src={blog.coverImage}
-                  alt={blog.title}
-                  className="w-full aspect-[16/9] object-cover"
-                />
+                <div className="relative overflow-hidden">
+                  <img
+                    src={blog.coverImage}
+                    alt={blog.title}
+                    className="
+                      w-full aspect-[16/9] object-cover
+                      transition-transform duration-700
+                      group-hover:scale-110
+                    "
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                </div>
               )}
 
               <div className="p-6 flex flex-col">
-                <h2 className="text-xl font-bold mb-2 line-clamp-2">
+                <h2 className="text-xl font-bold mb-3 line-clamp-2 group-hover:text-cyan-400 transition">
                   {blog.title}
                 </h2>
 
-                <p className="text-zinc-400 text-sm line-clamp-3 mb-4">
+                <p className="text-zinc-400 text-sm line-clamp-3 mb-6">
                   {(blog.contentHTML || "")
                     .replace(/<[^>]+>/g, "")
                     .slice(0, 140)}
@@ -1286,27 +1293,35 @@ function Blogs() {
 
                 <Link
                   to={`/blogs/${blog.slug}`}
-                  className="mt-auto text-blue-400 font-semibold"
+                  className="mt-auto text-cyan-400 font-semibold inline-flex items-center gap-2 group-hover:gap-3 transition-all"
                 >
                   Read More →
                 </Link>
               </div>
-            </article>
+            </motion.article>
           ))}
         </div>
 
         {/* LOAD MORE */}
         {visibleCount < filteredBlogs.length && (
-          <div className="mt-16 text-center">
-            <button
-              onClick={() =>
-                setVisibleCount((prev) => prev + LOAD_MORE_COUNT)
-              }
-              className="px-10 py-4 rounded-full bg-blue-600 font-bold"
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="mt-20 text-center"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setVisibleCount((p) => p + LOAD_MORE_COUNT)}
+              className="
+                px-12 py-4 rounded-full font-bold text-lg
+                bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600
+                shadow-lg shadow-cyan-500/25
+              "
             >
               Load More Blogs
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
         )}
       </div>
     </div>
@@ -1314,6 +1329,7 @@ function Blogs() {
 }
 
 export default Blogs;
+
 
 
 
