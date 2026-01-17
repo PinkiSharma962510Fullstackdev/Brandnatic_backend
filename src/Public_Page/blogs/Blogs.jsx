@@ -1040,6 +1040,19 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../utils/api";
 
+/* =========================
+   BRANDNATIC SERVICE CATEGORIES
+========================= */
+const BRANDNATIC_CATEGORIES = [
+  "Digital Marketing",
+  "SEO Marketing",
+  "AI Automation",
+  "Performance Marketing",
+  "Lead Generation",
+  "Web Development",
+  "Software Development",
+];
+
 function Blogs() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -1047,11 +1060,11 @@ function Blogs() {
   // 🔍 SEARCH & FILTER STATE
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
+  const [showAllCategories, setShowAllCategories] = useState(false);
 
   const INITIAL_COUNT = 6;
   const LOAD_MORE_COUNT = 6;
   const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
-  const [showAllCategories, setShowAllCategories] = useState(false);
 
   useEffect(() => {
     api
@@ -1061,21 +1074,50 @@ function Blogs() {
   }, []);
 
   /* =========================
-     CATEGORY CALCULATION
+     CATEGORY CALCULATION (FIXED)
   ========================= */
   const categories = useMemo(() => {
     const map = {};
 
-    blogs.forEach((blog) => {
-      const cats = Array.isArray(blog.categories)
-        ? blog.categories
-        : blog.category
-        ? [blog.category]
-        : ["Uncategorized"];
+    // initialize Brandnatic categories
+    BRANDNATIC_CATEGORIES.forEach((c) => (map[c] = 0));
 
-      cats.forEach((c) => {
-        map[c] = (map[c] || 0) + 1;
-      });
+    blogs.forEach((blog) => {
+      let cat = blog.category && blog.category !== "Uncategorized"
+        ? blog.category
+        : null;
+
+      const text = (
+        blog.title +
+        " " +
+        (blog.contentHTML || "")
+      ).toLowerCase();
+
+      // 🔁 AUTO CATEGORY MAPPING
+      if (!cat) {
+        if (text.includes("seo")) cat = "SEO Marketing";
+        else if (text.includes("ai") || text.includes("automation"))
+          cat = "AI Automation";
+        else if (text.includes("ppc") || text.includes("ads"))
+          cat = "Performance Marketing";
+        else if (text.includes("lead"))
+          cat = "Lead Generation";
+        else if (
+          text.includes("web") ||
+          text.includes("frontend") ||
+          text.includes("react")
+        )
+          cat = "Web Development";
+        else if (
+          text.includes("software") ||
+          text.includes("saas") ||
+          text.includes("application")
+        )
+          cat = "Software Development";
+        else cat = "Digital Marketing";
+      }
+
+      map[cat] = (map[cat] || 0) + 1;
     });
 
     return map;
@@ -1093,19 +1135,18 @@ function Blogs() {
 
       const matchesSearch = text.includes(search.toLowerCase());
 
-      const blogCategories = Array.isArray(blog.categories)
-        ? blog.categories
-        : blog.category
-        ? [blog.category]
-        : ["Uncategorized"];
+      const blogText = text;
+      const inferredCategory = Object.keys(categories).find((cat) =>
+        blogText.includes(cat.toLowerCase().split(" ")[0])
+      );
 
       const matchesCategory =
         activeCategory === "All" ||
-        blogCategories.includes(activeCategory);
+        inferredCategory === activeCategory;
 
       return matchesSearch && matchesCategory;
     });
-  }, [blogs, search, activeCategory]);
+  }, [blogs, search, activeCategory, categories]);
 
   const visibleBlogs = filteredBlogs.slice(0, visibleCount);
 
@@ -1122,127 +1163,106 @@ function Blogs() {
       <div className="max-w-7xl mx-auto">
 
         {/* ================= SEARCH + CATEGORIES ================= */}
-        <div className="grid md:grid-cols-[1fr_280px] gap-10 mb-16">
-          
-          {/* SEARCH */}
-          {/* SEARCH */}
-<div>
-  <h3 className="text-lg font-semibold mb-4 text-zinc-200">
-    Search
-  </h3>
+        <div className="grid md:grid-cols-[1fr_280px] gap-12 mb-16">
 
-  <div
-    className="
-      relative flex items-center
-      bg-zinc-900/70 backdrop-blur-xl
-      border border-zinc-800
-      rounded-full
-      focus-within:border-cyan-400/60
-      focus-within:shadow-[0_0_25px_rgba(34,211,238,0.25)]
-      transition-all
-    "
-  >
-    <input
-      value={search}
-      onChange={(e) => {
-        setSearch(e.target.value);
-        setVisibleCount(INITIAL_COUNT);
-      }}
-      placeholder="Search blogs, SEO, AI, automation…"
-      className="
-        w-full px-6 py-4 bg-transparent
-        text-white placeholder-zinc-500
-        focus:outline-none
-      "
-    />
+          {/* 🔍 SEARCH (VISIBLE & PREMIUM) */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4 text-white">
+              Search
+            </h3>
 
-    {/* ICON BUTTON */}
-    <span
-      className="
-        absolute right-3
-        h-10 w-10 flex items-center justify-center
-        rounded-full
-        bg-gradient-to-r from-pink-500 to-rose-500
-        shadow-lg shadow-pink-500/30
-      "
-    >
-      🔍
-    </span>
-  </div>
-</div>
+            <div className="
+              relative flex items-center
+              bg-zinc-950 border-2 border-zinc-700
+              rounded-full
+              focus-within:border-cyan-400
+              focus-within:shadow-[0_0_30px_rgba(34,211,238,0.35)]
+              transition
+            ">
+              <input
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setVisibleCount(INITIAL_COUNT);
+                }}
+                placeholder="Search blogs, SEO, AI, automation…"
+                className="
+                  w-full px-6 py-4 bg-transparent
+                  text-white placeholder-zinc-400
+                  focus:outline-none
+                "
+              />
+              <div className="
+                absolute right-2 h-11 w-11
+                flex items-center justify-center
+                rounded-full
+                bg-gradient-to-r from-pink-500 to-rose-500
+                shadow-lg shadow-pink-500/40
+              ">
+                🔍
+              </div>
+            </div>
+          </div>
 
+          {/* 🗂 CATEGORIES */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4 text-white">
+              Categories
+            </h3>
 
-          {/* CATEGORIES */}
-          {/* CATEGORIES */}
-<div>
-  <h3 className="text-lg font-semibold mb-4 text-zinc-200">
-    Categories
-  </h3>
+            <ul className="space-y-3">
+              <li
+                onClick={() => {
+                  setActiveCategory("All");
+                  setVisibleCount(INITIAL_COUNT);
+                }}
+                className={`cursor-pointer ${
+                  activeCategory === "All"
+                    ? "text-cyan-400 font-semibold"
+                    : "text-zinc-400 hover:text-white"
+                }`}
+              >
+                All ({blogs.length})
+              </li>
 
-  <ul className="space-y-3">
-    {/* ALL */}
-    <li
-      onClick={() => {
-        setActiveCategory("All");
-        setVisibleCount(INITIAL_COUNT);
-      }}
-      className={`cursor-pointer transition ${
-        activeCategory === "All"
-          ? "text-cyan-400 font-semibold"
-          : "text-zinc-400 hover:text-white"
-      }`}
-    >
-      All ({blogs.length})
-    </li>
+              {Object.entries(categories)
+                .filter(([, count]) => count > 0)
+                .slice(0, showAllCategories ? undefined : 5)
+                .map(([cat, count]) => (
+                  <li
+                    key={cat}
+                    onClick={() => {
+                      setActiveCategory(cat);
+                      setVisibleCount(INITIAL_COUNT);
+                    }}
+                    className={`cursor-pointer ${
+                      activeCategory === cat
+                        ? "text-cyan-400 font-semibold"
+                        : "text-zinc-400 hover:text-white"
+                    }`}
+                  >
+                    {cat} ({count})
+                  </li>
+                ))}
+            </ul>
 
-    {/* ONLY 5 CATEGORIES */}
-    {Object.entries(categories)
-      .slice(0, showAllCategories ? undefined : 5)
-      .map(([cat, count]) => (
-        <li
-          key={cat}
-          onClick={() => {
-            setActiveCategory(cat);
-            setVisibleCount(INITIAL_COUNT);
-          }}
-          className={`cursor-pointer transition ${
-            activeCategory === cat
-              ? "text-cyan-400 font-semibold"
-              : "text-zinc-400 hover:text-white"
-          }`}
-        >
-          {cat} ({count})
-        </li>
-      ))}
-  </ul>
-
-  {/* VIEW ALL */}
-  {Object.keys(categories).length > 5 && (
-    <button
-      onClick={() => setShowAllCategories(!showAllCategories)}
-      className="
-        mt-4 text-sm font-semibold
-        text-blue-400 hover:text-blue-300
-        transition
-      "
-    >
-      {showAllCategories ? "Show Less" : "View All Categories →"}
-    </button>
-  )}
-</div>
-
+            {Object.keys(categories).length > 5 && (
+              <button
+                onClick={() => setShowAllCategories(!showAllCategories)}
+                className="mt-4 text-sm font-semibold text-blue-400 hover:text-blue-300"
+              >
+                {showAllCategories ? "Show Less" : "View All Categories →"}
+              </button>
+            )}
+          </div>
         </div>
 
         {/* ================= BLOG GRID ================= */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {visibleBlogs.map((blog) => (
             <article
               key={blog._id}
-              className="
-                group bg-zinc-900/60 backdrop-blur-xl
-                border border-zinc-800 rounded-2xl overflow-hidden
-                hover:scale-[1.03] transition
-              "
+              className="group bg-zinc-900/60 border border-zinc-800 rounded-2xl overflow-hidden hover:scale-[1.03] transition"
             >
               {blog.coverImage && (
                 <img
@@ -1294,6 +1314,7 @@ function Blogs() {
 }
 
 export default Blogs;
+
 
 
 // git main blogs 
