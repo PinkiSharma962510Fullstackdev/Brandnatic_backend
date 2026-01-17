@@ -1036,309 +1036,310 @@
 // }
 
 // export default Blogs;
-import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import api from "../utils/api";
+// import { useEffect, useMemo, useState } from "react";
+// import { Link } from "react-router-dom";
+// import { motion } from "framer-motion";
+// import api from "../utils/api";
 
-/* =========================
-   BRANDNATIC SERVICE CATEGORIES
-========================= */
-const BRANDNATIC_CATEGORIES = [
-  "Digital Marketing",
-  "SEO Marketing",
-  "AI Automation",
-  "Performance Marketing",
-  "Lead Generation",
-  "Web Development",
-  "Software Development",
-];
+// /* =========================
+//    BRANDNATIC SERVICE CATEGORIES
+// ========================= */
+// const BRANDNATIC_CATEGORIES = [
+//   "Digital Marketing",
+//   "SEO Marketing",
+//   "AI Automation",
+//   "Performance Marketing",
+//   "Lead Generation",
+//   "Web Development",
+//   "Software Development",
+// ];
 
-/* =========================
-   CATEGORY INFERENCE (SINGLE SOURCE OF TRUTH)
-========================= */
-function inferCategory(blog) {
-  const text = (
-    blog.title +
-    " " +
-    (blog.contentHTML || "")
-  ).toLowerCase();
+// /* =========================
+//    CATEGORY INFERENCE (SINGLE SOURCE OF TRUTH)
+// ========================= */
+// function inferCategory(blog) {
+//   const text = (
+//     blog.title +
+//     " " +
+//     (blog.contentHTML || "")
+//   ).toLowerCase();
 
-  if (text.includes("seo")) return "SEO Marketing";
-  if (text.includes("ai") || text.includes("automation"))
-    return "AI Automation";
-  if (text.includes("ppc") || text.includes("ads"))
-    return "Performance Marketing";
-  if (text.includes("lead"))
-    return "Lead Generation";
-  if (text.includes("web") || text.includes("frontend") || text.includes("react"))
-    return "Web Development";
-  if (text.includes("software") || text.includes("saas") || text.includes("application"))
-    return "Software Development";
+//   if (text.includes("seo")) return "SEO Marketing";
+//   if (text.includes("ai") || text.includes("automation"))
+//     return "AI Automation";
+//   if (text.includes("ppc") || text.includes("ads"))
+//     return "Performance Marketing";
+//   if (text.includes("lead"))
+//     return "Lead Generation";
+//   if (text.includes("web") || text.includes("frontend") || text.includes("react"))
+//     return "Web Development";
+//   if (text.includes("software") || text.includes("saas") || text.includes("application"))
+//     return "Software Development";
 
-  return "Digital Marketing";
-}
-function getBlogCategory(blog) {
-  // 1️⃣ real category from backend
-  if (blog.category && blog.category !== "Uncategorized") {
-    return blog.category;
-  }
+//   return "Digital Marketing";
+// }
+// function getBlogCategory(blog) {
+//   // 1️⃣ real category from backend
+//   if (blog.category && blog.category !== "Uncategorized") {
+//     return blog.category;
+//   }
 
-  // 2️⃣ fallback inference
-  return inferCategory(blog);
-}
+//   // 2️⃣ fallback inference
+//   return inferCategory(blog);
+// }
 
 
-function Blogs() {
-  const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(true);
 
-  const [search, setSearch] = useState("");
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [showAllCategories, setShowAllCategories] = useState(false);
+// function Blogs() {
+//   const [blogs, setBlogs] = useState([]);
+//   const [loading, setLoading] = useState(true);
 
-  const INITIAL_COUNT = 6;
-  const LOAD_MORE_COUNT = 6;
-  const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
+//   const [search, setSearch] = useState("");
+//   const [activeCategory, setActiveCategory] = useState("All");
+//   const [showAllCategories, setShowAllCategories] = useState(false);
 
-  useEffect(() => {
-    api.get("/blogs/public")
-      .then((res) => setBlogs(res.data))
-      .finally(() => setLoading(false));
-  }, []);
+//   const INITIAL_COUNT = 6;
+//   const LOAD_MORE_COUNT = 6;
+//   const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
 
-  /* =========================
-     CATEGORY COUNTS
-  ========================= */
-  const categories = useMemo(() => {
-    const map = {};
-    BRANDNATIC_CATEGORIES.forEach((c) => (map[c] = 0));
+//   useEffect(() => {
+//     api.get("/blogs/public")
+//       .then((res) => setBlogs(res.data))
+//       .finally(() => setLoading(false));
+//   }, []);
 
-    blogs.forEach((blog) => {
-      const cat = getBlogCategory(blog);
-      map[cat]++;
-    });
+//   /* =========================
+//      CATEGORY COUNTS
+//   ========================= */
+//   const categories = useMemo(() => {
+//     const map = {};
+//     BRANDNATIC_CATEGORIES.forEach((c) => (map[c] = 0));
 
-    return map;
-  }, [blogs]);
+//     blogs.forEach((blog) => {
+//       const cat = getBlogCategory(blog);
+//       map[cat]++;
+//     });
 
-  /* =========================
-     FILTERED BLOGS
-  ========================= */
-  const filteredBlogs = useMemo(() => {
-    return blogs.filter((blog) => {
-      const text =
-        (blog.title + " " + (blog.contentHTML || ""))
-          .replace(/<[^>]+>/g, "")
-          .toLowerCase();
+//     return map;
+//   }, [blogs]);
 
-      const matchesSearch = text.includes(search.toLowerCase());
-      const blogCategory = getBlogCategory(blog);
+//   /* =========================
+//      FILTERED BLOGS
+//   ========================= */
+//   const filteredBlogs = useMemo(() => {
+//     return blogs.filter((blog) => {
+//       const text =
+//         (blog.title + " " + (blog.contentHTML || ""))
+//           .replace(/<[^>]+>/g, "")
+//           .toLowerCase();
 
-      const matchesCategory =
-        activeCategory === "All" || blogCategory === activeCategory;
+//       const matchesSearch = text.includes(search.toLowerCase());
+//       const blogCategory = getBlogCategory(blog);
 
-      return matchesSearch && matchesCategory;
-    });
-  }, [blogs, search, activeCategory]);
+//       const matchesCategory =
+//         activeCategory === "All" || blogCategory === activeCategory;
 
-  const visibleBlogs = filteredBlogs.slice(0, visibleCount);
+//       return matchesSearch && matchesCategory;
+//     });
+//   }, [blogs, search, activeCategory]);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-black flex items-center justify-center text-white">
-        Loading amazing blogs…
-      </div>
-    );
-  }
+//   const visibleBlogs = filteredBlogs.slice(0, visibleCount);
 
-  return (
-    <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white min-h-screen pt-28 pb-20 px-5 md:px-8">
-      <div className="max-w-7xl mx-auto">
+//   if (loading) {
+//     return (
+//       <div className="min-h-screen bg-black flex items-center justify-center text-white">
+//         Loading amazing blogs…
+//       </div>
+//     );
+//   }
 
-        {/* ================= SEARCH + CATEGORIES ================= */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="grid md:grid-cols-[1fr_300px] gap-14 mb-20"
-        >
+//   return (
+//     <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white min-h-screen pt-28 pb-20 px-5 md:px-8">
+//       <div className="max-w-7xl mx-auto">
 
-          {/* 🔍 SEARCH */}
-          <div>
-            <h3 className="text-xl font-semibold mb-5">Search</h3>
+//         {/* ================= SEARCH + CATEGORIES ================= */}
+//         <motion.div
+//           initial={{ opacity: 0, y: 30 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           className="grid md:grid-cols-[1fr_300px] gap-14 mb-20"
+//         >
 
-            <div className="
-              relative flex items-center
-              bg-zinc-950 border-2 border-zinc-700
-              rounded-full
-              focus-within:border-cyan-400
-              focus-within:shadow-[0_0_35px_rgba(34,211,238,0.4)]
-              transition
-            ">
-              <input
-                value={search}
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                  setVisibleCount(INITIAL_COUNT);
-                }}
-                placeholder="Search blogs, SEO, AI, automation…"
-                className="
-                  w-full px-6 py-4 bg-transparent
-                  text-white placeholder-zinc-400
-                  focus:outline-none
-                "
-              />
-              <div className="
-                absolute right-2 h-12 w-12
-                flex items-center justify-center
-                rounded-full
-                bg-gradient-to-r from-pink-500 to-rose-500
-                shadow-lg shadow-pink-500/40
-                animate-pulse
-              ">
-                🔍
-              </div>
-            </div>
-          </div>
+//           {/* 🔍 SEARCH */}
+//           <div>
+//             <h3 className="text-xl font-semibold mb-5">Search</h3>
 
-          {/* 🗂 CATEGORIES */}
-          <div>
-            <h3 className="text-xl font-semibold mb-5">Categories</h3>
+//             <div className="
+//               relative flex items-center
+//               bg-zinc-950 border-2 border-zinc-700
+//               rounded-full
+//               focus-within:border-cyan-400
+//               focus-within:shadow-[0_0_35px_rgba(34,211,238,0.4)]
+//               transition
+//             ">
+//               <input
+//                 value={search}
+//                 onChange={(e) => {
+//                   setSearch(e.target.value);
+//                   setVisibleCount(INITIAL_COUNT);
+//                 }}
+//                 placeholder="Search blogs, SEO, AI, automation…"
+//                 className="
+//                   w-full px-6 py-4 bg-transparent
+//                   text-white placeholder-zinc-400
+//                   focus:outline-none
+//                 "
+//               />
+//               <div className="
+//                 absolute right-2 h-12 w-12
+//                 flex items-center justify-center
+//                 rounded-full
+//                 bg-gradient-to-r from-pink-500 to-rose-500
+//                 shadow-lg shadow-pink-500/40
+//                 animate-pulse
+//               ">
+//                 🔍
+//               </div>
+//             </div>
+//           </div>
 
-            <ul className="space-y-4">
-              <li
-                onClick={() => {
-                  setActiveCategory("All");
-                  setVisibleCount(INITIAL_COUNT);
-                }}
-                className={`cursor-pointer transition ${
-                  activeCategory === "All"
-                    ? "text-cyan-400 font-semibold"
-                    : "text-zinc-400 hover:text-white"
-                }`}
-              >
-                All ({blogs.length})
-              </li>
+//           {/* 🗂 CATEGORIES */}
+//           <div>
+//             <h3 className="text-xl font-semibold mb-5">Categories</h3>
 
-              {Object.entries(categories)
-                .filter(([, count]) => count > 0)
-                .slice(0, showAllCategories ? undefined : 5)
-                .map(([cat, count]) => (
-                  <li
-                    key={cat}
-                    onClick={() => {
-                      setActiveCategory(cat);
-                      setVisibleCount(INITIAL_COUNT);
-                    }}
-                    className={`cursor-pointer transition ${
-                      activeCategory === cat
-                        ? "text-cyan-400 font-semibold"
-                        : "text-zinc-400 hover:text-white"
-                    }`}
-                  >
-                    {cat} ({count})
-                  </li>
-                ))}
-            </ul>
+//             <ul className="space-y-4">
+//               <li
+//                 onClick={() => {
+//                   setActiveCategory("All");
+//                   setVisibleCount(INITIAL_COUNT);
+//                 }}
+//                 className={`cursor-pointer transition ${
+//                   activeCategory === "All"
+//                     ? "text-cyan-400 font-semibold"
+//                     : "text-zinc-400 hover:text-white"
+//                 }`}
+//               >
+//                 All ({blogs.length})
+//               </li>
 
-            {Object.keys(categories).length > 5 && (
-              <button
-                onClick={() => setShowAllCategories(!showAllCategories)}
-                className="mt-6 text-sm font-semibold text-blue-400 hover:text-blue-300"
-              >
-                {showAllCategories ? "Show Less" : "View All Categories →"}
-              </button>
-            )}
-          </div>
-        </motion.div>
+//               {Object.entries(categories)
+//                 .filter(([, count]) => count > 0)
+//                 .slice(0, showAllCategories ? undefined : 5)
+//                 .map(([cat, count]) => (
+//                   <li
+//                     key={cat}
+//                     onClick={() => {
+//                       setActiveCategory(cat);
+//                       setVisibleCount(INITIAL_COUNT);
+//                     }}
+//                     className={`cursor-pointer transition ${
+//                       activeCategory === cat
+//                         ? "text-cyan-400 font-semibold"
+//                         : "text-zinc-400 hover:text-white"
+//                     }`}
+//                   >
+//                     {cat} ({count})
+//                   </li>
+//                 ))}
+//             </ul>
 
-        {/* ================= BLOG GRID ================= */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-          {visibleBlogs.length === 0 && (
-            <div className="col-span-full text-center text-zinc-400 py-24">
-              No blogs found for this filter.
-            </div>
-          )}
+//             {Object.keys(categories).length > 5 && (
+//               <button
+//                 onClick={() => setShowAllCategories(!showAllCategories)}
+//                 className="mt-6 text-sm font-semibold text-blue-400 hover:text-blue-300"
+//               >
+//                 {showAllCategories ? "Show Less" : "View All Categories →"}
+//               </button>
+//             )}
+//           </div>
+//         </motion.div>
 
-          {visibleBlogs.map((blog, i) => (
-            <motion.article
-              key={blog._id}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.05 }}
-              whileHover={{ y: -8, scale: 1.03 }}
-              className="
-                group bg-zinc-900/60 backdrop-blur-xl
-                border border-zinc-800 rounded-2xl overflow-hidden
-                hover:border-cyan-400/40
-                hover:shadow-[0_0_40px_rgba(34,211,238,0.15)]
-              "
-            >
-              {blog.coverImage && (
-                <div className="relative overflow-hidden">
-                  <img
-                    src={blog.coverImage}
-                    alt={blog.title}
-                    className="
-                      w-full aspect-[16/9] object-cover
-                      transition-transform duration-700
-                      group-hover:scale-110
-                    "
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                </div>
-              )}
+//         {/* ================= BLOG GRID ================= */}
+//         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+//           {visibleBlogs.length === 0 && (
+//             <div className="col-span-full text-center text-zinc-400 py-24">
+//               No blogs found for this filter.
+//             </div>
+//           )}
 
-              <div className="p-6 flex flex-col">
-                <h2 className="text-xl font-bold mb-3 line-clamp-2 group-hover:text-cyan-400 transition">
-                  {blog.title}
-                </h2>
+//           {visibleBlogs.map((blog, i) => (
+//             <motion.article
+//               key={blog._id}
+//               initial={{ opacity: 0, y: 40 }}
+//               animate={{ opacity: 1, y: 0 }}
+//               transition={{ delay: i * 0.05 }}
+//               whileHover={{ y: -8, scale: 1.03 }}
+//               className="
+//                 group bg-zinc-900/60 backdrop-blur-xl
+//                 border border-zinc-800 rounded-2xl overflow-hidden
+//                 hover:border-cyan-400/40
+//                 hover:shadow-[0_0_40px_rgba(34,211,238,0.15)]
+//               "
+//             >
+//               {blog.coverImage && (
+//                 <div className="relative overflow-hidden">
+//                   <img
+//                     src={blog.coverImage}
+//                     alt={blog.title}
+//                     className="
+//                       w-full aspect-[16/9] object-cover
+//                       transition-transform duration-700
+//                       group-hover:scale-110
+//                     "
+//                   />
+//                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+//                 </div>
+//               )}
 
-                <p className="text-zinc-400 text-sm line-clamp-3 mb-6">
-                  {(blog.contentHTML || "")
-                    .replace(/<[^>]+>/g, "")
-                    .slice(0, 140)}
-                  …
-                </p>
+//               <div className="p-6 flex flex-col">
+//                 <h2 className="text-xl font-bold mb-3 line-clamp-2 group-hover:text-cyan-400 transition">
+//                   {blog.title}
+//                 </h2>
 
-                <Link
-                  to={`/blogs/${blog.slug}`}
-                  className="mt-auto text-cyan-400 font-semibold inline-flex items-center gap-2 group-hover:gap-3 transition-all"
-                >
-                  Read More →
-                </Link>
-              </div>
-            </motion.article>
-          ))}
-        </div>
+//                 <p className="text-zinc-400 text-sm line-clamp-3 mb-6">
+//                   {(blog.contentHTML || "")
+//                     .replace(/<[^>]+>/g, "")
+//                     .slice(0, 140)}
+//                   …
+//                 </p>
 
-        {/* LOAD MORE */}
-        {visibleCount < filteredBlogs.length && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="mt-20 text-center"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setVisibleCount((p) => p + LOAD_MORE_COUNT)}
-              className="
-                px-12 py-4 rounded-full font-bold text-lg
-                bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600
-                shadow-lg shadow-cyan-500/25
-              "
-            >
-              Load More Blogs
-            </motion.button>
-          </motion.div>
-        )}
-      </div>
-    </div>
-  );
-}
+//                 <Link
+//                   to={`/blogs/${blog.slug}`}
+//                   className="mt-auto text-cyan-400 font-semibold inline-flex items-center gap-2 group-hover:gap-3 transition-all"
+//                 >
+//                   Read More →
+//                 </Link>
+//               </div>
+//             </motion.article>
+//           ))}
+//         </div>
 
-export default Blogs;
+//         {/* LOAD MORE */}
+//         {visibleCount < filteredBlogs.length && (
+//           <motion.div
+//             initial={{ opacity: 0 }}
+//             animate={{ opacity: 1 }}
+//             className="mt-20 text-center"
+//           >
+//             <motion.button
+//               whileHover={{ scale: 1.05 }}
+//               whileTap={{ scale: 0.95 }}
+//               onClick={() => setVisibleCount((p) => p + LOAD_MORE_COUNT)}
+//               className="
+//                 px-12 py-4 rounded-full font-bold text-lg
+//                 bg-gradient-to-r from-cyan-500 via-sky-500 to-blue-600
+//                 shadow-lg shadow-cyan-500/25
+//               "
+//             >
+//               Load More Blogs
+//             </motion.button>
+//           </motion.div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default Blogs;
 
 
 
@@ -1844,3 +1845,324 @@ export default Blogs;
 // }
 
 // export default Blogs;
+
+import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import api from "../utils/api";
+
+/* =========================
+   BRANDNATIC SERVICE CATEGORIES
+========================= */
+const BRANDNATIC_CATEGORIES = [
+  "Digital Marketing",
+  "SEO Marketing",
+  "AI Automation",
+  "Performance Marketing",
+  "Lead Generation",
+  "Web Development",
+  "Software Development",
+];
+
+/* =========================
+   CATEGORY INFERENCE (IMPROVED)
+========================= */
+function inferCategory(blog) {
+  const text = (
+    blog.title +
+    " " +
+    (blog.contentHTML || "")
+  ).toLowerCase();
+
+  // Most specific checks first (highest priority)
+  if (text.includes("ppc") || text.includes("pay per click") || 
+      text.includes("google ads") || text.includes("performance marketing") || 
+      text.includes("ads") || text.includes("paid search")) {
+    return "Performance Marketing";
+  }
+  if (text.includes("seo") || text.includes("search engine optimization")) {
+    return "SEO Marketing";
+  }
+  if (text.includes("ai") || text.includes("automation") || 
+      text.includes("artificial intelligence")) {
+    return "AI Automation";
+  }
+  if (text.includes("lead") || text.includes("lead generation")) {
+    return "Lead Generation";
+  }
+  if (text.includes("web") || text.includes("frontend") || 
+      text.includes("react") || text.includes("website")) {
+    return "Web Development";
+  }
+  if (text.includes("software") || text.includes("saas") || 
+      text.includes("application") || text.includes("app development")) {
+    return "Software Development";
+  }
+
+  return "Digital Marketing";
+}
+
+function getBlogCategory(blog) {
+  // 1️⃣ real category from backend (preferred)
+  if (blog.category && blog.category !== "Uncategorized" && blog.category.trim() !== "") {
+    return blog.category.trim();
+  }
+
+  // 2️⃣ fallback inference
+  return inferCategory(blog);
+}
+
+function Blogs() {
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const [search, setSearch] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [showAllCategories, setShowAllCategories] = useState(false);
+
+  const INITIAL_COUNT = 6;
+  const LOAD_MORE_COUNT = 6;
+  const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
+
+  useEffect(() => {
+    api.get("/blogs/public")
+      .then((res) => setBlogs(res.data))
+      .finally(() => setLoading(false));
+  }, []);
+
+  /* =========================
+     CATEGORY COUNTS
+  ========================= */
+  const categories = useMemo(() => {
+    const map = {};
+    BRANDNATIC_CATEGORIES.forEach((c) => (map[c] = 0));
+
+    blogs.forEach((blog) => {
+      const cat = getBlogCategory(blog);
+      map[cat]++;
+    });
+
+    return map;
+  }, [blogs]);
+
+  /* =========================
+     FILTERED BLOGS
+  ========================= */
+  const filteredBlogs = useMemo(() => {
+    return blogs.filter((blog) => {
+      const text =
+        (blog.title + " " + (blog.contentHTML || ""))
+          .replace(/<[^>]+>/g, "")
+          .toLowerCase();
+
+      const matchesSearch = text.includes(search.toLowerCase());
+      const blogCategory = getBlogCategory(blog);
+
+      const matchesCategory =
+        activeCategory === "All" || blogCategory === activeCategory;
+
+      return matchesSearch && matchesCategory;
+    });
+  }, [blogs, search, activeCategory]);
+
+  const visibleBlogs = filteredBlogs.slice(0, visibleCount);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center text-white">
+        Loading amazing blogs…
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white min-h-screen pt-28 pb-20 px-5 md:px-8">
+      <div className="max-w-7xl mx-auto">
+
+        {/* ================= SEARCH + CATEGORIES ================= */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="grid md:grid-cols-[1fr_300px] gap-14 mb-20"
+        >
+
+          {/* 🔍 SEARCH - Improved gradient style */}
+          <div>
+            <h3 className="text-xl font-semibold mb-5">Search</h3>
+
+            <div className="
+              relative flex items-center
+              bg-zinc-950 border-2 border-transparent
+              rounded-full
+              bg-gradient-to-r from-cyan-500/30 via-pink-500/20 to-purple-500/30 bg-clip-padding p-[2px]
+              focus-within:ring-2 focus-within:ring-cyan-400/50
+              transition-all duration-300
+            ">
+              <input
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setVisibleCount(INITIAL_COUNT);
+                }}
+                placeholder="Search blogs, SEO, AI, PPC, automation…"
+                className="
+                  w-full px-6 py-4 bg-zinc-950 text-white placeholder-zinc-400
+                  rounded-full focus:outline-none
+                "
+              />
+              <div className="
+                absolute right-2 h-11 w-11
+                flex items-center justify-center
+                rounded-full
+                bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600
+                shadow-lg shadow-pink-500/40
+                transition-all duration-300
+              ">
+                🔍
+              </div>
+            </div>
+          </div>
+
+          {/* 🗂 CATEGORIES */}
+          <div>
+            <h3 className="text-xl font-semibold mb-5">Categories</h3>
+
+            <ul className="space-y-4">
+              <li
+                onClick={() => {
+                  setActiveCategory("All");
+                  setVisibleCount(INITIAL_COUNT);
+                }}
+                className={`cursor-pointer transition ${
+                  activeCategory === "All"
+                    ? "text-cyan-400 font-semibold"
+                    : "text-zinc-400 hover:text-white"
+                }`}
+              >
+                All ({blogs.length})
+              </li>
+
+              {Object.entries(categories)
+                .filter(([, count]) => count > 0)
+                .slice(0, showAllCategories ? undefined : 5)
+                .map(([cat, count]) => (
+                  <li
+                    key={cat}
+                    onClick={() => {
+                      setActiveCategory(cat);
+                      setVisibleCount(INITIAL_COUNT);
+                    }}
+                    className={`cursor-pointer transition ${
+                      activeCategory === cat
+                        ? "text-cyan-400 font-semibold"
+                        : "text-zinc-400 hover:text-white"
+                    }`}
+                  >
+                    {cat} ({count})
+                  </li>
+                ))}
+            </ul>
+
+            {Object.keys(categories).length > 5 && (
+              <button
+                onClick={() => setShowAllCategories(!showAllCategories)}
+                className="mt-6 text-sm font-semibold text-blue-400 hover:text-blue-300"
+              >
+                {showAllCategories ? "Show Less" : "View All Categories →"}
+              </button>
+            )}
+          </div>
+        </motion.div>
+
+        {/* ================= BLOG GRID ================= */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          {visibleBlogs.length === 0 && (
+            <div className="col-span-full text-center text-zinc-400 py-24">
+              No blogs found for this filter.
+            </div>
+          )}
+
+          {visibleBlogs.map((blog, i) => (
+            <motion.article
+              key={blog._id}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.05 }}
+              whileHover={{ y: -8, scale: 1.03 }}
+              className="
+                group bg-zinc-900/60 backdrop-blur-xl
+                border border-zinc-800 rounded-2xl overflow-hidden
+                hover:border-cyan-400/40
+                hover:shadow-[0_0_40px_rgba(34,211,238,0.15)]
+              "
+            >
+              {blog.coverImage && (
+                <div className="relative overflow-hidden">
+                  <img
+                    src={blog.coverImage}
+                    alt={blog.title}
+                    className="
+                      w-full aspect-[16/9] object-cover
+                      transition-transform duration-700
+                      group-hover:scale-110
+                    "
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                </div>
+              )}
+
+              <div className="p-6 flex flex-col">
+                <h2 className="text-xl font-bold mb-3 line-clamp-2 group-hover:text-cyan-400 transition">
+                  {blog.title}
+                </h2>
+
+                <p className="text-zinc-400 text-sm line-clamp-3 mb-6">
+                  {(blog.contentHTML || "")
+                    .replace(/<[^>]+>/g, "")
+                    .slice(0, 140)}
+                  …
+                </p>
+
+                <Link
+                  to={`/blogs/${blog.slug}`}
+                  className="mt-auto text-cyan-400 font-semibold inline-flex items-center gap-2 group-hover:gap-3 transition-all"
+                >
+                  Read More →
+                </Link>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+
+        {/* LOAD MORE - Modern gradient + shine effect */}
+        {visibleCount < filteredBlogs.length && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="mt-20 text-center"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => setVisibleCount((p) => p + LOAD_MORE_COUNT)}
+              className="
+                relative px-12 py-5 rounded-full font-bold text-lg overflow-hidden
+                bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600
+                shadow-2xl shadow-cyan-500/30
+                hover:shadow-cyan-400/60
+                transition-all duration-500
+                before:content-[''] before:absolute before:inset-0
+                before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent
+                before:animate-[shine_2.5s_infinite]
+              "
+            >
+              <span className="relative z-10">Load More Blogs</span>
+            </motion.button>
+          </motion.div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default Blogs;
