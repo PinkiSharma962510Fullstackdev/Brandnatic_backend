@@ -181,16 +181,18 @@ function BlogDetails() {
             >
               {blog.title}
             </motion.h1>
-            <div className="flex flex-wrap items-center gap-2 text-sm text-zinc-400 mb-6">
-  <div className="flex items-center gap-2 text-sm text-zinc-400 mt-3">
-  <User size={16} className="text-cyan-400" />
-  <span>
-    By <span className="text-white font-medium">
-      {blog.author?.name || "Brandnatic Team"}
+    
+ 
+        <div className="flex flex-wrap items-center gap-3 text-sm text-zinc-400 mb-6">
+  <div className="flex items-center gap-2">
+    <User size={16} className="text-cyan-400" />
+    <span>
+      By{" "}
+      <span className="text-white font-medium">
+        {blog.author?.name || "Brandnatic Team"}
+      </span>
     </span>
-  </span>
-</div>
-  </span>
+  </div>
 
   <span>•</span>
 
@@ -202,6 +204,7 @@ function BlogDetails() {
     })}
   </span>
 </div>
+
 
 
             {/* DATE */}
