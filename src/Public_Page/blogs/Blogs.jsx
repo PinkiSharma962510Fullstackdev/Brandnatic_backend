@@ -1051,6 +1051,7 @@ function Blogs() {
   const INITIAL_COUNT = 6;
   const LOAD_MORE_COUNT = 6;
   const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
+  const [showAllCategories, setShowAllCategories] = useState(false);
 
   useEffect(() => {
     api
@@ -1124,70 +1125,112 @@ function Blogs() {
         <div className="grid md:grid-cols-[1fr_280px] gap-10 mb-16">
           
           {/* SEARCH */}
-          <div>
-            <h3 className="text-lg font-semibold mb-3">Search</h3>
-            <div className="flex">
-              <input
-                value={search}
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                  setVisibleCount(INITIAL_COUNT);
-                }}
-                placeholder="Search blogs..."
-                className="
-                  w-full px-5 py-3 rounded-l-full
-                  bg-zinc-900 border border-zinc-800
-                  focus:outline-none focus:border-blue-500
-                "
-              />
-              <button
-                className="
-                  px-8 rounded-r-full
-                  bg-gradient-to-r from-pink-500 to-rose-500
-                  font-semibold
-                "
-              >
-                Search
-              </button>
-            </div>
-          </div>
+          {/* SEARCH */}
+<div>
+  <h3 className="text-lg font-semibold mb-4 text-zinc-200">
+    Search
+  </h3>
+
+  <div
+    className="
+      relative flex items-center
+      bg-zinc-900/70 backdrop-blur-xl
+      border border-zinc-800
+      rounded-full
+      focus-within:border-cyan-400/60
+      focus-within:shadow-[0_0_25px_rgba(34,211,238,0.25)]
+      transition-all
+    "
+  >
+    <input
+      value={search}
+      onChange={(e) => {
+        setSearch(e.target.value);
+        setVisibleCount(INITIAL_COUNT);
+      }}
+      placeholder="Search blogs, SEO, AI, automation…"
+      className="
+        w-full px-6 py-4 bg-transparent
+        text-white placeholder-zinc-500
+        focus:outline-none
+      "
+    />
+
+    {/* ICON BUTTON */}
+    <span
+      className="
+        absolute right-3
+        h-10 w-10 flex items-center justify-center
+        rounded-full
+        bg-gradient-to-r from-pink-500 to-rose-500
+        shadow-lg shadow-pink-500/30
+      "
+    >
+      🔍
+    </span>
+  </div>
+</div>
+
 
           {/* CATEGORIES */}
-          <div>
-            <h3 className="text-lg font-semibold mb-3">Categories</h3>
-            <ul className="space-y-3">
-              <li
-                onClick={() => {
-                  setActiveCategory("All");
-                  setVisibleCount(INITIAL_COUNT);
-                }}
-                className={`cursor-pointer ${
-                  activeCategory === "All"
-                    ? "text-blue-400 font-semibold"
-                    : "text-zinc-400 hover:text-white"
-                }`}
-              >
-                All ({blogs.length})
-              </li>
+          {/* CATEGORIES */}
+<div>
+  <h3 className="text-lg font-semibold mb-4 text-zinc-200">
+    Categories
+  </h3>
 
-              {Object.entries(categories).map(([cat, count]) => (
-                <li
-                  key={cat}
-                  onClick={() => {
-                    setActiveCategory(cat);
-                    setVisibleCount(INITIAL_COUNT);
-                  }}
-                  className={`cursor-pointer ${
-                    activeCategory === cat
-                      ? "text-blue-400 font-semibold"
-                      : "text-zinc-400 hover:text-white"
-                  }`}
-                >
-                  {cat} ({count})
-                </li>
-              ))}
-            </ul>
-          </div>
+  <ul className="space-y-3">
+    {/* ALL */}
+    <li
+      onClick={() => {
+        setActiveCategory("All");
+        setVisibleCount(INITIAL_COUNT);
+      }}
+      className={`cursor-pointer transition ${
+        activeCategory === "All"
+          ? "text-cyan-400 font-semibold"
+          : "text-zinc-400 hover:text-white"
+      }`}
+    >
+      All ({blogs.length})
+    </li>
+
+    {/* ONLY 5 CATEGORIES */}
+    {Object.entries(categories)
+      .slice(0, showAllCategories ? undefined : 5)
+      .map(([cat, count]) => (
+        <li
+          key={cat}
+          onClick={() => {
+            setActiveCategory(cat);
+            setVisibleCount(INITIAL_COUNT);
+          }}
+          className={`cursor-pointer transition ${
+            activeCategory === cat
+              ? "text-cyan-400 font-semibold"
+              : "text-zinc-400 hover:text-white"
+          }`}
+        >
+          {cat} ({count})
+        </li>
+      ))}
+  </ul>
+
+  {/* VIEW ALL */}
+  {Object.keys(categories).length > 5 && (
+    <button
+      onClick={() => setShowAllCategories(!showAllCategories)}
+      className="
+        mt-4 text-sm font-semibold
+        text-blue-400 hover:text-blue-300
+        transition
+      "
+    >
+      {showAllCategories ? "Show Less" : "View All Categories →"}
+    </button>
+  )}
+</div>
+
         </div>
 
         {/* ================= BLOG GRID ================= */}
